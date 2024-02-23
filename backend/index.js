@@ -17,11 +17,11 @@ app.use(cors());
 
 // PASS THE BODY INFORMATION TO JSON FORMAT
 
-// Transform info from body to JSON
-app.use(express.json());
+    // Transform info from body to JSON
+app.use(express.json())
 
-// Transform info from url to JSON
-app.use(express.urlencoded({ extended: true }));
+    // Transform info from url to JSON
+app.use(express.urlencoded({extended:true}))
 
 // LISTEN SERVER
 app.listen(port, () => {
