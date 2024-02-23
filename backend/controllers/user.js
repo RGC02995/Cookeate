@@ -62,6 +62,9 @@ const register = async (req, res) => {
 
 };
 
+const login = async (req,res) => {
+  console.log(Es una prueba de guardado en github para pullear en otro ordenador);
+}
 module.exports = {
     register
 }

@@ -23,6 +23,9 @@ app.use(express.json())
     // Transform info from url to JSON
 app.use(express.urlencoded({extended:true}))
 
+//Load config routes
+const userRoutes = require ("./routes/user")
+app.use("/api/user", userRoutes) // Is the end porint to access at Methods of User
 // LISTEN SERVER
 app.listen(port, () => {
   console.log(
