@@ -17,12 +17,14 @@ const port = 5000;
 app.use(cors());
 
 // PASS THE BODY INFORMATION TO JSON FORMAT
-
     // Transform info from body to JSON
 app.use(express.json())
-
     // Transform info from url to JSON
 app.use(express.urlencoded({extended:true}))
+
+//Load config routes
+const userRoutes = require("./routes/user")
+app.use("/api/user", userRoutes) //Is the endpoint to acces at Methods of User.
 
 // LISTEN SERVER
 
