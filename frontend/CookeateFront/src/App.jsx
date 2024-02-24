@@ -1,13 +1,15 @@
+import { Link, Route, Routes } from "react-router-dom";
+import Form from "./components/form/Form";
 
-import './App.css'
+
+// ...
 
 function App() {
-  
   return (
     <>
-     {}
+      <Form />
     </>
-  )
+  );
 }
 
 export default App
