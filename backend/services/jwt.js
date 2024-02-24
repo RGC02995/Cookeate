@@ -6,7 +6,7 @@ const moment = require("moment")
 
 const secret = "This_iS_tHe_SeCREtKeyfor_ThePROyect/***/(CooKeAtE)_15486"
 
-//Create a token a decode token
+//Create a token and decode token
 
 const createToken = (user) => {
     const payload = {
@@ -18,7 +18,7 @@ const createToken = (user) => {
         role:user.role,
         image:user.image,
         iat:moment().unix(),
-        exp:moment().add(30,"days").unix() //expiration token, 30 is the quantity of teh param at the right "days"
+        exp:moment().add(30,"days").unix() //expiration token, 30 is the quantity of the right param "days"
         
     }
 
