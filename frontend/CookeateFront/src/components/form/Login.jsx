@@ -13,18 +13,18 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmitLogin}>
+    <div className="form_Style">
+      <form className="container " onSubmit={handleSubmitLogin}>
         <h2>Login</h2>
-        <label>
+        <label className="label_config">
           Email:
           <input type="email" ref={emailRef} />
         </label>
-        <label>
+        <label className="label_config">
           Password:
           <input type="password" ref={passwordRef} />
         </label>
-        <button type="submit">Login</button>
+        <button className="form_button" type="submit">Login</button>
       </form>
     </div>
   );

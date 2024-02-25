@@ -21,30 +21,30 @@ const Register = ({ onRegister }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmitRegister}>
+    <div className="form_Style div_margin_top">
+      <form className="container " onSubmit={handleSubmitRegister}>
         <h2>Register</h2>
-        <label>
+        <label className="label_config">
           Name:
           <input type="text" ref={nameRef} />
         </label>
-        <label>
+        <label className="label_config">
           Surname:
           <input type="text" ref={surnameRef} />
         </label>
-        <label>
+        <label className="label_config">
           Nick:
           <input type="text" ref={nickRef} />
         </label>
-        <label>
+        <label className="label_config">
           Email:
           <input type="email" ref={emailRef} />
         </label>
-        <label>
+        <label className="label_config">
           Password:
           <input type="password" ref={passwordRef} />
         </label>
-        <button type="submit">Register</button>
+        <button className="form_button" type="submit">Register</button>
       </form>
     </div>
   );

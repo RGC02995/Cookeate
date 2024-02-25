@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFoundPage from "./routes/NotFoundPage.jsx";
 import Login from "./components/form/Login.jsx";
 import Register from "./components/form/Register.jsx";
+import './sass/main.scss'
 
 const router = createBrowserRouter([
   {

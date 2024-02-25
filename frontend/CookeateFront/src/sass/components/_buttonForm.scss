@@ -1,0 +1,17 @@
+.form_button{
+    background-color: #46c795;
+    border: 1px solid white;
+    padding: 1em;
+    width: 500px;
+    max-width: 300px;
+    font-size: 15px;
+    border-radius: .3rem;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    &:hover{
+        background-color: white;
+        color: $grey-color;
+    }
+}
+
