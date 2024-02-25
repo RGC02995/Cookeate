@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 //Import Browser Router for use Link, route, routes in all the project
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
 import NotFoundPage from "./routes/NotFoundPage.jsx";
+import Login from "./components/form/Login.jsx";
+import Register from "./components/form/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,15 @@ const router = createBrowserRouter([
     path: "/", // Use "/" for the default route
     element: <App />
   },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/register",
+    element: <Register />
+  }
+
   
 ]);
 
