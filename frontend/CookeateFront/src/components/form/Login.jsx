@@ -14,7 +14,7 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="form_Style">
-      <form className="container " onSubmit={handleSubmitLogin}>
+      <form className="container" onSubmit={handleSubmitLogin}>
         <h2>Login</h2>
         <label className="label_config">
           Email:

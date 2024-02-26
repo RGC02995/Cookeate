@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Register from "./Register";
 import Login from "./Login";
+import { object } from "prop-types";
+import { registerAPI } from "../../api/registerApi";
+import { loginAPI } from "../../api/loginApi";
 
 function Form() {
   const [isLogged, setIsLogged] = useState(false);
@@ -8,15 +11,55 @@ function Form() {
   const [registrationComplete, setRegistrationComplete] = useState(false);
 
   const handleLogin = ({ email, password }) => {
-    if (email === "test@test.com" && password === "y") {
-      setIsLogged(true);
-    } else {
-      alert("Error al iniciar sesion, el email o el password son incorrectos");
-    }
+
+    const resp = loginAPI
+      .post("/login", {
+       
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+        const data = response.data;
+        if (data.status === "success") {
+          setIsLogged(true);
+          console.log("Login exitoso:", data.message);
+        } else {
+          console.error("Error en el login:", data.message);
+        }
+      })
+      .catch(function (error) {
+        alert(
+          "Error al iniciar sesion el email o el password son incorrectos:",
+          error
+        );
+      });
+
+  
   };
 
   const handleRegister = ({ name, surname, nick, email, password }) => {
-    setRegistrationComplete(true);
+    const resp = registerAPI
+      .post("/register", {
+        name: name,
+        surname: surname,
+        nick: nick,
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+        const data = response.data;
+        if (data.status === "success") {
+          setRegistrationComplete(true);
+          console.log("Registro exitoso:", data.message);
+        } else {
+          console.error("Error en el registro:", data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleChangeForm = () => {
@@ -29,19 +72,19 @@ function Form() {
         console.log("Enviar a HomePage")
       ) : changeForm === "login" ? (
         <div className="container">
+          <Login onLogin={handleLogin} />
           <button className="form_button" onClick={handleChangeForm}>
             Register
           </button>
-          <Login onLogin={handleLogin} />
         </div>
       ) : (
         <>
           {registrationComplete === false ? (
             <div className="container">
+              <Register onRegister={handleRegister} />
               <button className="form_button" onClick={handleChangeForm}>
                 Login
               </button>
-              <Register onRegister={handleRegister} />
             </div>
           ) : (
             <>

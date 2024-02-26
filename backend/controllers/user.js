@@ -24,11 +24,11 @@ const register = async (req, res) => {
     ],
   });
 
-  //If exist = true send a response 200
+  //If exist = true send a response 400
 
   if (exist.length > 0) {
-    return res.status(200).send({
-      status: "success",
+    return res.status(400).send({
+      status: "error",
       message: "User exists, register with other email or nick",
     });
   }

@@ -1,13 +1,15 @@
 .container{
-    max-width: 800px;
+    max-width: 500px;
     margin: 0 auto;
+    margin-top: 2% !important;
+
     @include flex-center-column 
 
 }
     
     @media (max-width: 600px) {
         form {
-          width: 40%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
+          width: 80%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
         }
 }
 
@@ -42,7 +44,7 @@
 @media (max-width: 1920) {
     form {
         color: #282828;
-        width: 10%;
+        width: 100%;
     }
 }
 @media (max-width: 600) {
