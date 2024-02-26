@@ -52,6 +52,10 @@
     }
 }
 
+.margin_top_h1 {
+    margin-top: 5%;
+}
+
 .label_config{
     @include flex-center-label
 }

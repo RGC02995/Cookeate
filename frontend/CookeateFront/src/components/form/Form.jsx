@@ -29,21 +29,30 @@ function Form() {
         console.log("Enviar a HomePage")
       ) : changeForm === "login" ? (
         <div className="container">
-          <button className="form_button" onClick={handleChangeForm}>Register</button>
+          <button className="form_button" onClick={handleChangeForm}>
+            Register
+          </button>
           <Login onLogin={handleLogin} />
         </div>
       ) : (
         <>
           {registrationComplete === false ? (
             <div className="container">
-              <button className="form_button" onClick={handleChangeForm}>Login</button>
+              <button className="form_button" onClick={handleChangeForm}>
+                Login
+              </button>
               <Register onRegister={handleRegister} />
             </div>
           ) : (
-            <><div className="container">
-              <h1>REGISTRO COMPLETADO CON ÉXITO!</h1>
-              <button className="form_button" onClick={handleChangeForm}>Login</button>
-            </div>
+            <>
+              <div className="container">
+                <h1 className="margin_top_h1">
+                  REGISTRO COMPLETADO CON ÉXITO!
+                </h1>
+                <button className="form_button" onClick={handleChangeForm}>
+                  Login
+                </button>
+              </div>
             </>
           )}
         </>

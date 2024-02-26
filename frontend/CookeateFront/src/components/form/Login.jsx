@@ -24,6 +24,8 @@ const Login = ({ onLogin }) => {
           Password:
           <input type="password" ref={passwordRef} />
         </label>
+
+        <p>Forgot Password?</p>
         <button className="form_button" type="submit">Login</button>
       </form>
     </div>

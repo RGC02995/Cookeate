@@ -14,6 +14,7 @@
 .form_button:hover {
   background-color: white;
   color: #383838;
+  cursor: pointer;
 }
 
 * {
@@ -69,12 +70,22 @@ body {
   align-items: left;
 }
 
+@media (max-width: 1920) {
+  form {
+    color: #282828;
+    width: 10%;
+  }
+}
 @media (max-width: 600) {
   form {
     padding: 0;
     width: 90%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
   }
 }
+.margin_top_h1 {
+  margin-top: 5%;
+}
+
 .label_config {
   display: flex;
   justify-content: center;
