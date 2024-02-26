@@ -3,7 +3,7 @@ import { togglePasswordVisibility } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { loginAPI } from "../../api/loginApi";
 import { useState } from "react";
-import Home from "../home/Home";
+import Home from '../home/Home'
 
 const Login = () => {
   const [isLogged, setIsLogged] = useState(false);
@@ -60,6 +60,7 @@ const Login = () => {
           </label>
           <button className="form_button" type="submit">
             Login
+            <Link to='/hompepage'></Link>
           </button>
         </form>
       </div>
