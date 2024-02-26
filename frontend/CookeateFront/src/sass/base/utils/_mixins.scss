@@ -6,6 +6,14 @@
     flex-direction: column;
   }
 
+  @mixin flex-center-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+  }
+
   @mixin flex-center-label {
     display: flex;
     justify-content: center;

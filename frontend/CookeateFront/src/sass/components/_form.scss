@@ -9,8 +9,15 @@
     
     @media (max-width: 600px) {
         form {
-          width: 80%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
+          width: 100%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
         }
+}
+
+.container_row {
+    p{
+        font-size: 14px;
+    }
+    @include flex-center-row
 }
 
 .form_Style{

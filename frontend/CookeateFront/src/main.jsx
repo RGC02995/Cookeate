@@ -7,6 +7,8 @@ import NotFoundPage from "./routes/NotFoundPage.jsx";
 import Login from "./components/form/Login.jsx";
 import Register from "./components/form/Register.jsx";
 import './sass/main.scss'
+import Home from "./components/home/Home.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -25,12 +27,17 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />
+  },
+  {
+    path:"/homepage",
+    element:<Home />
   }
 
   
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

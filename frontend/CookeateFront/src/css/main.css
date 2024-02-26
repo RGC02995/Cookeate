@@ -42,9 +42,20 @@ body {
 
 @media (max-width: 600px) {
   form {
-    width: 80%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
+    width: 100%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
   }
 }
+.container_row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
+.container_row p {
+  font-size: 14px;
+}
+
 .form_Style {
   border: 1px solid white;
   border-radius: 0.5rem;

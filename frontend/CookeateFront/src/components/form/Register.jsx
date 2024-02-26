@@ -1,6 +1,10 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { registerAPI } from "../../api/registerApi";
 
-const Register = ({ onRegister }) => {
+const Register = () => {
+  const [registrationComplete, setRegistrationComplete] = useState(false);
   const nameRef = useRef(null);
   const surnameRef = useRef(null);
   const nickRef = useRef(null);
@@ -15,37 +19,69 @@ const Register = ({ onRegister }) => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    if (name && surname && nick && email && password) {
-      onRegister({ name, surname, nick, email, password });
-    }
+    const resp = registerAPI
+      .post("/register", {
+        name: name,
+        surname: surname,
+        nick: nick,
+        email: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+        const data = response.data;
+        if (data.status === "success") {
+          setRegistrationComplete(true);
+          console.log("Registro exitoso:", data.message);
+        } else {
+          console.error("Error en el registro:", data.message);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
-  return (
-    <div className="form_Style div_margin_top">
-      <form className="container " onSubmit={handleSubmitRegister}>
-        <h2>Register</h2>
-        <label className="label_config">
-          Name:
-          <input type="text" ref={nameRef} />
-        </label>
-        <label className="label_config">
-          Surname:
-          <input type="text" ref={surnameRef} />
-        </label>
-        <label className="label_config">
-          Nick:
-          <input type="text" ref={nickRef} />
-        </label>
-        <label className="label_config">
-          Email:
-          <input type="email" ref={emailRef} />
-        </label>
-        <label className="label_config">
-          Password:
-          <input type="password" ref={passwordRef} />
-        </label>
-        <button className="form_button" type="submit">Register</button>
-      </form>
+  return registrationComplete === false ? (
+    <div className="container">
+      <div className="form_Style div_margin_top">
+        <form className="container " onSubmit={handleSubmitRegister}>
+          <h2>Register</h2>
+          <label className="label_config">
+            Name:
+            <input type="text" ref={nameRef} />
+          </label>
+          <label className="label_config">
+            Surname:
+            <input type="text" ref={surnameRef} />
+          </label>
+          <label className="label_config">
+            Nick:
+            <input type="text" ref={nickRef} />
+          </label>
+          <label className="label_config">
+            Email:
+            <input type="email" ref={emailRef} />
+          </label>
+          <label className="label_config">
+            Password:
+            <input type="password" ref={passwordRef} />
+          </label>
+          <button className="form_button" type="submit">
+            Register
+          </button>
+        </form>
+      </div>
+      <Link to="/login">
+        <button className="form_button">Login</button>
+      </Link>
+    </div>
+  ) : (
+    <div className="container">
+      <h1 className="container">Se ha registrado correctamente</h1>
+      <Link to="/login">
+        <button className="form_button">Login</button>
+      </Link>
     </div>
   );
 };
