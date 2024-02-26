@@ -1,0 +1,38 @@
+.style_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav_dimension {
+    height: 90px;
+    background-color: rgb(255, 255, 255);
+    padding: .5em;
+}
+
+.img_dimension {
+    max-height: 90px;
+
+}
+
+.flex {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 65px;
+}
+
+.icon_style{
+    color: rgb(120, 118, 118);
+    height: 50px;
+    width: 30px;
+}
+
+.icon_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -10px;
+}

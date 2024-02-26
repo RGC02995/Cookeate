@@ -10,6 +10,7 @@
   border-radius: 0.3rem;
   margin-top: 5%;
   margin-bottom: 5%;
+  color: white;
 }
 .form_button:hover {
   background-color: white;
@@ -22,17 +23,17 @@
   font-family: "Poppins", sans-serif;
   font-size: large;
   line-height: 1.6;
-  color: #fff5f5;
 }
 
 body {
-  background-color: #383838;
+  background-color: #777777;
 }
 
 .container {
   max-width: 500px;
   margin: 0 auto;
   margin-top: 2% !important;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,4 +106,42 @@ body {
   gap: 10px;
   flex-direction: column;
   font-size: 20px;
+}
+
+.style_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav_dimension {
+  height: 90px;
+  background-color: rgb(255, 255, 255);
+  padding: 0.5em;
+}
+
+.img_dimension {
+  max-height: 90px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 65px;
+}
+
+.icon_style {
+  color: rgb(120, 118, 118);
+  height: 50px;
+  width: 30px;
+}
+
+.icon_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -10px;
 }/*# sourceMappingURL=main.css.map */
