@@ -18,7 +18,7 @@ const createToken = (user) => {
         role:user.role,
         image:user.image,
         iat:moment().unix(),
-        exp:moment().add(30,"days").unix() //expiration token, 30 is the quantity of the right param "days"
+        exp:moment().add(1,"days").unix() //expiration token, 30 is the quantity of the right param "days"
         
     }
 

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { registerAPI } from "../../api/registerApi";
 
@@ -10,6 +10,13 @@ const Register = () => {
   const nickRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const isToken = localStorage.getItem("token");
+  console.log(isToken);
+  if((isToken!==undefined)&&(isToken!==null)&&(isToken!=='')){
+    // <Navigate to="/" replace={true} />
+    location.href='/';
+  }
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();

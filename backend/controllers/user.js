@@ -4,7 +4,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("../services/jwt")
 //METHODS
 
-//Method for register in Cookeate
+//Method POST for register
+//Rute /register
 const register = async (req, res) => {
   //Obtein params from the body
   let params = req.body;
@@ -58,6 +59,8 @@ const register = async (req, res) => {
   }
 };
 
+//Method POST for register
+//Rute /login
 const login = async (req, res) => {
   //Get all params of the body
   let params = req.body;
@@ -108,6 +111,7 @@ const login = async (req, res) => {
     return res.status(500).send({ status: "error", message: "Failed Login" });
   }
 };
+
 module.exports = {
   register,
   login,

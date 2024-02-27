@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { togglePasswordVisibility } from "../../utils/utils";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { loginAPI } from "../../api/loginApi";
 import { useState } from "react";
 import Home from '../home/Home'
@@ -9,7 +9,12 @@ const Login = () => {
   const [isLogged, setIsLogged] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-
+  const isToken = localStorage.getItem("token");
+  if((isToken!==undefined)&&(isToken!==null)&&(isToken!=='')){
+    // <Navigate to="/" replace={true} />
+    location.href='/';
+  }
+  
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
@@ -24,8 +29,12 @@ const Login = () => {
         console.log(response);
         const data = response.data;
         if (data.status === "success") {
-          setIsLogged(true);
-          console.log("Login exitoso:", data.message);
+          //hacer navigate
+          //setIsLogged(true);
+          localStorage.setItem('token',data.token);
+          // <Navigate to="/" replace={true} />
+          location.href='/';
+          //console.log("Login exitoso:", data.message);
         } else {
           console.error("Error en el login:", data.message);
         }
@@ -38,7 +47,8 @@ const Login = () => {
       });
   };
 
-  return isLogged === false ? (
+  return (
+  <>
     <div className="container">
       <div className="form_Style">
         <form className="container" onSubmit={handleSubmitLogin}>
@@ -60,7 +70,6 @@ const Login = () => {
           </label>
           <button className="form_button" type="submit">
             Login
-            <Link to='/hompepage'></Link>
           </button>
         </form>
       </div>
@@ -68,9 +77,7 @@ const Login = () => {
         <button className="form_button">Register</button>
       </Link>
     </div>
-  ) : (
-    <Home />
-  );
+  </>)
 };
 
 export default Login;
