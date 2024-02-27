@@ -1,5 +1,5 @@
 import Navbar from "./Navbar"
-import Slider from "./Slider"
+import Slider from "./slider/Slider"
 const Home =() => {
     return (
         <div>

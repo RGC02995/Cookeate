@@ -10,7 +10,6 @@ const Navbar = () => {
         <img className="img_dimension" src={Logo} alt="cookeate-logo.png" />
         {/*Order svg icons up and input under of icons in css*/}
         <div className="flex">
-
           <div className="icon_container">
             <VscAccount className="icon_style" />
             <DiAptana className="icon_style" />
@@ -18,12 +17,9 @@ const Navbar = () => {
 
           <label className="input_container">
             <input type="text" placeholder="Buscar..." />
-            <VscSearch  className="icon_horizontal_search"/>
+            <VscSearch className="icon_horizontal_search" />
           </label>
-
-
         </div>
-
       </nav>
     </div>
   );

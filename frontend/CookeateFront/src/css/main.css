@@ -19,14 +19,14 @@
 }
 
 * {
-  margin: auto 0;
   font-family: "Poppins", sans-serif;
   font-size: large;
   line-height: 1.6;
 }
 
 body {
-  background-color: #777777;
+  margin: auto 0;
+  background-color: #cacaca;
 }
 
 .container {
@@ -135,6 +135,11 @@ body {
   max-height: 90px;
   filter: drop-shadow(1px 1px 1px black);
 }
+@media (max-width: 400px) {
+  .img_dimension {
+    height: 80px;
+  }
+}
 
 .icon_style {
   color: rgb(94, 116, 83);
@@ -145,20 +150,20 @@ body {
 }
 
 .icon_container {
-  margin-left: 160px;
+  margin-left: 300px;
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 @media (max-width: 600px) {
   .icon_container {
-    margin-left: 55px;
+    margin-left: 25px;
   }
 }
 
 .input_container {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 .input_container input {
   border: 1px solid rgb(122, 121, 94);
@@ -175,4 +180,55 @@ body {
   height: 30px;
   width: 20px;
   filter: drop-shadow(1px 1px 1px rgb(0, 0, 0));
+}
+@media (max-width: 600px) {
+  .icon_horizontal_search {
+    opacity: 0;
+  }
+}
+
+.main_container {
+  width: 100%;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.slider_container {
+  position: relative;
+  height: 100%;
+}
+
+.container_images {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+
+.left_Arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, 50%);
+  left: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+  transform: scale(5);
+  opacity: 70%;
+}
+
+.right_Arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, 50%);
+  right: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  transform: scale(5);
+  cursor: pointer;
+  opacity: 70%;
 }/*# sourceMappingURL=main.css.map */
