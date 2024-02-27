@@ -10,9 +10,12 @@
     
     @media (max-width: 600px) {
         form {
-          width: 100%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
+          width: 300px; 
+          margin: 0 auto;/* Ajusta el ancho del formulario para pantallas más pequeñas */
         }
 }
+
+
 
 .container_row {
     p{
@@ -67,5 +70,7 @@
 }
 
 .label_config{
+    width: 300px;
+    min-width: 200px;
     @include flex-center-label
 }

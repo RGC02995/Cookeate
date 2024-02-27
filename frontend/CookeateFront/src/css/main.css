@@ -43,7 +43,8 @@ body {
 
 @media (max-width: 600px) {
   form {
-    width: 100%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
+    width: 300px;
+    margin: 0 auto; /* Ajusta el ancho del formulario para pantallas más pequeñas */
   }
 }
 .container_row {
@@ -100,6 +101,8 @@ body {
 }
 
 .label_config {
+  width: 300px;
+  min-width: 200px;
   display: flex;
   justify-content: center;
   align-items: left;
@@ -119,29 +122,57 @@ body {
   background-color: rgb(255, 255, 255);
   padding: 0.5em;
 }
+@media (max-width: 600px) {
+  .nav_dimension {
+    width: 100%;
+  }
+  .nav_dimension nav {
+    padding: 0;
+  }
+}
 
 .img_dimension {
   max-height: 90px;
-}
-
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 65px;
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 .icon_style {
-  color: rgb(120, 118, 118);
+  color: rgb(94, 116, 83);
   height: 50px;
   width: 30px;
+  filter: drop-shadow(1px 1px 1px black);
+  margin-top: -15px;
 }
 
 .icon_container {
+  margin-left: 160px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: -10px;
+  flex-direction: row;
+  gap: 10px;
+}
+@media (max-width: 600px) {
+  .icon_container {
+    margin-left: 55px;
+  }
+}
+
+.input_container {
+  display: flex;
+  gap: 5px;
+}
+.input_container input {
+  border: 1px solid rgb(122, 121, 94);
+}
+@media (max-width: 600px) {
+  .input_container input {
+    width: 100px;
+  }
+}
+
+.icon_horizontal_search {
+  transform: scaleX(-1);
+  color: rgb(146, 154, 104);
+  height: 30px;
+  width: 20px;
+  filter: drop-shadow(1px 1px 1px rgb(0, 0, 0));
 }/*# sourceMappingURL=main.css.map */
