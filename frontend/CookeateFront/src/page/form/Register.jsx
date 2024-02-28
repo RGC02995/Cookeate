@@ -26,6 +26,11 @@ const Register = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
+    if (!name.trim() || !surname.trim() || !nick.trim() || !email.trim() || !password.trim()) {
+      alert("NO PUEDEN HABER ESPACIOS EN BLANCO")
+      return
+    }
+
     const resp = registerAPI
       .post("/register", {
         name: name,
@@ -68,7 +73,7 @@ const Register = () => {
           </label>
           <label className="label_config">
             Email:
-            <input type="email" ref={emailRef} />
+            <input type="email" ref={emailRef} placeholder="example@gmail.com"/>
           </label>
           <label className="label_config">
             Password:

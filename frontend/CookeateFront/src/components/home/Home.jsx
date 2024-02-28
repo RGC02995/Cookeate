@@ -1,10 +1,14 @@
+import ExplainAboutUs from "./ExplainAboutUs"
+import LastPublications from "./LasPublications"
 import Navbar from "./Navbar"
-import Slider from "./slider/Slider"
+import Slider from "./Slider"
 const Home =() => {
     return (
         <div>
             <Navbar />
             <Slider />
+            <ExplainAboutUs/>
+            <LastPublications/>
         </div>
     )
 }

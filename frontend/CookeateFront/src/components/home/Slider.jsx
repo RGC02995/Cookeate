@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { VscCircleLargeFilled } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 import { VscChevronLeft } from "react-icons/vsc";
+import Logo from '../../img/Wallpaper.jpg'
 
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,29 +27,19 @@ function Slider() {
   return (
     <div className="main_container">
       <div className="left_Arrow" onClick={() => scrollToImage("prev")}>
-      <VscChevronLeft />
+        <VscChevronLeft />
       </div>
       <div className="right_Arrow" onClick={() => scrollToImage("next")}>
-      <VscChevronRight />
+        <VscChevronRight />
       </div>
       <div className="slider_container">
         <div className="container_images">
-          <ul>
-            {/* {data.map((item)=>{
-              return (
-                <li key={item.id}>
-                  <img src={item.img} width={'100%'} height={'100%'} />
-                </li>
-              )
-            })} */}
-          </ul>
-        </div>
-        <div className="dots_container">
-          {/* {data.map((_,index) =>{
-            <div key={index} className={`dot_container_item`} onClick={()=>goToSlide(index)}>
-              <VscCircleLargeFilled />
-            </div>
-          })} */}
+          <img src={Logo} alt={`Image`} width={'100%'} height={'100%'} style={{margin:0}} />
+            {/* {data.map((item) => (
+              <li key={item.id}>
+                <img src={item.img} alt={`Image ${item.id}`} width={'100%'} height={'100%'} />
+              </li>
+            ))} */}
         </div>
       </div>
     </div>

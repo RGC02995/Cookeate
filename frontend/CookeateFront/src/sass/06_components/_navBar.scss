@@ -1,15 +1,19 @@
 .style_container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-   
+    justify-content: space-between;  
+    margin-right: 20px;  
 }
 
 .nav_dimension {
     height: 90px;
     background-color: rgb(255, 255, 255);
     padding: .5em;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1000;
+    width: 100%;
+    
     @media (max-width:600px) {
         width: 100%;
         nav{ 

@@ -1,0 +1,68 @@
+.sectionStyle {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+}
+
+.o-header{
+    background-color:$grey-color;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(243, 243, 243);
+}
+
+.o-Title {
+    font-size: 120px;
+}
+
+
+.o-aside{
+    background-color: white;
+    margin: 0;
+}
+
+.o-introStyleStart{
+    text-align:inherit;
+    font-size: 26px;
+    font-weight: 300;
+    margin: 20px auto;
+    color: $grey-color;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.o-introStyle {
+    text-align:inherit;
+    font-size: 26px;
+    font-weight: 300;
+    margin: 50px auto;
+    color: $grey-color;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.o-introStyleEnd {
+    text-align:inherit;
+    font-size: 60px;
+    color: $grey-color;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.start_button {
+    background-color: rgb(118, 139, 118);
+    text-decoration:none;
+    color: white;
+    padding: .7em;
+    font-size: 40px;
+    border-radius: .5rem;
+}
+

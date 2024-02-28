@@ -7,11 +7,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import NotFoundPage from "./page/NotFoundPage.jsx";
-import Login from "./components/form/Login.jsx";
-import Register from "./components/form/Register.jsx";
+import Login from "./page/form/Login.jsx";
+import Register from "./page/form/Register.jsx";
 import Home from "./components/home/Home.jsx";
 import axios from "axios";
-
+import {tokenApi} from "./api/tokenApi.js"
 const router = createBrowserRouter([
   {
     path: "/*", // Catch-all for any unmatched paths
@@ -39,34 +39,30 @@ const router = createBrowserRouter([
 ]);
 function AuthProvider() {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  
   //Verificador valor del token
   useEffect(() => {
     const verifyToken = async () => {
       if (!token || token === undefined || token === null) {
         localStorage.removeItem("token");
       } else {
-        const response = await axios.post(
-          "AÑADIR EndPoint COMPROBACION TOKEN",
-          token
-        );
-      }
-      if (response.data.authenticated) {
-        console.log("Usuario autenticado con éxito");
-      } else {
-        console.log("Error en la autenticación");
-      }
+        tokenApi.post("/verify-token", null, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+        })
+          .then(response => {
+            console.log('Respuesta del servidor:', response.data.response);
+          })
+          .catch(error => {
+            console.error('Error:', error.message);
+            if(error.response) {
+              console.error("Respuesta del servidor:", error.response.data)
+            }
+          });
+        }
     };
-    // if(token){
-    //   if((token===undefined)||(token===null)){
-    //     localStorage.removeItem("token");
-    //   }
-    //   else{
-    //     //Axios verificando token method POST
-    //     console.log('patata')
-    //   }
-    // }else{
-    //   localStorage.removeItem("token");
-    // }
+    verifyToken()
   }, [token]);
 
   return token ? (

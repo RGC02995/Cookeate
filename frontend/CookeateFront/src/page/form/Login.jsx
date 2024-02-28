@@ -3,12 +3,13 @@ import { togglePasswordVisibility } from "../../utils/utils";
 import { Link, Navigate } from "react-router-dom";
 import { loginAPI } from "../../api/loginApi";
 import { useState } from "react";
-import Home from '../home/Home'
+import Home from '../../components/home/Home'
 
 const Login = () => {
   const [isLogged, setIsLogged] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
   const isToken = localStorage.getItem("token");
   if((isToken!==undefined)&&(isToken!==null)&&(isToken!=='')){
     // <Navigate to="/" replace={true} />
@@ -29,12 +30,8 @@ const Login = () => {
         console.log(response);
         const data = response.data;
         if (data.status === "success") {
-          //hacer navigate
-          //setIsLogged(true);
           localStorage.setItem('token',data.token);
-          // <Navigate to="/" replace={true} />
           location.href='/';
-          //console.log("Login exitoso:", data.message);
         } else {
           console.error("Error en el login:", data.message);
         }
