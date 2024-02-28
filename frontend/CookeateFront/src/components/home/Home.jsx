@@ -1,5 +1,5 @@
 import ExplainAboutUs from "./ExplainAboutUs"
-import LastPublications from "./LasPublications"
+import LastPublications from "./LastPublications"
 import Navbar from "./Navbar"
 import Slider from "./Slider"
 const Home =() => {
