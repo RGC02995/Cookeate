@@ -180,8 +180,44 @@ const uploadImage = async (req, res) => {
   }
 };
 
+const profile = async (req, res) => {
+  try {
+    // Obtener el usuario actual basado en la información del token
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).send({
+        status: "error",
+        message: "Usuario no encontrado",
+      });
+    }
+
+    // Devolver la información del perfil del usuario
+    return res.status(200).send({
+      status: "success",
+      user: {
+        id: user.id,
+        name: user.name,
+        bio: user.bio,
+        nick: user.nick,
+        email: user.email,
+        image: user.image,
+        created_date: user.created_date,
+        // Otros campos del usuario que desees incluir en el perfil
+      },
+    });
+  } catch (error) {
+    return res.status(500).send({
+      status: "error",
+      message: "Error al obtener el perfil del usuario",
+      error: error.message,
+    });
+  }
+};
 module.exports = {
   register,
   login,
-  uploadImage
+  uploadImage,
+  profile
 };

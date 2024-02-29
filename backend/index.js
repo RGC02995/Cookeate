@@ -26,6 +26,8 @@ app.use(express.urlencoded({extended:true}))
 //Load config routes
 const userRoutes = require ("./routes/user")
 app.use("/api/user", userRoutes) // Is the end porint to access at Methods of User
+const recipeRoute = require ("./routes/recipes")
+app.use("/api/recipes", recipeRoute)
 const tokenRoute = require ("./middleware/auth")
 app.use("/token", tokenRoute) // Is the end porint to access at Methods of token
 

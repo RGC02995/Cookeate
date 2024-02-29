@@ -22,6 +22,9 @@ const UserModel = Schema({
         type:String,
         required:true
     },
+    bio:{
+        type:String
+    },
     role: {
         type:String,
         default:"user_role"
