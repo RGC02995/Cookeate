@@ -1,7 +1,10 @@
 //Import dependences
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require("../services/jwt")
+const jwt = require("../services/jwt");
+const fs = require("fs");
+const user = require("../models/user");
+
 //METHODS
 
 //Method POST for register
@@ -59,7 +62,7 @@ const register = async (req, res) => {
   }
 };
 
-//Method POST for register
+//Method POST for login
 //Rute /login
 const login = async (req, res) => {
   //Get all params of the body
@@ -93,26 +96,92 @@ const login = async (req, res) => {
 
     //Create a token when user has login
 
-    const token = jwt.createToken(user)
+    const token = jwt.createToken(user);
 
     return res.status(200).send({
-      status:"success",
-      message:"User is logged",
-      user:{
-        id:user._id,
-        name:user.name,
-        nick:user.nick,
-        image:user.image
+      status: "success",
+      message: "User is logged",
+      user: {
+        id: user._id,
+        name: user.name,
+        nick: user.nick,
+        image: user.image,
       },
-      token
-    })
-
+      token,
+    });
   } catch (error) {
     return res.status(500).send({ status: "error", message: "Failed Login" });
+  }
+};
+
+//Method POST for uploadImage
+//Rute /uploadImage
+const uploadImage = async (req, res) => {
+  try {
+    // Check if the file exists
+    if (!req.file) {
+      return res.status(404).send({
+        status: "error",
+        message: "File not uploaded",
+      });
+    }
+
+    // Obtain file name.
+    let image = req.file.filename;
+
+    //Obtain file extension
+    const imageSplit = image.split(".");
+    const extension = imageSplit[1].toLowerCase();
+
+    //Check file extension and remove is it no correct (png, jpg, jpeg, gif)
+    if (
+      extension !== "png" &&
+      extension !== "jpg" &&
+      extension !== "jpeg" &&
+      extension !== "gif"
+    ) {
+      //Delete incorrect file
+      const filePath = req.file.path;
+      fs.unlinkSync(filePath); // Elimina antes de subir
+
+      return res.status(400).send({
+        status: "error",
+        message: "Invalid extension",
+      });
+    }
+
+    //Save file (if it is correct)
+    const userUpdated = await User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { image: req.file.filename },
+      { new: true } // new: true para devolver el nuevo usuario
+    );
+
+    if (!userUpdated) {
+      return res.status(500).send({
+        status: "error",
+        message: "Error saving image",
+      });
+    }
+
+    //RETURN RESPONSE
+    return res.status(200).send({
+      status: "success",
+      user: userUpdated,
+      file: req.file,
+      files: req.files,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      status: "error",
+      message: "Error in the upload process",
+      error: error.message,
+    });
   }
 };
 
 module.exports = {
   register,
   login,
+  uploadImage
 };

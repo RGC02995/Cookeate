@@ -279,6 +279,11 @@ input {
 .o-Title {
   font-size: 120px;
 }
+@media (max-width: 1920px) {
+  .o-Title {
+    font-size: 50px;
+  }
+}
 
 .o-aside {
   background-color: white;

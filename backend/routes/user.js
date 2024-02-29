@@ -2,6 +2,8 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../controllers/user");
+const check = require("../middleware/auth")
+const multer = require("multer")
 
 //Import Multer for update images:
 const multer = require("multer")
@@ -23,6 +25,7 @@ const uploads = multer({storage})
 
 router.post("/register", UserController.register)
 router.post("/login", UserController.login)
+router.post("/uploadimage",[check.auth, uploads.single("file0")],UserController.uploadImage);
 
 
 module.exports = router

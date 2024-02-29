@@ -21,6 +21,10 @@
 
 .o-Title {
     font-size: 120px;
+
+    @media (max-width:1920px) {
+        font-size: 50px;
+    }
 }
 
 
