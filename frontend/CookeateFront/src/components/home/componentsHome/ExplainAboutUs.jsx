@@ -1,21 +1,20 @@
 function ExplainAboutUs() {
   return (
-    <section className="sectionStyle">
-      <header className="o-header">
-        <h1 className="o-Title"> Descubre CooKeate</h1>
-      </header>
+    <section className="" style={{marginTop:'-89px'}}>
+      <article className="article_wrapper">
+        <h1 className="h1_style_publication"> Descubre CooKeate</h1>
+      </article>
 
-      <aside className="o-aside">
-        <div style={{padding:40}}>
+      <article className="p_wrapper">
 
-        <p className="o-introStyleStart">
+        <p className="paragraph_style">
           Bienvenido a CooKeate, tu compañero culinario en línea. En nuestra
           plataforma, explorarás un mundo de sabores irresistibles, desde
           platillos caseros reconfortantes hasta creaciones gourmet para
           sorprender a tus seres queridos.
         </p>
 
-        <p className="o-introStyle">
+        <p className="paragraph_style">
           En CooKeate, nos apasiona compartir la alegría de cocinar. Nuestra
           aplicación está diseñada para inspirar a chefs de todos los niveles
           con recetas paso a paso, consejos útiles y una amplia variedad de
@@ -34,15 +33,15 @@ function ExplainAboutUs() {
           florezcan con nuestras recetas detalladas y fáciles de seguir.
         </p>
 
-        <p className="o-introStyleEnd">
+        <p className="paragraph_style_ends">
           ¡No esperes más para empezar tu viaje culinario! Únete a la comunidad
           de CooKeate hoy mismo y experimenta la alegría de crear
           deliciosos platillos que deleitarán a tus sentidos.
         </p>
 
-        <a href="/" className="start_button" >¡Empieza Ahora!</a>
-        </div>
-      </aside>
+        <a href="/" className="btn_about_us" >¡Empieza Ahora!</a>
+        
+      </article>
     </section>
   );
 }

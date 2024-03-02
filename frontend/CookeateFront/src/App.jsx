@@ -10,8 +10,9 @@ import NotFoundPage from "./page/NotFoundPage.jsx";
 import Login from "./page/form/Login.jsx";
 import Register from "./page/form/Register.jsx";
 import Home from "./components/home/Home.jsx";
+import Profile from "./components/profile/Profile.jsx";
 import axios from "axios";
-import {tokenApi} from "./api/tokenApi.js"
+import { tokenApi } from "./api/tokenApi.js";
 const router = createBrowserRouter([
   {
     path: "/*", // Catch-all for any unmatched paths
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      {
+        path: "/profile",
+        element:<Profile />
+      }
     ],
   },
   {
@@ -39,30 +44,31 @@ const router = createBrowserRouter([
 ]);
 function AuthProvider() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  
+
   //Verificador valor del token
   useEffect(() => {
     const verifyToken = async () => {
       if (!token || token === undefined || token === null) {
         localStorage.removeItem("token");
       } else {
-        tokenApi.post("/verify-token", null, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          },
-        })
-          .then(response => {
-            console.log('Respuesta del servidor:', response.data.response);
+        tokenApi
+          .post("/verify-token", null, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           })
-          .catch(error => {
-            console.error('Error:', error.message);
-            if(error.response) {
-              console.error("Respuesta del servidor:", error.response.data)
+          .then((response) => {
+            console.log("Respuesta del servidor:", response.data.response);
+          })
+          .catch((error) => {
+            console.error("Error:", error.message);
+            if (error.response) {
+              console.error("Respuesta del servidor:", error.response.data);
             }
           });
-        }
+      }
     };
-    verifyToken()
+    verifyToken();
   }, [token]);
 
   return token ? (

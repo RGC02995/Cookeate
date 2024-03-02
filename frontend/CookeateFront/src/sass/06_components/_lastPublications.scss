@@ -1,15 +1,14 @@
-.publications_wrapper {
-  
+.publication_wrapper {
     background-color: white;
-    display:flex;
-    align-items: center;
-    justify-content:space-between;
+    display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: .5em;
-    margin: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
-.prueba{
-    width: 300px;
-    height: 300px;
+
+.image_style {
+    width: 200px;
+    margin: 5px;
 }
+

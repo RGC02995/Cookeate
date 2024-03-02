@@ -1,7 +1,7 @@
-import ExplainAboutUs from "./ExplainAboutUs"
-import LastPublications from "./LastPublications"
-import Navbar from "./Navbar"
-import Slider from "./Slider"
+import ExplainAboutUs from "./componentsHome/ExplainAboutUs"
+import LastPublications from "./componentsHome/LastPublications"
+import Navbar from "./componentsHome/Navbar"
+import Slider from "./componentsHome/Slider"
 const Home =() => {
     return (
         <div>

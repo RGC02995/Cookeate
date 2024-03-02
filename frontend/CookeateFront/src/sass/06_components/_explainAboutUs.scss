@@ -1,72 +1,33 @@
-.sectionStyle {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    text-align: center;
+.p_wrapper {
     display: flex;
-    flex-direction: column;
-    height: 100%;
-
-}
-
-.o-header{
-    background-color:$grey-color;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: rgb(243, 243, 243);
+    flex-direction: column;
+    text-align: center;
 }
 
-.o-Title {
-    font-size: 120px;
-
-    @media (max-width:1920px) {
-        font-size: 50px;
-    }
-}
-
-
-.o-aside{
-    background-color: white;
-    margin: 0;
-}
-
-.o-introStyleStart{
-    text-align:inherit;
-    font-size: 26px;
+.paragraph_style {
+    padding-left: 7em;
+    padding-right: 7em;
+    margin-top: -1em;
+    font-size: 1.5rem;
     font-weight: 300;
-    margin: 20px auto;
-    color: $grey-color;
-    margin-left: 15%;
-    margin-right: 15%;
+    text-align: justify;
 }
 
-.o-introStyle {
-    text-align:inherit;
-    font-size: 26px;
-    font-weight: 300;
-    margin: 50px auto;
+.paragraph_style_ends {
+    margin-top: -1em;
+    margin-left: 20px;
+    font-size: 2.5rem;
+    font-weight: 400;
     color: $grey-color;
-    margin-left: 15%;
-    margin-right: 15%;
 }
 
-.o-introStyleEnd {
-    text-align:inherit;
-    font-size: 60px;
-    color: $grey-color;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-.start_button {
-    background-color: rgb(118, 139, 118);
-    text-decoration:none;
+.btn_about_us {
+    background-color: rgb(98, 122, 98);
     color: white;
-    padding: .7em;
-    font-size: 40px;
-    border-radius: .5rem;
+    border-radius: .5em;
+    font-size: 2em;
+    font-weight: 300;
+    text-align: center;
 }
-

@@ -2,8 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { VscCircleLargeFilled } from "react-icons/vsc";
 import { VscChevronRight } from "react-icons/vsc";
 import { VscChevronLeft } from "react-icons/vsc";
-import Logo from '../../img/Wallpaper.jpg'
-
+import Logo from '../../../img/Wallpaper.jpg'
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -25,15 +24,15 @@ function Slider() {
     setCurrentIndex(slideIndex);
   };
   return (
-    <div className="main_container">
-      <div className="left_Arrow" onClick={() => scrollToImage("prev")}>
+    <div className="">
+      {/* <div className="left_Arrow" onClick={() => scrollToImage("prev")}>
         <VscChevronLeft />
       </div>
       <div className="right_Arrow" onClick={() => scrollToImage("next")}>
         <VscChevronRight />
-      </div>
-      <div className="slider_container">
-        <div className="container_images">
+      </div> */}
+      <div className="">
+        <div className="">
           <img src={Logo} alt={`Image`} width={'100%'} height={'100%'} style={{margin:0}} />
             {/* {data.map((item) => (
               <li key={item.id}>
