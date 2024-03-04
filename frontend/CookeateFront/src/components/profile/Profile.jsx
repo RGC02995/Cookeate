@@ -1,29 +1,118 @@
 import NavBar from "../home/componentsHome/Navbar";
 import { VscAdd } from "react-icons/vsc";
-import image from "../profile/images.jpeg"
-import IconPlus from "../../icons/IconPlus";
+import image from "../profile/images.jpeg";
+import { DiAptana } from "react-icons/di";
+import { useState, useRef } from "react";
+import { uploadRecipe } from "../../api/uploadRecipe";
+
 function Profile() {
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const imageRef = useRef(null);
+  const foodRef = useRef(null);
+  const guideRef = useRef(null);
+
+  const [showForm, setShowForm] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const handleSubmitSendPublication = async(e) => {
+    e.preventDefault();
+    const title = titleRef.current.value;
+    const subtitle = subtitleRef.current.value;
+    const food = foodRef.current.value;
+    const image = selectedFile;
+    const guide = guideRef.current.value;
+
+    if (!title || !food || !image || !guide) {
+      alert("Rellenar al menos todos los campos excepto subtítulo");
+    } else {
+     await uploadRecipe
+        .post("/save", {
+          title: title,
+          subtitle: subtitle,
+          food: food,
+          guide: guide,
+        })
+        .then(function (res) {
+          console.log(res);
+          const data = res.data;
+          if (data.status === "success") {
+            console.log("Publicación completada con exito");
+          } else {
+            console.error("Error en el registro:", data.message);
+          }
+        });
+    }
+  };
+
+  const uploadImage = (e) => {
+    e.preventDefault();
+    const image = imageRef.current.files[0];
+    setSelectedFile(image);
+  };
+
   return (
-    <div className="wrapper_profile_flex_center_column">
-      <div className="box_profile_and_create">
-        <article className="profile_box">
+    <>
+      <nav className="nav_container_profile">
+        <div className="profile_nav">
+          <p onClick={() => setShowForm(!showForm)}>+</p>
           <img src={image} alt="" />
-          <p className="p_profile2">Nombre: Raúl</p>
-          <p className="p_profile2">Nick: Shinoken</p>
-          <p className="p_profile2">Email: raulgc2995@gmail.com</p>
-          <p className="p_profile2">Role: Admin</p>
-        </article>
-
-        <div className="addRecipe_box">
-          <p className="p_profile">Añadir receta</p>
-          <IconPlus width='300px' height='300px' />
+          <a href="/profile">RGC95</a>
         </div>
-      </div>
+        <DiAptana
+          className="icon_profile_config"
+          onClick={() => {
+            location.href = "/conf";
+          }}
+        />
+      </nav>
+      {showForm && (
+        <div>
+          <form className="send_recipe" onSubmit={handleSubmitSendPublication}>
+            <h2>Publicar</h2>
+            <label className="label_config">
+              Título:
+              <input type="text" ref={titleRef} />
+            </label>
+            <label className="label_config">
+              Subtítulo:
+              <input type="text" ref={subtitleRef} />
+            </label>
+            <label className="label_config">
+              Ingredientes:
+              <input type="text" ref={foodRef} />
+            </label>
 
-        <article className="article_wrapper">
-      <h1 className="h1_style_publication">Tus Publicaciones</h1>
-      </article>
-    </div>
+            <label className="label_config">
+              Subir imagen:
+              <input
+                type="file"
+                id="image"
+                accept=".jpg, .jpeg, .png, .gif"
+                ref={imageRef}
+                name="filename"
+                onChange={uploadImage}
+              />
+            </label>
+
+            <label className="label_config_guide">
+              <textarea
+                style={{ fontSize: 18, marginTop: 10 }}
+                placeholder="Explica como hacer la receta..."
+                rows={5}
+                ref={guideRef}
+              />
+            </label>
+            <button className="form_button_profile" type="submit">
+              Publicar
+            </button>
+          </form>
+        </div>
+      )}
+
+      <div>imagenes</div>
+    </>
   );
 }
 

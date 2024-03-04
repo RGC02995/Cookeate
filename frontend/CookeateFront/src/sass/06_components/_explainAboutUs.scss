@@ -13,6 +13,12 @@
     font-size: 1.5rem;
     font-weight: 300;
     text-align: justify;
+
+    @media (max-width:600px) {
+        font-size: .8rem;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
 }
 
 .paragraph_style_ends {
@@ -21,6 +27,12 @@
     font-size: 2.5rem;
     font-weight: 400;
     color: $grey-color;
+
+    @media (max-width:600px) {
+        font-size: 1rem;
+        margin-left: 0px;
+    }
+
 }
 
 .btn_about_us {
@@ -30,4 +42,8 @@
     font-size: 2em;
     font-weight: 300;
     text-align: center;
+    @media (max-width:600px) {
+        font-size:1em;
+    }
+        
 }

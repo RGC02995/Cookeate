@@ -1,0 +1,31 @@
+.container_conf {
+    @include flex-center-column
+}
+
+.conf_option {
+    padding: .3rem 1rem .3rem 1rem;
+    width: 70%;
+    border-radius: .2rem;
+    text-align: center;
+    margin: 10px auto;
+    background-color: $musgo-color;
+    color: white;
+
+    a{
+        font-size: 30px;
+        font-weight: 300;
+        text-shadow: 1px 1px 2px rgb(23, 22, 22);
+        cursor: pointer;
+    }
+
+    &:hover{
+        background-color: $green-color;
+        
+    }
+
+    @media (max-width:600px) {
+        a{
+            font-size: 20px;
+    }
+}
+}

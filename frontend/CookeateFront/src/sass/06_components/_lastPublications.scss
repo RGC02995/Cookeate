@@ -9,6 +9,13 @@
 
 .image_style {
     width: 200px;
-    margin: 5px;
+    margin: 15px;
+    border-radius: 5px;
+   
+    
+    @media (max-width: 600px) {
+       width: 120px;
+       margin: 5px;
+    }
 }
 

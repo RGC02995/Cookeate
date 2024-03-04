@@ -11,6 +11,7 @@ import Login from "./page/form/Login.jsx";
 import Register from "./page/form/Register.jsx";
 import Home from "./components/home/Home.jsx";
 import Profile from "./components/profile/Profile.jsx";
+import Conf from "./page/Conf.jsx"
 import axios from "axios";
 import { tokenApi } from "./api/tokenApi.js";
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element:<Profile />
+      },
+      {
+        path:"/conf",
+        element:<Conf />
       }
     ],
   },

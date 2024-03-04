@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const RecipesController = require("../controllers/recipes");
-const check = require("../middleware/auth");
+const auth = require("../middleware/auth");
 
 //Import Multer for update images:
 const multer = require("multer");
@@ -21,10 +21,10 @@ const uploads = multer({ storage });
 
 //ROUTES
 
-router.post("/save", check, RecipesController.saveRecipe);
+router.post("/save", auth, RecipesController.saveRecipe);
 router.post(
   "/uploadImage",
-  [ check, uploads.single("file0")],
+  [ auth , uploads.single("file0")],
   RecipesController.uploadImage
 );
 

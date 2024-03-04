@@ -1,66 +1,71 @@
-.wrapper_profile_flex_center_column{
+.nav_container_profile{
     display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-.box_profile_and_create{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-direction: row;
-    padding: 2em;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $musgo-color;
 }
 
-.profile_box {
+.profile_nav {
+    background-color: $musgo-color;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background-color: #787878;
-    color: white;
-    text-align: left;
-    max-height: 500px;
-    padding: 0.4em;
-    font-weight: 200;
-    filter: drop-shadow(0 0 0.75rem rgb(130, 130, 130));
-    border-radius: 5px;
-    img{
-        margin-left: 10%;
-        width: 150px;
-        height:150px;
-        border-radius:75px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    a {
+        color: white;
+        font-size: 20px;
+        font-weight: 200;
     }
-    
+
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+
     
 }
 
-.addRecipe_box{
-    background-color: #c0c0c0;
+.icon_profile_config{
     color: white;
+    width: 50px;
+    height: 25px;
     cursor: pointer;
-    font-weight: 200;
-    max-height: 400px;
-    width: 70%;
-    margin: 0;
-    filter: drop-shadow(0 0 1.5rem rgb(177, 177, 177));
-    border-radius: 5px;
 }
 
-.icon_add {
-    margin: 0;
-    padding: 0;
-    font-weight: 100;
-    font-size: 300px
+.send_recipe {
+    margin: 0 auto;
+    color: $grey-color !important;
+    @include flex-center-column 
 }
 
-.p_profile {
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-}
-.p_profile2 {
-    margin: 0;
-    padding: 0;
+.form_button_profile{
+    background-color: #46c795;
+    border: 1px solid white;
+    padding: 1em;
+    width: 500px;
+    max-width: 300px;
     font-size: 15px;
+    border-radius: .3rem;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    color: white;
+
+    &:hover{
+        opacity: 80%;
+        color: $grey-color;
+        cursor: pointer;
+        
+    }
+}
+
+.label_config_guide{
+    display: block;
+    min-width: 100px;
+    input{
+        width: 100%;
+
+    }
 }

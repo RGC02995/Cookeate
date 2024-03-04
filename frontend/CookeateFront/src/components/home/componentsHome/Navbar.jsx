@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="flex">
           <div className="icon_container">
             <VscAccount className="icon_style" onClick={() => { location.href = "/profile"; }}/>
-            <DiAptana className="icon_style" />
+            <DiAptana className="icon_style" onClick={() => { location.href = "/conf"; }} />
           </div>
 
           <label className="input_container">

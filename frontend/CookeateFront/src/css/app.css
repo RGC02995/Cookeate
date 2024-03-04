@@ -19,10 +19,6 @@ h1 {
   font-size: 2em;
 }
 
-div {
-  background-color: white;
-}
-
 p {
   padding: 1em;
 }
@@ -53,6 +49,12 @@ a {
   font-weight: 500;
 }
 
+@media (max-width: 600px) {
+  .h1_style_publication {
+    /* Add your specific styles for screens with a max width of 600px here */
+    font-size: 30px; /* Adjust the font size as needed */
+  }
+}
 .form_button {
   background-color: #46c795;
   border: 1px solid white;
@@ -79,7 +81,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
 }
 
@@ -250,6 +252,13 @@ a {
   font-weight: 300;
   text-align: justify;
 }
+@media (max-width: 600px) {
+  .paragraph_style {
+    font-size: 0.8rem;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}
 
 .paragraph_style_ends {
   margin-top: -1em;
@@ -257,6 +266,12 @@ a {
   font-size: 2.5rem;
   font-weight: 400;
   color: #383838;
+}
+@media (max-width: 600px) {
+  .paragraph_style_ends {
+    font-size: 1rem;
+    margin-left: 0px;
+  }
 }
 
 .btn_about_us {
@@ -266,6 +281,11 @@ a {
   font-size: 2em;
   font-weight: 300;
   text-align: center;
+}
+@media (max-width: 600px) {
+  .btn_about_us {
+    font-size: 1em;
+  }
 }
 
 .publication_wrapper {
@@ -279,71 +299,114 @@ a {
 
 .image_style {
   width: 200px;
-  margin: 5px;
+  margin: 15px;
+  border-radius: 5px;
+}
+@media (max-width: 600px) {
+  .image_style {
+    width: 120px;
+    margin: 5px;
+  }
 }
 
-.wrapper_profile_flex_center_column {
+.nav_container_profile {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.box_profile_and_create {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-direction: row;
-  padding: 2em;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #5e876b;
 }
 
-.profile_box {
+.profile_nav {
+  background-color: #5e876b;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background-color: #787878;
-  color: white;
-  text-align: left;
-  max-height: 500px;
-  padding: 0.4em;
-  font-weight: 200;
-  filter: drop-shadow(0 0 0.75rem rgb(130, 130, 130));
-  border-radius: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
 }
-.profile_box img {
-  margin-left: 10%;
-  width: 150px;
-  height: 150px;
-  border-radius: 75px;
+.profile_nav a {
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
+}
+.profile_nav img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
 }
 
-.addRecipe_box {
-  background-color: #c0c0c0;
+.icon_profile_config {
   color: white;
+  width: 50px;
+  height: 25px;
   cursor: pointer;
-  font-weight: 200;
-  max-height: 400px;
-  width: 70%;
-  margin: 0;
-  filter: drop-shadow(0 0 1.5rem rgb(177, 177, 177));
-  border-radius: 5px;
 }
 
-.icon_add {
-  margin: 0;
-  padding: 0;
-  font-weight: 100;
-  font-size: 300px;
+.send_recipe {
+  margin: 0 auto;
+  color: #383838 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
 }
 
-.p_profile {
-  margin: 0;
-  padding: 0;
-  font-size: 30px;
-}
-
-.p_profile2 {
-  margin: 0;
-  padding: 0;
+.form_button_profile {
+  background-color: #46c795;
+  border: 1px solid white;
+  padding: 1em;
+  width: 500px;
+  max-width: 300px;
   font-size: 15px;
+  border-radius: 0.3rem;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  color: white;
+}
+.form_button_profile:hover {
+  opacity: 80%;
+  color: #383838;
+  cursor: pointer;
+}
+
+.label_config_guide {
+  display: block;
+  min-width: 100px;
+}
+.label_config_guide input {
+  width: 100%;
+}
+
+.container_conf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.conf_option {
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  width: 70%;
+  border-radius: 0.2rem;
+  text-align: center;
+  margin: 10px auto;
+  background-color: #5e876b;
+  color: white;
+}
+.conf_option a {
+  font-size: 30px;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgb(23, 22, 22);
+  cursor: pointer;
+}
+.conf_option:hover {
+  background-color: #46c795;
+}
+@media (max-width: 600px) {
+  .conf_option a {
+    font-size: 20px;
+  }
 }/*# sourceMappingURL=app.css.map */

@@ -18,5 +18,12 @@
     color: white;
     padding: .5em;
     font-size: 80px;
-    font-weight: 500
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .h1_style_publication {
+        /* Add your specific styles for screens with a max width of 600px here */
+        font-size: 30px; /* Adjust the font size as needed */
+    }
 }
