@@ -27,18 +27,25 @@ function Profile() {
     if (!title || !food || !image || !guide) {
       alert("Rellenar al menos todos los campos excepto subtítulo");
     } else {
+      const token = localStorage.getItem("your_token_key");
      await uploadRecipe
         .post("/save", {
           title: title,
           subtitle: subtitle,
           food: food,
           guide: guide,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         })
         .then(function (res) {
           console.log(res);
           const data = res.data;
           if (data.status === "success") {
             console.log("Publicación completada con exito");
+            setShowForm(!showForm)
           } else {
             console.error("Error en el registro:", data.message);
           }
