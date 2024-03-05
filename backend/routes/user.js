@@ -30,6 +30,7 @@ router.post(
   UserController.uploadImage
 );
 router.put("/change-email", check, UserController.changeEmail)
+router.put("/change-password", check, UserController.changePassword)
 router.delete("/delete-user", check, UserController.deleteAccount)
 
 module.exports = router;

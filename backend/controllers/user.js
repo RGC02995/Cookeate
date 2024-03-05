@@ -280,11 +280,54 @@ const deleteAccount = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "No se ha encontrado el usuario"
+      });
+    }
+
+    // Extraigo los parametros oldPassword y newpassword que vienen desde body
+    const { oldPassword, newPassword } = req.body;
+
+    //  verifico con la funcion comparePassword de bcrypt la vieja contraseña
+    const isPasswordValid = await user.comparePassword(oldPassword);
+    
+    if (!isPasswordValid) {
+      return res.status(400).json({
+        status: "error",
+        message: "La contraseña actual no es válida"
+      });
+    }
+
+    // Sustituyo la contraseña que habia por la nueva contraseña que viene por el body
+    user.password = newPassword;
+    await user.save();
+
+    return res.status(200).json({
+      status: "success",
+      message: "Contraseña actualizada correctamente"
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error interno del servidor al intentar cambiar la contraseña"
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
   uploadImage,
   profile,
   changeEmail,
-  deleteAccount
+  deleteAccount,
+  changePassword
 };

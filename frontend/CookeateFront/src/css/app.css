@@ -320,6 +320,7 @@ a {
 .profile_nav {
   background-color: #5e876b;
   width: 100%;
+  height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -335,10 +336,17 @@ a {
   height: 40px;
   border-radius: 20px;
 }
-
-.p_profile {
+.profile_nav .p_profile {
   cursor: pointer;
   color: white;
+}
+.profile_nav .home_ref {
+  font-weight: 300;
+  text-shadow: 1px 1px 2px #383838;
+  font-size: 22px;
+}
+.profile_nav .home_ref:hover {
+  text-shadow: 2px 2px 2px rgb(23, 39, 27);
 }
 
 .icon_profile_config {

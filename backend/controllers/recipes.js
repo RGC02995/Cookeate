@@ -73,7 +73,7 @@ const saveRecipe = async (req, res) => {
         }
 
         // Save file (if it is correct)
-        const recipeId = req.user.id; // Assuming req.user.id is the recipe ID
+        const recipeId = req.user.id;
         const recipeUpdated = await Recipes.findOneAndUpdate(
             { _id: recipeId },
             { images: req.file.filename },

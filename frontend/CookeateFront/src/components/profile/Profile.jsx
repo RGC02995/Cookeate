@@ -66,9 +66,10 @@ function Profile() {
     <>
       <nav className="nav_container_profile">
         <div className="profile_nav">
-          <p onClick={() => setShowForm(!showForm)}>+</p>
+          <p onClick={() => setShowForm(!showForm)} className="p_profile">+</p>
           <img src={image} alt="" />
           <a href="/profile">RGC95</a>
+          <a href="/" className="home_ref">INICIO</a>
         </div>
         <DiAptana
           className="icon_profile_config"
