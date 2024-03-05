@@ -16,7 +16,7 @@ function Profile() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const handleSubmitSendPublication = async(e) => {
+  const handleSubmitSendPublication = async (e) => {
     e.preventDefault();
     const title = titleRef.current.value;
     const subtitle = subtitleRef.current.value;
@@ -27,25 +27,28 @@ function Profile() {
     if (!title || !food || !image || !guide) {
       alert("Rellenar al menos todos los campos excepto subtítulo");
     } else {
-      const token = localStorage.getItem("your_token_key");
-     await uploadRecipe
-        .post("/save", {
-          title: title,
-          subtitle: subtitle,
-          food: food,
-          guide: guide,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
+      const token = localStorage.getItem(token);
+      await uploadRecipe
+        .post(
+          "/save",
+          {
+            title: title,
+            subtitle: subtitle,
+            food: food,
+            guide: guide,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        })
+        )
         .then(function (res) {
           console.log(res);
           const data = res.data;
           if (data.status === "success") {
             console.log("Publicación completada con exito");
-            setShowForm(!showForm)
+            setShowForm(!showForm);
           } else {
             console.error("Error en el registro:", data.message);
           }

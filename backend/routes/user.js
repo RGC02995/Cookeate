@@ -29,5 +29,7 @@ router.post(
   [ check,uploads.single("file0")],
   UserController.uploadImage
 );
+router.put("/change-email", check, UserController.changeEmail)
+router.delete("/delete-user", check, UserController.deleteAccount)
 
 module.exports = router;

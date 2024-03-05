@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import { registerAPI } from "../../api/registerApi";
+import validator from "validator";
 
 const Register = () => {
   const [registrationComplete, setRegistrationComplete] = useState(false);
@@ -13,9 +14,9 @@ const Register = () => {
 
   const isToken = localStorage.getItem("token");
   console.log(isToken);
-  if((isToken!==undefined)&&(isToken!==null)&&(isToken!=='')){
+  if (isToken !== undefined && isToken !== null && isToken !== "") {
     // <Navigate to="/" replace={true} />
-    location.href='/';
+    location.href = "/";
   }
 
   const handleSubmitRegister = (e) => {
@@ -26,9 +27,17 @@ const Register = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    if (!name.trim() || !surname.trim() || !nick.trim() || !email.trim() || !password.trim()) {
-      alert("NO PUEDEN HABER ESPACIOS EN BLANCO")
-      return
+    if (validator.isEmail(email)) {
+      if (
+        !name.trim() ||
+        !surname.trim() ||
+        !nick.trim() ||
+        !email.trim() ||
+        !password.trim()
+      ) {
+        alert("NO PUEDEN HABER ESPACIOS EN BLANCO");
+        return;
+      }
     }
 
     const resp = registerAPI
@@ -73,7 +82,11 @@ const Register = () => {
           </label>
           <label className="label_config">
             Email:
-            <input type="email" ref={emailRef} placeholder="example@gmail.com"/>
+            <input
+              type="email"
+              ref={emailRef}
+              placeholder="example@gmail.com"
+            />
           </label>
           <label className="label_config">
             Password:

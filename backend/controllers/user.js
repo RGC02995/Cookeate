@@ -179,7 +179,8 @@ const uploadImage = async (req, res) => {
     });
   }
 };
-
+//Method GET for obtein profile
+//Rute /profile/:id
 const profile = async (req, res) => {
   try {
     // Obtener el usuario actual basado en la información del token
@@ -215,9 +216,75 @@ const profile = async (req, res) => {
     });
   }
 };
+//Method PUT to change email
+// Endpoint: /change-email
+const changeEmail = async (req, res) => {
+  try {
+    // Obtener el usuario actual basado en la información del token
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "No se ha encontrado el usuario",
+      });
+    }
+
+    // Obtener el nuevo email
+    const newEmail = req.params.newEmail;
+
+    // Actualizar el email por el nuevo y gaurdarlo
+    user.email = newEmail;
+    await user.save();
+
+    return res.status(200).json({
+      status: "success",
+      message: "Dirección de correo electrónico actualizada correctamente",
+      user: user,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error interno del servidor",
+    });
+  }
+};
+//Method DELETE to delete account
+// Endpoint: /delete-user
+const deleteAccount = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findByIdAndDelete(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "No se ha encontrado el usuario para eliminar",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message:
+        "La cuenta ha sido eliminada correctamente. Esperamos verle pronto.",
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: "error",
+      message: "Error interno del servidor al intentar eliminar la cuenta",
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
   uploadImage,
-  profile
+  profile,
+  changeEmail,
+  deleteAccount
 };
