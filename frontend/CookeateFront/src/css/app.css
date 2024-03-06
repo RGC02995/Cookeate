@@ -51,8 +51,7 @@ a {
 
 @media (max-width: 600px) {
   .h1_style_publication {
-    /* Add your specific styles for screens with a max width of 600px here */
-    font-size: 30px; /* Adjust the font size as needed */
+    font-size: 30px;
   }
 }
 .form_button {
@@ -307,6 +306,13 @@ a {
     width: 120px;
     margin: 5px;
   }
+}
+
+.container_form_recipe {
+  border: 1px solid black;
+  width: 350px;
+  margin: 5px;
+  filter: drop-shadow(1px 1px 2px rgb(185, 183, 183));
 }
 
 .nav_container_profile {

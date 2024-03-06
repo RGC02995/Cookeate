@@ -79,7 +79,7 @@ function Profile() {
         />
       </nav>
       {showForm && (
-        <div>
+        <div className="container_form_recipe">
           <form className="send_recipe" onSubmit={handleSubmitSendPublication}>
             <h2>Publicar</h2>
             <label className="label_config">

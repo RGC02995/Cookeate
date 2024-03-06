@@ -14,6 +14,7 @@ import Profile from "./components/profile/Profile.jsx";
 import Conf from "./page/Conf.jsx"
 import axios from "axios";
 import { tokenApi } from "./api/tokenApi.js";
+import Recipes from "./page/Recipes.jsx";
 const router = createBrowserRouter([
   {
     path: "/*", // Catch-all for any unmatched paths
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path:"/conf",
         element:<Conf />
+      },
+      {
+        path:"/recipe",
+        element:<Recipes />
       }
     ],
   },

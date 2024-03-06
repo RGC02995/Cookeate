@@ -14,10 +14,6 @@ function Conf() {
       </div>
 
       <div className="conf_option">
-        <a>Cambiar Imagen</a>
-      </div>
-
-      <div className="conf_option">
         <a>Eliminar cuenta</a>
       </div>
     </div>
