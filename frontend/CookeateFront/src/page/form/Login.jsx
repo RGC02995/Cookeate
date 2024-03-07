@@ -32,7 +32,6 @@ const Login = () => {
         if (data.status === "success") {
           localStorage.setItem('token',data.token);
           location.href='/';
-          console.log(data);
         } else {
           console.error("Error en el login:", data.message);
         }
