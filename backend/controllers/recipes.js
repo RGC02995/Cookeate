@@ -1,17 +1,19 @@
 const Recipes = require("../models/recipes")
 
+
 const saveRecipe = async (req, res) => {
     try {
       const params = req.body;
-  
+      
       if (!params.title && !params.food && !params.guide) {
         return res.status(400).send({
           status: "error",
           message: "All fields are required.",
         });
       }
-    
+      
       let newRecipe = new Recipes(params);
+      console.log(newRecipe);
       newRecipe.user = req.user.id; 
   
       

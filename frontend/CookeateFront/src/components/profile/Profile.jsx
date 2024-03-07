@@ -15,6 +15,7 @@ function Profile() {
   const [showForm, setShowForm] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
+  
 
   const handleSubmitSendPublication = async (e) => {
     e.preventDefault();
@@ -38,7 +39,8 @@ function Profile() {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json" ,
+              "Authorization": "Bearer " + token,
             },
           }
         )
@@ -52,6 +54,8 @@ function Profile() {
             console.error("Error en el registro:", data.message);
           }
         });
+        
+
     }
   };
 

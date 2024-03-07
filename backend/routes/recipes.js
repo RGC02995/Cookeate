@@ -1,8 +1,9 @@
-//Import Dependences
-const express = require("express");
-const router = express.Router();
 const RecipesController = require("../controllers/recipes");
-const auth = require("../middleware/auth");
+const express = require("express");
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+const verifyToken = require('../middleware/auth');
 
 //Import Multer for update images:
 const multer = require("multer");
@@ -21,10 +22,10 @@ const uploads = multer({ storage });
 
 //ROUTES
 
-router.post("/save", auth, RecipesController.saveRecipe);
+router.post("/save", verifyToken, RecipesController.saveRecipe);
 router.post(
   "/uploadImage",
-  [ auth , uploads.single("file0")],
+  [ verifyToken , uploads.single("file0")],
   RecipesController.uploadImage
 );
 

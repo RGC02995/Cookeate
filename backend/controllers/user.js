@@ -96,12 +96,14 @@ const login = async (req, res) => {
 
     //Create a token when user has login
     // const token = jwt.createToken(user);
-    const token = jwt.sign({email: user.email, role: user.role}, process.env.JWT_SECRET, {expiresIn: "60m" });
+    const token = jwt.sign({id:user.id, email: user.email, role: user.role}, process.env.JWT_SECRET, {expiresIn: "60m" });
     return res.status(200).json({
       status: "success",
       message: "User is logged",
       token,
+
     });
+    const userId = localStorage.getItem("id")
   } catch (error) {
     return res.status(500).json({ status: "error", message: "Failed Login" });
   }
