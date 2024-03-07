@@ -59,7 +59,8 @@
 
 .send_recipe {
     margin: 0 auto;
-    color: $grey-color !important;
+    background-color: rgb(103, 103, 103) ;
+    color: rgb(255, 255, 255) !important;
     @include flex-center-column 
 }
 
@@ -83,7 +84,6 @@
 }
 
 .label_config_guide{
-    display: block;
     min-width: 100px;
     input{
         width: 100%;

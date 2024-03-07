@@ -1,7 +1,9 @@
 //Import dependences
+require('dotenv').config();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require("../services/jwt");
+// const jwt = require("../services/jwt");
+const jwt = require ("jsonwebtoken");
 const fs = require("fs");
 const user = require("../models/user");
 
@@ -41,7 +43,6 @@ const register = async (req, res) => {
 
   params.password = await bcrypt.hash(params.password, 10);
   let pwd = params.password;
-  console.log(pwd);
 
   //Create a new User with a new User model with params of the body
   const userCreated = new User(params);
@@ -67,7 +68,6 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   //Get all params of the body
   let params = req.body;
-
   //Check the params from the body
   if (!params.email || !params.password) {
     return res
@@ -78,7 +78,6 @@ const login = async (req, res) => {
   try {
     //We going to find in a database ONE user with the same params that the body
     const user = await User.findOne({ email: params.email });
-
     if (!user) {
       return res.status(400).send({
         status: "error",
@@ -88,29 +87,23 @@ const login = async (req, res) => {
 
     //Compare passwords with bcrypt
     const pwd = await bcrypt.compareSync(params.password, user.password);
+
     if (!pwd) {
       return res
         .status(404)
-        .send({ status: "error", message: "Not found the same password" });
+        .json({ status: "error", message: "Not found the same password" });
     }
 
     //Create a token when user has login
-
-    const token = jwt.createToken(user);
-
-    return res.status(200).send({
+    // const token = jwt.createToken(user);
+    const token = jwt.sign({email: user.email, role: user.role}, process.env.JWT_SECRET, {expiresIn: "60m" });
+    return res.status(200).json({
       status: "success",
       message: "User is logged",
-      user: {
-        id: user._id,
-        name: user.name,
-        nick: user.nick,
-        image: user.image,
-      },
       token,
     });
   } catch (error) {
-    return res.status(500).send({ status: "error", message: "Failed Login" });
+    return res.status(500).json({ status: "error", message: "Failed Login" });
   }
 };
 

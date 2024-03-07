@@ -55,31 +55,55 @@ const router = createBrowserRouter([
 function AuthProvider() {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
+
+  fetch('http://localhost:5000/api/user/verify-token', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + token,
+    },
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.email){
+      localStorage.setItem('token', data.token);
+    }
+    console.log(data);
+  });
+
   //Verificador valor del token
-  useEffect(() => {
-    const verifyToken = async () => {
-      if (!token || token === undefined || token === null) {
-        localStorage.removeItem("token");
-      } else {
-        tokenApi
-          .post("/verify-token", null, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          .then((response) => {
-            console.log("Respuesta del servidor:", response.data.response);
-          })
-          .catch((error) => {
-            console.error("Error:", error.message);
-            if (error.response) {
-              console.error("Respuesta del servidor:", error.response.data);
-            }
-          });
-      }
-    };
-    verifyToken();
-  }, [token]);
+  // useEffect(() => {
+  //   const verifyToken = async () => {
+  //     if (!token || token === undefined || token === null) {
+  //       localStorage.removeItem("token");
+  //     } else {
+  //       console.log(token);
+  //       axios.post("http://localhost:5000/token/verify-token", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       // tokenApi
+  //       //   .post("/verify-token", null, {
+  //       //     headers: {
+  //       //       "Content-Type": "application/json",
+  //       //       Authorization: `Bearer ${token}`,
+  //       //     },
+  //       //   })
+  //       //   .then((response) => {
+  //       //     console.log("Respuesta del servidor:", response.data.response);
+  //       //   })
+  //       //   .catch((error) => {
+  //       //     console.error("Error:", error.message);
+  //       //     if (error.response) {
+  //       //       console.error("Respuesta del servidor:", error.response.data);
+  //       //     }
+  //       //   });
+  //     }
+  //   };
+  //   verifyToken();
+  // }, [token]);
 
   return token ? (
     <Outlet />

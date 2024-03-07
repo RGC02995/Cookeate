@@ -27,7 +27,6 @@ function Profile() {
     if (!title || !food || !image || !guide) {
       alert("Rellenar al menos todos los campos excepto subtítulo");
     } else {
-      const token = localStorage.getItem(token);
       await uploadRecipe
         .post(
           "/save",
@@ -81,7 +80,7 @@ function Profile() {
       {showForm && (
         <div className="container_form_recipe">
           <form className="send_recipe" onSubmit={handleSubmitSendPublication}>
-            <h2>Publicar</h2>
+            <h2>Publicar Receta</h2>
             <label className="label_config">
               Título:
               <input type="text" ref={titleRef} />
@@ -109,7 +108,7 @@ function Profile() {
 
             <label className="label_config_guide">
               <textarea
-                style={{ fontSize: 18, marginTop: 10 }}
+                style={{ fontSize: 18, marginTop: 10, maxHeight:200, maxWidth:300, minWidth:250, minHeight:150}}
                 placeholder="Explica como hacer la receta..."
                 rows={5}
                 ref={guideRef}

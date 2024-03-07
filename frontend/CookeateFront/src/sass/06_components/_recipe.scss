@@ -1,0 +1,36 @@
+.recipe_flex_center{
+    padding:2%;
+
+    h1,h2{
+        text-align: center;
+    }
+
+    h1,h2,h4{
+        color: $grey-color;
+        font-weight: 300;
+    } 
+
+    div{
+        background-color: grey;
+        color: white;
+        padding: 3%;
+    }
+
+    
+    article, li{
+        font-weight: 200;
+        font-size: 16px;
+    }
+    img{
+        width: 100%;
+    }
+
+    p{
+        color: white;
+        font-size: 15px;
+        padding: .5rem;
+        text-align: center;
+        margin-bottom: 0;
+        border-radius: 5px 5px 0 0;
+    }
+}
