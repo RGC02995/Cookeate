@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from "react";
-//Import Browser Router for use Link, route, routes in all the project
 import {
-  Outlet,
-  createBrowserRouter,
-  RouterProvider,
   Navigate,
+  Outlet,
+  RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
-import NotFoundPage from "./page/NotFoundPage.jsx";
-import Login from "./page/form/Login.jsx";
-import Register from "./page/form/Register.jsx";
+// import { tokenApi } from "./api/tokenApi.js";
+// import { UploadStatusResponse } from "./api/statusResponse.model.js";
 import Home from "./components/home/Home.jsx";
 import Profile from "./components/profile/Profile.jsx";
-import Conf from "./page/Conf.jsx"
-import axios from "axios";
-import { tokenApi } from "./api/tokenApi.js";
+import Conf from "./page/Conf.jsx";
+import NotFoundPage from "./page/NotFoundPage.jsx";
 import Recipes from "./page/Recipes.jsx";
+import Login from "./page/form/Login.jsx";
+import Register from "./page/form/Register.jsx";
+
 const router = createBrowserRouter([
-  {
-    path: "/*", // Catch-all for any unmatched paths
-    element: <NotFoundPage />,
-    errorElement: <NotFoundPage />, // Optional for handling errors within this route
-  },
   {
     path: "/", // Use "/" for the default route
     element: <AuthProvider />,
@@ -31,16 +25,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element:<Profile />
+        element: <Profile />,
       },
       {
-        path:"/conf",
-        element:<Conf />
+        path: "/conf",
+        element: <Conf />,
       },
       {
-        path:"/recipe",
-        element:<Recipes />
-      }
+        path: "/recipe",
+        element: <Recipes />,
+      },
     ],
   },
   {
@@ -51,64 +45,30 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  {
+    path: "/*", // Catch-all for any unmatched paths
+    element: <NotFoundPage />,
+    errorElement: <NotFoundPage />, // Optional for handling errors within this route
+  },
 ]);
+
 function AuthProvider() {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  // const { customStatus, message, token } = tokenApi();
 
+  // if (customStatus === UploadStatusResponse.ERROR_API) {
+  //   console.error("Error de autenticación: " + message);
+  //   location.href = "/login";
+  //   return;
+  // }
 
-  fetch('http://localhost:5000/api/user/verify-token', {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + token,
-    },
-  })
-  .then(response => response.json())
-  .then(data => {
-    if(data.email){
-      localStorage.setItem('token', data.token);
-    }
-    console.log(data);
-  });
+  // console.log(message);
+  // localStorage.setItem("token", token);
 
-  //Verificador valor del token
-  // useEffect(() => {
-  //   const verifyToken = async () => {
-  //     if (!token || token === undefined || token === null) {
-  //       localStorage.removeItem("token");
-  //     } else {
-  //       console.log(token);
-  //       axios.post("http://localhost:5000/token/verify-token", {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       // tokenApi
-  //       //   .post("/verify-token", null, {
-  //       //     headers: {
-  //       //       "Content-Type": "application/json",
-  //       //       Authorization: `Bearer ${token}`,
-  //       //     },
-  //       //   })
-  //       //   .then((response) => {
-  //       //     console.log("Respuesta del servidor:", response.data.response);
-  //       //   })
-  //       //   .catch((error) => {
-  //       //     console.error("Error:", error.message);
-  //       //     if (error.response) {
-  //       //       console.error("Respuesta del servidor:", error.response.data);
-  //       //     }
-  //       //   });
-  //     }
-  //   };
-  //   verifyToken();
-  // }, [token]);
-
-  return token ? (
+  const localStorageToken = localStorage.getItem("token");
+  return localStorageToken ? (
     <Outlet />
   ) : (
-    /*<Navigate to="/login" replace={true} />*/ (location.href = "/login")
+    <Navigate to="/login" replace={true} />
   );
 }
 

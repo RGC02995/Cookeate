@@ -1,8 +1,7 @@
-import { useRef } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useState } from "react";
-import { registerAPI } from "../../api/registerApi";
-import validator from "validator";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { registerApi } from "../../api/registerApi";
+import { UploadStatusResponse } from "../../api/statusResponse.model";
 
 const Register = () => {
   const [registrationComplete, setRegistrationComplete] = useState(false);
@@ -13,13 +12,12 @@ const Register = () => {
   const passwordRef = useRef(null);
 
   const isToken = localStorage.getItem("token");
-  console.log(isToken);
-  if (isToken !== undefined && isToken !== null && isToken !== "") {
-    // <Navigate to="/" replace={true} />
+
+  if (isToken) {
     location.href = "/";
   }
 
-  const handleSubmitRegister = (e) => {
+  const handleSubmitRegister = async (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
     const surname = surnameRef.current.value;
@@ -27,40 +25,33 @@ const Register = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    if (validator.isEmail(email)) {
-      if (
-        !name.trim() ||
-        !surname.trim() ||
-        !nick.trim() ||
-        !email.trim() ||
-        !password.trim()
-      ) {
-        alert("NO PUEDEN HABER ESPACIOS EN BLANCO");
-        return;
-      }
+    const { customStatus, message } = await registerApi({
+      name,
+      surname,
+      nick,
+      email,
+      password,
+    });
+
+    if (customStatus === UploadStatusResponse.INVALID_FIELD) {
+      console.error("El email no cumple los requisitos establecidos");
+      return;
     }
 
-    const resp = registerAPI
-      .post("/register", {
-        name: name,
-        surname: surname,
-        nick: nick,
-        email: email,
-        password: password,
-      })
-      .then(function (response) {
-        console.log(response);
-        const data = response.data;
-        if (data.status === "success") {
-          setRegistrationComplete(true);
-          console.log("Registro exitoso:", data.message);
-        } else {
-          console.error("Error en el registro:", data.message);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (customStatus === UploadStatusResponse.FIELD_REQUIRED) {
+      console.error("Faltan campos por completar");
+      return;
+    }
+
+    if (customStatus === UploadStatusResponse.ERROR_API) {
+      console.error(message);
+      return;
+    }
+
+    if (customStatus === UploadStatusResponse.OK) {
+      setRegistrationComplete(true);
+      console.log("Registro exitoso: ", message);
+    }
   };
 
   return registrationComplete === false ? (
@@ -110,5 +101,4 @@ const Register = () => {
     </div>
   );
 };
-
 export default Register;

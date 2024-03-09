@@ -22,7 +22,7 @@ function Profile() {
     // const image = selectedFile;
     const guide = guideRef.current.value;
 
-    const { customStatus, message } = uploadRecipe({
+    const { customStatus, message } = await uploadRecipe({
       title,
       subtitle,
       food,
@@ -91,7 +91,11 @@ function Profile() {
         />
       </nav>
       {showForm && (
-        <div className="container_form_recipe">
+        <>
+          <div
+            className="container_form_recipe"
+            onClick={() => setShowForm(!showForm)}
+          ></div>
           <form className="send_recipe" onSubmit={handleSubmitSendPublication}>
             <h2>Publicar Receta</h2>
             <label className="label_config">
@@ -128,6 +132,7 @@ function Profile() {
                   maxWidth: 300,
                   minWidth: 250,
                   minHeight: 150,
+                  resize: "none",
                 }}
                 placeholder="Explica como hacer la receta..."
                 rows={5}
@@ -138,7 +143,7 @@ function Profile() {
               Publicar
             </button>
           </form>
-        </div>
+        </>
       )}
 
       <div>imagenes</div>

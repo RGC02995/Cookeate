@@ -1,25 +1,37 @@
 @mixin flex-center-column {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    flex-direction: column;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
 
-  @mixin flex-center-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-direction: row;
-  }
+@mixin flex-center-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
 
-  @mixin flex-center-label {
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    gap: 10px;
-    flex-direction: column;
-    font-size: 20px;
-  }
-  
+@mixin flex-center-label {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  gap: 10px;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+// @mixin custom-button($type: 'primary') {
+//   @if $type == 'primary' {
+//     background: green;
+//     color: #ffffff;
+//   } @else if ($type == 'secondary') {
+//     background: red;
+//     color: #ffffff;
+//   } @else {
+//     background: black;
+//     color: #ffffff;
+//   }
+// }
