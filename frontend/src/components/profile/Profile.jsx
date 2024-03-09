@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { DiAptana } from "react-icons/di";
-import { uploadRecipe, UploadStatusResponse } from "../../api/uploadRecipe";
+import { uploadRecipe } from "../../api/uploadRecipe";
+import { UploadStatusResponse } from "../../api/statusResponse.model";
 import image from "../profile/images.jpeg";
 
 function Profile() {
