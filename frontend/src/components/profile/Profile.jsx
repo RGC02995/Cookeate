@@ -125,15 +125,6 @@ function Profile() {
 
             <label className="label_config_guide">
               <textarea
-                style={{
-                  fontSize: 18,
-                  marginTop: 10,
-                  maxHeight: 200,
-                  maxWidth: 300,
-                  minWidth: 250,
-                  minHeight: 150,
-                  resize: "none",
-                }}
                 placeholder="Explica como hacer la receta..."
                 rows={5}
                 ref={guideRef}

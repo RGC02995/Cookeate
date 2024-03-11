@@ -370,22 +370,34 @@ a {
 .send_recipe {
   display: flex;
   flex-direction: column;
-  background: red;
-  padding: 24px;
+  border-radius: 15px;
+  border: 1px solid white;
+  background: rgb(57, 58, 57);
+  color: white;
+  padding: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
 }
+.send_recipe textarea {
+  font-size: 18px;
+  margin-top: 10px;
+  max-height: 200px;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 150px;
+  resize: none;
+}
 
 .form_button_profile {
-  background-color: #46c795;
+  background-color: #318e6a;
   border: 1px solid white;
-  padding: 1em;
+  padding: 0.45em;
   width: 500px;
   max-width: 300px;
-  font-size: 15px;
+  font-size: 25px;
   border-radius: 0.3rem;
   margin-top: 5%;
   margin-bottom: 5%;
