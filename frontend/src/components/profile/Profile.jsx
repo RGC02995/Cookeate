@@ -1,10 +1,10 @@
-import { useRef, useState, useEffect } from "react";
-import { DiAptana } from "react-icons/di";
-import { uploadRecipe } from "../../api/uploadRecipe";
-import { UploadStatusResponse } from "../../api/statusResponse.model";
-import image from "../profile/images.jpeg";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { useEffect, useRef, useState } from "react";
+import { DiAptana } from "react-icons/di";
+import { UploadStatusResponse } from "../../api/statusResponse.model";
+import { uploadRecipe } from "../../api/uploadRecipe";
+import image from "../profile/images.jpeg";
 
 function Profile() {
   const token = localStorage.getItem("token");
@@ -17,6 +17,7 @@ function Profile() {
 
   //Obtener TOKEN ID
   const [data, setData] = useState(null);
+
   useEffect(() => {
     // Hacer una petición para un usuario con ID específico
     axios
@@ -82,6 +83,7 @@ function Profile() {
     //       "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
     //       Authorization: "Bearer " + token,
     //     },
+    //      {images:data}
     //   });
     //   console.log(responseData);
 
