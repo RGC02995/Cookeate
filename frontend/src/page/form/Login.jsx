@@ -4,11 +4,15 @@ import { loginApi } from "../../api/loginApi";
 import { UploadStatusResponse } from "../../api/statusResponse.model";
 import { togglePasswordVisibility } from "../../utils/utils";
 
+// import { decode } from "jwt-decode";
+
 const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
   const isToken = localStorage.getItem("token");
+  const ID = localStorage.getItem("userId");
+  console.log(ID);
 
   if (isToken) {
     location.href = "/";
