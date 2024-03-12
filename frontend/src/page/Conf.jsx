@@ -1,4 +1,6 @@
 import { deleteUserApi } from "../api/deleteUserApi";
+import { UploadStatusResponse } from "../api/statusResponse.model";
+import { changePasswordApi } from "../api/changePasswordApi";
 
 const Conf = () => {
   // Eliminar cuenta
@@ -11,11 +13,25 @@ const Conf = () => {
     if (userConfirmed) {
       try {
         await deleteUserApi();
+        return UploadStatusResponse.OK;
       } catch (error) {
-        console.error("Error al eliminar la cuenta:", error);
+        return UploadStatusResponse.ERROR_API;
       }
     }
     // Manejar el caso en que el usuario hace clic en "Cancelar" en el cuadro de confirmación
+  };
+
+  //Cambiar contraseña
+  const handleChangePassword = async () => {
+    const userConfirmed = window.confirm("¿Desea cambiar la contraseña?.");
+    if (userConfirmed) {
+      try {
+        await changePasswordApi();
+        return UploadStatusResponse.OK;
+      } catch (error) {
+        return UploadStatusResponse.ERROR_API;
+      }
+    }
   };
 
   return (
@@ -25,7 +41,7 @@ const Conf = () => {
       </div>
 
       <div className="conf_option">
-        <a>Cambiar Correo</a>
+        <a onClick={handleChangePassword}>Cambiar Correo</a>
       </div>
 
       <div className="conf_option">
