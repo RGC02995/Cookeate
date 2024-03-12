@@ -221,7 +221,7 @@ const changeEmail = async (req, res) => {
     // Obtener el usuario actual basado en la información del token
     const userId = req.user.id;
     const user = await User.findById(userId);
-
+    console.log(`Este es el user: ${user}`);
     if (!user) {
       return res.status(404).json({
         status: "error",
@@ -231,6 +231,8 @@ const changeEmail = async (req, res) => {
 
     // Obtener el nuevo email
     const newEmail = req.params.newEmail;
+
+    console.log(`Este es el nuevo email:${newEmail}`);
 
     // Actualizar el email por el nuevo y gaurdarlo
     user.email = newEmail;

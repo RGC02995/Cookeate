@@ -49,7 +49,7 @@ router.post(
   [verifyToken, uploads.single("file0")],
   UserController.uploadImage
 );
-router.put("/change-email", verifyToken, UserController.changeEmail);
+router.put("/change-email/", verifyToken, UserController.changeEmail);
 router.put("/change-password", verifyToken, UserController.changePassword);
 router.delete("/delete-user", verifyToken, UserController.deleteAccount);
 
