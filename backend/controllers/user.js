@@ -1,9 +1,9 @@
 //Import dependences
-require('dotenv').config();
+require("dotenv").config();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 // const jwt = require("../services/jwt");
-const jwt = require ("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const user = require("../models/user");
 
@@ -96,14 +96,17 @@ const login = async (req, res) => {
 
     //Create a token when user has login
     // const token = jwt.createToken(user);
-    const token = jwt.sign({id:user.id, email: user.email, role: user.role}, process.env.JWT_SECRET, {expiresIn: "60m" });
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "60m" }
+    );
     return res.status(200).json({
       status: "success",
       message: "User is logged",
       token,
-
     });
-    const userId = localStorage.getItem("id")
+    const userId = localStorage.getItem("id");
   } catch (error) {
     return res.status(500).json({ status: "error", message: "Failed Login" });
   }
@@ -265,7 +268,6 @@ const deleteAccount = async (req, res) => {
       message:
         "La cuenta ha sido eliminada correctamente. Esperamos verle pronto.",
     });
-
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -283,7 +285,7 @@ const changePassword = async (req, res) => {
     if (!user) {
       return res.status(404).json({
         status: "error",
-        message: "No se ha encontrado el usuario"
+        message: "No se ha encontrado el usuario",
       });
     }
 
@@ -292,11 +294,11 @@ const changePassword = async (req, res) => {
 
     //  verifico con la funcion comparePassword de bcrypt la vieja contraseña
     const isPasswordValid = await user.comparePassword(oldPassword);
-    
+
     if (!isPasswordValid) {
       return res.status(400).json({
         status: "error",
-        message: "La contraseña actual no es válida"
+        message: "La contraseña actual no es válida",
       });
     }
 
@@ -306,13 +308,13 @@ const changePassword = async (req, res) => {
 
     return res.status(200).json({
       status: "success",
-      message: "Contraseña actualizada correctamente"
+      message: "Contraseña actualizada correctamente",
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
       status: "error",
-      message: "Error interno del servidor al intentar cambiar la contraseña"
+      message: "Error interno del servidor al intentar cambiar la contraseña",
     });
   }
 };
@@ -324,5 +326,5 @@ module.exports = {
   profile,
   changeEmail,
   deleteAccount,
-  changePassword
+  changePassword,
 };
