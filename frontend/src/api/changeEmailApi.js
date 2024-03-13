@@ -12,7 +12,7 @@ export const changeEmailApi = async () => {
     }
 
     const response = await axios.put(
-      `http://localhost:5000/api/user/change-email/`,
+      `http://localhost:5000/api/user/change-email`,
       {
         email: newEmail,
       },

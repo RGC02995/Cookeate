@@ -39,10 +39,10 @@ const saveRecipe = async (req, res) => {
 
 const uploadImage = async (req, res) => {
   try {
-    
+    console.log(req.file);
     // Verificar si el archivo existe
     if (!req.file) {
-      return res.status(404).send({
+      return res.status(500).send({
         status: "error",
         message: "File not uploaded",
       });
@@ -55,7 +55,7 @@ const uploadImage = async (req, res) => {
     const extension = image.split(".").pop().toLowerCase();
 
     // Verificar la extensión del archivo (png, jpg, jpeg, gif)
-    const validExtensions = ["png", "jpg", "jpeg", "gif"];
+    const validExtensions = ["png", "jpg", "jpeg", "webp"];
     if (!validExtensions.includes(extension)) {
       // Eliminar el archivo incorrecto antes de cargarlo
       const filePath = req.file.path;
@@ -76,7 +76,7 @@ const uploadImage = async (req, res) => {
     );
 
     if (!recipeUpdated) {
-      return res.status(404).send({
+      return res.status(500).send({
         status: "error",
         message: "Recipe not found",
       });
@@ -91,7 +91,7 @@ const uploadImage = async (req, res) => {
   } catch (error) {
     // Manejar errores específicos
     if (error) {
-      return res.status(404).send({
+      return res.status(500).send({
         status: "error",
         message: "File not found",
         error: error.message,

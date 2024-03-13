@@ -41,15 +41,17 @@ function Profile() {
 
   //Mostrar tabla para enviar publicaciones
   const [showForm, setShowForm] = useState(false);
-  // const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleSubmitSendPublication = async (e) => {
     e.preventDefault();
     const title = titleRef.current.value;
     const subtitle = subtitleRef.current.value;
     const food = foodRef.current.value;
-    // const image = selectedFile;
+    const image = imageRef.current.files[0];
     const guide = guideRef.current.value;
+
+    console.log(image);
 
     const { customStatus, message } = await uploadRecipe({
       title,
@@ -72,33 +74,38 @@ function Profile() {
     setShowForm(!showForm);
 
     // Enviar solicitud de carga de imagen después del éxito de la publicación
-    // try {
-    //   const data = new FormData();
-    //   data.append("image", selectedFile);
+    try {
+      const data = new FormData();
+      data.append("image", selectedFile);
 
-    //   const imageResponse = await uploadRecipe.post("/uploadImage", {file:data}, {
-    //     headers: {
-    //       accept: "application/json",
-    //       "Accept-Language": "en-US,en;q=0.8",
-    //       "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
-    //       Authorization: "Bearer " + token,
-    //     },
-    //      {images:data}
-    //   });
-    //   console.log(responseData);
+      const imageResponse = await axios.post(
+        "http://localhost:5000/api/recipes/uploadImage",
+        { data },
+        {
+          headers: {
+            accept: "application/json",
+            "Accept-Language": "en-US,en;q=0.8",
+            "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(responseData);
 
-    //   const responseData = imageResponse.data;
-    //   console.log("Imagen subida correctamente", responseData);
-    // } catch (imageError) {
-    //   console.error("Error al subir la imagen", imageError);
-    // }
+      const responseData = imageResponse.data;
+      console.log("Imagen subida correctamente", responseData);
+    } catch (imageError) {
+      console.error("Error al subir la imagen", imageError);
+    }
   };
 
-  // const uploadImage = (e) => {
-  //   e.preventDefault();
-  //   const image = imageRef.current.files[0];
-  //   setSelectedFile(image);
-  // };
+  const uploadImage = (e) => {
+    e.preventDefault();
+
+    const image = imageRef.current.files[0];
+    setSelectedFile(image);
+    console.log(selectedFile);
+  };
 
   ///-----------------------------------------------------------------------------------------------------------------------
 
@@ -128,7 +135,11 @@ function Profile() {
             className="container_form_recipe"
             onClick={() => setShowForm(!showForm)}
           ></div>
-          <form className="send_recipe" onSubmit={handleSubmitSendPublication}>
+          <form
+            className="send_recipe"
+            encType="multipart/form-data"
+            onSubmit={handleSubmitSendPublication}
+          >
             <h2>Publicar Receta</h2>
             <label className="label_config">
               Título:
@@ -148,11 +159,10 @@ function Profile() {
               <input
                 type="file"
                 id="image"
-                accept=".jpg, .jpeg, .png, .gif"
+                accept=".jpg, .jpeg, .png, .webp"
                 ref={imageRef}
                 name="filename"
-
-                // onChange={uploadImage}
+                onChange={uploadImage}
               />
             </label>
 

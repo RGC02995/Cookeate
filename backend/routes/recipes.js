@@ -14,18 +14,18 @@ const storage = multer.diskStorage({
     cb(null, "./uploads/recipes");
   },
   filename: (req, file, cb) => {
-    cb(null, "recipes-" + Date.now() + "-" + file.originalname);
+    cb(null, "recipes-" + new Date(Date.now()) + "-" + file.originalname);
   },
 });
 
-const uploads = multer({ storage:storage });
+const uploads = multer({ storage: storage });
 
 //ROUTES
 
 router.post("/save", verifyToken, RecipesController.saveRecipe);
 router.post(
   "/uploadImage",
-  [verifyToken, uploads.single("file0")],
+  [verifyToken, uploads.single("image")],
   RecipesController.uploadImage
 );
 

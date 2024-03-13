@@ -230,7 +230,7 @@ const changeEmail = async (req, res) => {
     }
 
     // Obtener el nuevo email
-    const newEmail = req.params.newEmail;
+    const newEmail = req.body.email;
 
     console.log(`Este es el nuevo email:${newEmail}`);
 
