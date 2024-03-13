@@ -1,6 +1,7 @@
 import axios from "axios";
 import validator from "validator";
 const token = localStorage.getItem("token");
+
 export const changeEmailApi = async () => {
   try {
     const newEmail = prompt("Cual sería el nuevo correo?");
@@ -13,10 +14,9 @@ export const changeEmailApi = async () => {
     const response = await axios.put(
       `http://localhost:5000/api/user/change-email/`,
       {
-        data: {
-          email: newEmail,
-        },
+        email: newEmail,
       },
+
       {
         headers: {
           "Content-Type": "application/json",

@@ -27,9 +27,9 @@ const Conf = () => {
     if (userConfirmed) {
       try {
         await changeEmailApi();
-        return UploadStatusResponse.OK;
+        return console.log(UploadStatusResponse.OK);
       } catch (error) {
-        return UploadStatusResponse.ERROR_API;
+        return console.error(UploadStatusResponse.ERROR_API);
       }
     }
   };

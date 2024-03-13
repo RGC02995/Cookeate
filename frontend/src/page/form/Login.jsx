@@ -1,16 +1,19 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import { loginApi } from "../../api/loginApi";
 import { UploadStatusResponse } from "../../api/statusResponse.model";
 import { togglePasswordVisibility } from "../../utils/utils";
+import { ThemeContext } from "../../context/ThemeProvider";
 
 // import { decode } from "jwt-decode";
 
 const Login = () => {
+  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
   const isToken = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
   const ID = localStorage.getItem("userId");
   console.log(ID);
 
@@ -40,7 +43,6 @@ const Login = () => {
       );
       return;
     }
-
     localStorage.setItem("token", token);
     location.href = "/";
   };
