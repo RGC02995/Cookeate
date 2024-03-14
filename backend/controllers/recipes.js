@@ -1,14 +1,27 @@
+const fs = require("fs");
 const Recipes = require("../models/recipes");
 
-const saveRecipe = async (req, res) => {
+const saveRecipeWithImage = async (req, res) => {
   try {
     const params = req.body;
 
-    if (!params.title && !params.food && !params.guide) {
+    if (!params.title || !params.food || !params.guide) {
       return res.status(400).send({
         status: "error",
         message: "All fields are required.",
       });
+    }
+    // Validate image file (optional, based on your requirements)
+    if (req.file) {
+      const allowedExtensions = ["png", "jpg", "jpeg", "webp"];
+      const extension = req.file.originalname.split(".").pop().toLowerCase();
+      if (!allowedExtensions.includes(extension)) {
+        fs.unlinkSync(req.file.path); // Remove invalid file
+        return res.status(400).send({
+          status: "error",
+          message: "Invalid file extension.",
+        });
+      }
     }
 
     let newRecipe = new Recipes(params);
@@ -19,95 +32,49 @@ const saveRecipe = async (req, res) => {
     if (!recipedSaved) {
       return res.status(400).send({
         status: "error",
-        message: "Error guardando la receta",
+        message: "Error saving recipe",
       });
     }
 
-    return res.status(200).send({
-      status: "success",
-      message: "Receta publicada.",
-      recipedSaved,
-    });
+    if (req.file) {
+      // Update recipe with image path
+      const recipeId = recipedSaved._id;
+      const recipeUpdated = await Recipes.findOneAndUpdate(
+        { _id: recipeId },
+        { images: req.file.filename },
+        { new: true } // true to return the updated recipe
+      );
+
+      if (!recipeUpdated) {
+        return res.status(500).send({
+          status: "error",
+          message: "Recipe not found",
+        });
+      }
+
+      return res.status(200).send({
+        status: "success",
+        message: "Recipe and image uploaded successfully",
+        recipe: recipeUpdated,
+        file: req.file,
+      });
+    } else {
+      // Recipe saved without image
+      return res.status(200).send({
+        status: "success",
+        message: "Recipe saved successfully",
+        recipe: recipedSaved,
+      });
+    }
   } catch (error) {
+    console.error(error.message); // Log the entire error message
     return res.status(500).send({
       status: "error",
-      message: "Error en la petición",
-      error: error.message,
-    });
-  }
-};
-
-const uploadImage = async (req, res) => {
-  try {
-    console.log(req.file);
-    // Verificar si el archivo existe
-    if (!req.file) {
-      return res.status(500).send({
-        status: "error",
-        message: "File not uploaded",
-      });
-    }
-
-    // Obtener el nombre del archivo
-    const image = req.file.filename;
-    console.log(image);
-    // Obtener la extensión del archivo
-    const extension = image.split(".").pop().toLowerCase();
-
-    // Verificar la extensión del archivo (png, jpg, jpeg, gif)
-    const validExtensions = ["png", "jpg", "jpeg", "webp"];
-    if (!validExtensions.includes(extension)) {
-      // Eliminar el archivo incorrecto antes de cargarlo
-      const filePath = req.file.path;
-      fs.unlinkSync(filePath);
-
-      return res.status(400).send({
-        status: "error",
-        message: "Invalid extension",
-      });
-    }
-
-    // Guardar el archivo (si es correcto)
-    const recipeId = req.user.id;
-    const recipeUpdated = await Recipes.findOneAndUpdate(
-      { _id: recipeId },
-      { images: req.file.filename },
-      { new: true } // true para devolver la receta actualizada
-    );
-
-    if (!recipeUpdated) {
-      return res.status(500).send({
-        status: "error",
-        message: "Recipe not found",
-      });
-    }
-
-    // RESPUESTA EXITOSA
-    return res.status(200).send({
-      status: "success",
-      recipe: recipeUpdated,
-      file: req.file,
-    });
-  } catch (error) {
-    // Manejar errores específicos
-    if (error) {
-      return res.status(500).send({
-        status: "error",
-        message: "File not found",
-        error: error.message,
-      });
-    }
-
-    // Otros errores
-    return res.status(500).send({
-      status: "error",
-      message: "Error in the upload process",
-      error: error.message,
+      message: "Error in the request",
     });
   }
 };
 
 module.exports = {
-  saveRecipe,
-  uploadImage,
+  saveRecipeWithImage,
 };

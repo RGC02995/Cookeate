@@ -4,6 +4,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const verifyToken = require("../middleware/auth");
+const path = require("path");
 
 //Import Multer for update images:
 const multer = require("multer");
@@ -14,7 +15,7 @@ const storage = multer.diskStorage({
     cb(null, "./uploads/recipes");
   },
   filename: (req, file, cb) => {
-    cb(null, "recipes-" + new Date(Date.now()) + "-" + file.originalname);
+    cb(null, Date.now() + file.originalname);
   },
 });
 
@@ -22,11 +23,17 @@ const uploads = multer({ storage: storage });
 
 //ROUTES
 
-router.post("/save", verifyToken, RecipesController.saveRecipe);
 router.post(
-  "/uploadImage",
-  [verifyToken, uploads.single("image")],
-  RecipesController.uploadImage
+  "/save",
+  verifyToken,
+  uploads.single("image"),
+  RecipesController.saveRecipeWithImage,
+  (req, res) => {
+    const file = req.file;
+    const data = req.body;
+    console.log({ data, file });
+    return res.status(200).send(`File upload success!`);
+  }
 );
 
 module.exports = router;
