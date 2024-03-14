@@ -13,29 +13,29 @@ const recipesSchema = Schema({
     type: String,
   },
   food: {
-    type: Array,
+    type: [String],
     required: true,
   },
   guide: {
     type: String,
     required: true,
   },
-  images:{
-    type:String,
-    default:"image.png"
+  images: {
+    type: String,
+    default: "image.png",
   },
-  date_recipe:{
-    type:Date,
-    default:Date.now
+  date_recipe: {
+    type: Date,
+    default: Date.now,
   },
-  like:{
-    type:Number,
-    default:0,
+  like: {
+    type: Number,
+    default: 0,
   },
-  dislike:{
-    type:Number,
-    default:0,
-  }
+  dislike: {
+    type: Number,
+    default: 0,
+  },
 });
 
-module.exports = model("Recipe", recipesSchema, "recipes")
+module.exports = model("Recipe", recipesSchema, "recipes");

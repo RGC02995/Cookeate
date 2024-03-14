@@ -51,6 +51,17 @@ const Conf = () => {
       <div className="conf_option">
         <a onClick={handleDeleteUser}>Eliminar cuenta</a>
       </div>
+
+      <div className="conf_option">
+        <a
+          onClick={() => {
+            localStorage.removeItem("token");
+            location.href = "/";
+          }}
+        >
+          Salir de la cuenta
+        </a>
+      </div>
     </div>
   );
 };

@@ -3,10 +3,10 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
 import { DiAptana } from "react-icons/di";
 import image from "../profile/images.jpeg";
+
 function Profile() {
   //Obtener TOKEN ID
   const token = localStorage.getItem("token");
-
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const imageRef = useRef(null);
@@ -16,10 +16,14 @@ function Profile() {
   //Data es el nick del usuario
   const [data, setData] = useState(null);
 
+  const [recipes, setRecipes] = useState([]);
+
   useEffect(() => {
+    const userId = jwtDecode(token).id;
     if (token) {
+      //Obtener el nick del usuario
       axios
-        .get(`http://localhost:5000/api/user/profile/${jwtDecode(token).id}`, {
+        .get(`http://localhost:5000/api/user/profile/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -30,9 +34,26 @@ function Profile() {
         .catch((error) => {
           console.error(error);
         });
+
+      //Obtener las recetas del usuario
+      axios
+        .get(`http://localhost:5000/api/recipes/userRecipes/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          const recetas = response.data.recipes;
+          setRecipes(recetas);
+          // Aquí puedes manejar la respuesta como desees
+        })
+        .catch((error) => {
+          console.error("Error al obtener las recetas del usuario:", error);
+          // Aquí puedes manejar el error si ocurre alguno
+        });
     }
   }, [token]);
-
+  console.log(recipes);
   //TOKEN REMOVE IF Expired token
   if (token) {
     const decodedToken = jwtDecode(token);
@@ -55,11 +76,10 @@ function Profile() {
     const food = foodRef.current.value;
     const image = imageRef.current.files[0];
     const guide = guideRef.current.value;
-    console.log(image);
 
     if (!title || !food || !guide || !image) {
       console.error(
-        "Debes rellenar los campos obligatorios, TODOS y opcional el subtítulo"
+        "Debes rellenar los campos obligatorios, TODOS y opcional el subtítulo, recuerda añadir comas entre ingredientes"
       );
 
       return;
@@ -79,9 +99,9 @@ function Profile() {
       formData.append("guide", guide);
       formData.append("image", image);
 
-      console.log(
-        `Hola soy la peticion post y los valores de title:${title} , subtitle:${subtitle}, food:${food}, guide:${guide}, image:${image}`
-      );
+      // console.log(
+      //   `Hola soy la peticion post y los valores de title:${title} , subtitle:${subtitle}, food:${food}, guide:${guide}, image:${image}`
+      // );
 
       const response = await axios.post(url, formData, {
         headers: {
@@ -113,6 +133,7 @@ function Profile() {
           <p onClick={() => setShowForm(!showForm)} className="p_profile">
             +
           </p>
+
           <img src={image} alt="" />
           <a href="/profile">{data}</a>
           <a href="/" className="home_ref">
@@ -175,7 +196,15 @@ function Profile() {
         </>
       )}
 
-      <div>imagenes</div>
+      {recipes.map((recipe) => (
+        <div className="" key={recipe._id}>
+          <img
+            src={`../../../../backend/uploads/recipes/${recipe.images}`}
+            alt={recipe.images}
+          />
+          <p>{recipe.title}</p>
+        </div>
+      ))}
     </>
   );
 }
