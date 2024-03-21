@@ -37,6 +37,10 @@ router.post(
 );
 
 router.get("/userRecipes/:userId", verifyToken, RecipesController.userRecipes);
-router.get("/get-recipe-by-id", verifyToken, RecipesController.getRecipe);
+router.get(
+  "/get-recipe/:recipeId",
+  verifyToken,
+  RecipesController.getRecipeById
+);
 
 module.exports = router;

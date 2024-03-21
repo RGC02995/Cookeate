@@ -1,37 +1,55 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-function Recipes({ recipe }) {
+function Recipes() {
   const urlParams = new URLSearchParams(window.location.search);
   const recipeId = urlParams.get("recipeId");
   console.log(recipeId);
-
   const token = localStorage.getItem("token");
+  const [title, setTitle] = useState(null);
+  const [subtitle, setSubTitle] = useState(null);
+  const [guide, setGuide] = useState(null);
+  const [food, setFood] = useState(null);
+  const [img, setImg] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  // URL de la ruta en tu servidor
   useEffect(() => {
-    if (token) {
-      axios
-        .get(`/api/recipes/${recipeId}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          const recipe = response.data;
-          if (recipe) {
-            // Display the recipe information
-            console.log(recipe);
-          } else {
-            // Handle error
-            console.error(response.data.error);
-          }
-        })
-        .catch((error) => {
-          // Handle network or server errors
-          console.error(error);
-        });
-    }
+    const fetchData = async () => {
+      try {
+        if (token) {
+          const response = await axios.get(
+            `http://localhost:5000/api/recipes/get-recipe/${recipeId}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+            }
+          );
+          const recipeTitle = response.data.recipe.title;
+          setTitle(recipeTitle);
+          const recipeSubTitle = response.data.recipe.subtitle;
+          setSubTitle(recipeSubTitle);
+          const recipeGuide = response.data.recipe.guide;
+          setGuide(recipeGuide);
+          const recipeFood = response.data.recipe.food;
+          setFood(recipeFood);
+          const recipeImg = response.data.recipe.images;
+          setImg(recipeImg);
+
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error("Error al obtener la receta:", error);
+      }
+    };
+
+    fetchData(); // Call the async function inside useEffect
   }, [recipeId, token]);
+
+  if (isLoading) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <div>
@@ -44,33 +62,18 @@ function Recipes({ recipe }) {
       </nav>
 
       <article className="recipe_flex_center">
-        <h1></h1>
-        <h2>Subtítulo</h2>
-        <h4>Ingredientes</h4>
+        <h1>{title}</h1>
+        <h2>{subtitle}</h2>
         <ul>
-          <li>Soy parte de la lista de Ingredientes</li>
+          {food.map((foodItem) => (
+            <li key={foodItem}>{foodItem}</li>
+          ))}
         </ul>
-        <article>
-          Descripción Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          Officiis maiores quaerat, ad officia nobis necessitatibus nostrum
-          aliquam deleniti placeat possimus sit facilis quas suscipit,
-          reiciendis nesciunt atque ea quos, minima eos magni sequi non. Fugiat
-          unde, totam aut quia expedita voluptas laudantium eaque est eveniet ea
-          esse illum ad nisi veritatis aspernatur fuga error similique rem
-          consequuntur. Cumque veniam dignissimos saepe quia vitae deleniti
-          sequi aspernatur expedita! Similique perferendis dolor, facere
-          quisquam deleniti quaerat saepe temporibus et minima itaque vero ad
-          aliquam laborum, deserunt, nihil maiores doloremque suscipit?
-          Repellendus possimus quae libero, harum eveniet autem corrupti error
-          deleniti minima repudiandae?
-        </article>
+        <article>{guide}</article>
 
         <p style={{ backgroundColor: "grey", width: "120px" }}>Imágenes</p>
         <div>
-          <img
-            src="https://imgs.search.brave.com/0O5jbHeFp1-0PS-xLcuJyU8TmdS6SA1hj9Qy95OFp2o/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMuYm9udml2ZXVy/LmVzL3RhZ3MvbGFz/LW1lam9yZXMtcmVj/ZXRhcy1kZS1jb21p/ZGFzLXJhcGlkYXMu/anBn"
-            alt=""
-          />
+          <img src={`../../../backend/uploads/recipes/${img}`} alt={img} />
         </div>
       </article>
     </div>
