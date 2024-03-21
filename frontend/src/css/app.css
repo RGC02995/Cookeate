@@ -352,7 +352,7 @@ a {
   color: white;
 }
 .profile_nav .home_ref {
-  font-weight: 300;
+  font-weight: 200;
   text-shadow: 1px 1px 2px #383838;
   font-size: 22px;
 }
@@ -414,6 +414,39 @@ a {
 }
 .label_config_guide input {
   width: 100%;
+}
+
+.row_card_flex {
+  display: flex;
+}
+
+.flex_container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  max-width: 240px;
+  border: 2px solid;
+  border-image-source: linear-gradient(to right, #383838, #5e876b);
+  border-image-slice: 1;
+  background-color: rgb(153, 153, 153);
+}
+.flex_container:hover {
+  box-shadow: 2px 3px 3px #5e876b;
+}
+.flex_container .card_recipeContainer {
+  padding: 5px;
+  max-width: 450px;
+  color: white;
+}
+.flex_container .title_card {
+  text-align: center;
+  color: white;
+  padding: 0;
+  font-weight: 200;
+  cursor: pointer;
+}
+.flex_container .title_card:hover {
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 .container_conf {

@@ -13,6 +13,10 @@ function Profile() {
   const foodRef = useRef(null);
   const guideRef = useRef(null);
 
+  const handleRecipeClick = (recipe) => {
+    window.location.href = `/recipe?recipeId=${recipe._id}`;
+  };
+
   //Data es el nick del usuario
   const [data, setData] = useState(null);
 
@@ -29,7 +33,8 @@ function Profile() {
           },
         })
         .then((response) => {
-          setData(response.data.user.nick);
+          const nick = response.data.user.nick;
+          setData(nick);
         })
         .catch((error) => {
           console.error(error);
@@ -169,7 +174,11 @@ function Profile() {
             </label>
             <label className="label_config">
               Ingredientes:
-              <input type="text" ref={foodRef} />
+              <input
+                type="text"
+                ref={foodRef}
+                placeholder="Ej: Harina, Huevos, Leche, 150gr Azúcar"
+              />
             </label>
 
             <h2 className="label_config">Subir imagen:</h2>
@@ -196,15 +205,21 @@ function Profile() {
         </>
       )}
 
-      {recipes.map((recipe) => (
-        <div className="" key={recipe._id}>
-          <img
-            src={`../../../../backend/uploads/recipes/${recipe.images}`}
-            alt={recipe.images}
-          />
-          <p>{recipe.title}</p>
-        </div>
-      ))}
+      <div className="row_card_flex">
+        {recipes.map((recipe) => (
+          <div className="flex_container" key={recipe._id}>
+            <div className="card_recipeContainer">
+              <img
+                src={`../../../../backend/uploads/recipes/${recipe.images}`}
+                alt={recipe.images}
+              />
+            </div>
+            <p className="title_card" onClick={() => handleRecipeClick(recipe)}>
+              {recipe.title}
+            </p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

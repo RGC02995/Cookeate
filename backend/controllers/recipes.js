@@ -109,7 +109,34 @@ const userRecipes = async (req, res) => {
     });
   }
 };
+
+const getRecipe = async (req, res) => {
+  try {
+    const { recipeId } = req.body;
+
+    // Validate the existence of recipeId
+    if (!recipeId) {
+      return res
+        .status(400)
+        .json({ error: "El ID de la receta es obligatorio" });
+    }
+
+    // Find the recipe by ID
+    const recipe = await Recipe.findById(recipeId);
+
+    if (!recipe) {
+      return res.status(404).json({ error: "Receta no encontrada" });
+    }
+
+    // Send the recipe as response
+    res.json(recipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
 module.exports = {
   saveRecipeWithImage,
   userRecipes,
+  getRecipe,
 };
