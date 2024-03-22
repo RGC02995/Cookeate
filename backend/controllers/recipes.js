@@ -141,8 +141,34 @@ const getRecipeById = async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+
+const getLastestRecipes = async (req, res) => {
+  try {
+    //Buscamos las última recetas que en orden cronologico donde se muestra desde el ultimo post hasta la receta n20 más nueva
+    const recipes = await Recipes.find().sort({ date_recipe: -1 }).limit(20);
+
+    if (!recipes) {
+      return res.status(400).json({
+        status: "error",
+        message: "No se han encontrado las recetas",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "Se han encontrado las recetas",
+      recipes: recipes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: "Error interno del servidor",
+    });
+  }
+};
 module.exports = {
   saveRecipeWithImage,
   userRecipes,
   getRecipeById,
+  getLastestRecipes,
 };

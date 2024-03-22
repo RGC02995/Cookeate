@@ -5,6 +5,11 @@
     justify-content: center;
     align-items: center;
     gap: 40px;
+
+    div{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .image_style {

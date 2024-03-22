@@ -42,5 +42,6 @@ router.get(
   verifyToken,
   RecipesController.getRecipeById
 );
+router.get("/latestRecipes", RecipesController.getLastestRecipes);
 
 module.exports = router;

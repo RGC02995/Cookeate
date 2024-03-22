@@ -298,6 +298,10 @@ a {
   align-items: center;
   gap: 40px;
 }
+.publication_wrapper div {
+  display: flex;
+  flex-direction: column;
+}
 
 .image_style {
   width: 200px;

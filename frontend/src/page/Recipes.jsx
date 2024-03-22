@@ -73,7 +73,7 @@ function Recipes() {
 
         <p style={{ backgroundColor: "grey", width: "120px" }}>Imágenes</p>
         <div>
-          <img src={`../../../backend/uploads/recipes/${img}`} alt={img} />
+          <img src={`http://localhost:5000/uploads/recipes/${img}`} alt={img} />
         </div>
       </article>
     </div>

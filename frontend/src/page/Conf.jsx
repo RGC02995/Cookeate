@@ -13,9 +13,9 @@ const Conf = () => {
     if (userConfirmed) {
       try {
         await deleteUserApi();
-        return UploadStatusResponse.OK;
+        return console.log(UploadStatusResponse.OK);
       } catch (error) {
-        return UploadStatusResponse.ERROR_API;
+        return console.error(UploadStatusResponse.ERROR_API);
       }
     }
     // Manejar el caso en que el usuario hace clic en "Cancelar" en el cuadro de confirmación
