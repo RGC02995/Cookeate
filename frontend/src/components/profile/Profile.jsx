@@ -210,6 +210,7 @@ function Profile() {
           <div className="flex_container" key={recipe._id}>
             <div className="card_recipeContainer">
               <img
+                style={{ width: "100%" }}
                 src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
                 alt={recipe.images}
               />
