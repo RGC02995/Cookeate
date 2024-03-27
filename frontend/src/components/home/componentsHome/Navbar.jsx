@@ -2,7 +2,6 @@ import Logo from "../../../img/Logo.png";
 import { VscAccount } from "react-icons/vsc";
 import { DiAptana } from "react-icons/di";
 import { VscSearch } from "react-icons/vsc";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -12,8 +11,18 @@ const Navbar = () => {
         {/*Order svg icons up and input under of icons in css*/}
         <div className="flex">
           <div className="icon_container">
-            <VscAccount className="icon_style" onClick={() => { location.href = "/profile"; }}/>
-            <DiAptana className="icon_style" onClick={() => { location.href = "/conf"; }} />
+            <VscAccount
+              className="icon_style"
+              onClick={() => {
+                location.href = "/profile";
+              }}
+            />
+            <DiAptana
+              className="icon_style"
+              onClick={() => {
+                location.href = "/conf";
+              }}
+            />
           </div>
 
           <label className="input_container">

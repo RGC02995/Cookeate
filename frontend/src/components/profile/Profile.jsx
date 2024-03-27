@@ -49,11 +49,9 @@ function Profile() {
         .then((response) => {
           const recetas = response.data.recipes;
           setRecipes(recetas);
-          // Aquí puedes manejar la respuesta como desees
         })
         .catch((error) => {
           console.error("Error al obtener las recetas del usuario:", error);
-          // Aquí puedes manejar el error si ocurre alguno
         });
     }
   }, [token]);
@@ -66,13 +64,12 @@ function Profile() {
 
     if (decodedToken.exp < currentTime) {
       localStorage.removeItem("token");
-      location.href("/login");
+      window.location.href = "/login";
     }
   }
 
   //Mostrar tabla para enviar publicaciones
   const [showForm, setShowForm] = useState(false);
-  // const [selectedFile, setSelectedFile] = useState(null);
 
   //Función publicar
   const handleSubmitSendPublication = async (e) => {
@@ -118,17 +115,11 @@ function Profile() {
 
       console.log(response.data);
       setShowForm(!showForm);
+      window.location.href = "/profile";
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
-  // const uploadImage = (e) => {
-  //   e.preventDefault();
-  //   const image = imageRef.current.files[0];
-  //   setSelectedFile(image);
-  //   console.log(selectedFile);
-  // };
 
   ///-----------------------------------------------------------------------------------------------------------------------
 
@@ -189,7 +180,6 @@ function Profile() {
               accept=".jpg, .jpeg, .png, .webp"
               ref={imageRef}
               name="image"
-              // onChange={uploadImage}
             />
 
             <label className="label_config_guide">
