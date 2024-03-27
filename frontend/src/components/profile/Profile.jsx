@@ -2,7 +2,6 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
 import { DiAptana } from "react-icons/di";
-import image from "../profile/images.jpeg";
 
 function Profile() {
   //Obtener TOKEN ID
@@ -59,6 +58,7 @@ function Profile() {
     }
   }, [token]);
   console.log(recipes);
+
   //TOKEN REMOVE IF Expired token
   if (token) {
     const decodedToken = jwtDecode(token);
@@ -66,6 +66,7 @@ function Profile() {
 
     if (decodedToken.exp < currentTime) {
       localStorage.removeItem("token");
+      location.href("/login");
     }
   }
 
@@ -131,6 +132,7 @@ function Profile() {
 
   ///-----------------------------------------------------------------------------------------------------------------------
 
+  //Para la imagen, primero de todo hacer que funcione el controlador uploadImage del usuario, ideal dejar una img predeterminada o al registrarse subir la misma foto, mejor la segunda opcion, luego una vez en el profile obtener la img que hemos subido en el register y hacer la peticion a endpoint de getImage/:imageName.
   return (
     <>
       <nav className="nav_container_profile">
@@ -138,8 +140,7 @@ function Profile() {
           <p onClick={() => setShowForm(!showForm)} className="p_profile">
             +
           </p>
-
-          <img src={image} alt="" />
+          <img src={"AQUI PONER LA URL A LA IMG"} alt="" />
           <a href="/profile">{data}</a>
           <a href="/" className="home_ref">
             INICIO

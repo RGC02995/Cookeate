@@ -177,6 +177,29 @@ const uploadImage = async (req, res) => {
     });
   }
 };
+//Method get for uploadImage
+//Rute /getImage
+const getImage = (req, res) => {
+  try {
+    const imageName = req.params.imageName; // Obtener el nombre de la imagen de los parámetros de la URL
+    const imagePath = path.join(__dirname, "../uploads/", imageName); // Ruta completa de la imagen
+
+    // Verificar si el archivo existe
+    if (!fs.existsSync(imagePath)) {
+      return res.status(400).json({ message: "Image not found" });
+    }
+
+    // Leer la imagen y enviarla como respuesta
+    const imageStream = fs.createReadStream(imagePath);
+    imageStream.pipe(res);
+  } catch (error) {
+    console.error("Error:", error);
+    return res
+      .status(500)
+      .json({ message: "Error retrieving image", error: error.message });
+  }
+};
+
 //Method GET for obtein profile
 //Rute /profile/:id
 const profile = async (req, res) => {
@@ -278,7 +301,8 @@ const deleteAccount = async (req, res) => {
     });
   }
 };
-
+//Method PUT to change email
+// Endpoint: /change-password
 const changePassword = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -325,6 +349,7 @@ module.exports = {
   register,
   login,
   uploadImage,
+  getImage,
   profile,
   changeEmail,
   deleteAccount,
