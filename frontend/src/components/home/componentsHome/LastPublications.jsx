@@ -31,16 +31,15 @@ function LastPublications() {
 
       <div className="publication_wrapper">
         {imgRecipe.map((recipes) => (
-          <>
-            <div key={recipes}>
-              <img
-                className="image_style"
-                src={`http://localhost:5000/uploads/recipes/${recipes.images}`}
-                alt={recipes.images}
-              />
-              <a href={`/recipe?recipeId=${recipes._id}`}>{recipes.title}</a>
-            </div>
-          </>
+          <div key={recipes._id}>
+            <img
+              className="image_style"
+              src={`http://localhost:5000/uploads/recipes/${recipes.images}`}
+              alt={recipes.images}
+              height={250}
+            />
+            <a href={`/recipe?recipeId=${recipes._id}`}>{recipes.title}</a>
+          </div>
         ))}
       </div>
     </div>

@@ -116,67 +116,39 @@ const login = async (req, res) => {
 //Rute /uploadImage
 const uploadImage = async (req, res) => {
   try {
-    // Check if the file exists
+    // Check if req.file is available
     if (!req.file) {
-      return res.status(404).send({
-        status: "error",
-        message: "File not uploaded",
-      });
+      return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Obtain file name.
-    let image = req.file.filename;
-
-    //Obtain file extension
-    const imageSplit = image.split(".");
-    const extension = imageSplit[1].toLowerCase();
-
-    //Check file extension and remove is it no correct (png, jpg, jpeg, gif)
-    if (
-      extension !== "png" &&
-      extension !== "jpg" &&
-      extension !== "jpeg" &&
-      extension !== "gif"
-    ) {
-      //Delete incorrect file
-      const filePath = req.file.path;
-      fs.unlinkSync(filePath); // Elimina antes de subir
-
-      return res.status(400).send({
-        status: "error",
-        message: "Invalid extension",
-      });
-    }
-
-    //Save file (if it is correct)
-    const userUpdated = await User.findByIdAndUpdate(
-      { _id: req.user.id },
-      { image: req.file.filename },
-      { new: true } // new: true para devolver el nuevo usuario
+    // Get the user ID from the request token
+    const userId = req.user.id; // Assuming the authenticated user ID is available in req.user
+    // Get the filename of the uploaded image
+    const filename = req.file.filename; // Assuming multer adds 'filename' property to req.file
+    // Update the user document in the database with the image filename
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { img: filename },
+      { new: true }
     );
 
-    if (!userUpdated) {
-      return res.status(500).send({
-        status: "error",
-        message: "Error saving image",
-      });
+    // If user not found
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
     }
 
-    //RETURN RESPONSE
-    return res.status(200).send({
+    // Send success response with updated user data
+    res.status(200).json({
       status: "success",
-      user: userUpdated,
-      file: req.file,
-      files: req.files,
+      message: "image has been uploaded",
+      updatedUser,
     });
   } catch (error) {
-    return res.status(500).send({
-      status: "error",
-      message: "Error in the upload process",
-      error: error.message,
-    });
+    console.error("Error uploading image:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
+
 //Method get for uploadImage
 //Rute /getImage
 const getImage = (req, res) => {

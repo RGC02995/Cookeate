@@ -102,10 +102,6 @@ function Profile() {
       formData.append("guide", guide);
       formData.append("image", image);
 
-      // console.log(
-      //   `Hola soy la peticion post y los valores de title:${title} , subtitle:${subtitle}, food:${food}, guide:${guide}, image:${image}`
-      // );
-
       const response = await axios.post(url, formData, {
         headers: {
           "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
@@ -123,7 +119,6 @@ function Profile() {
 
   ///-----------------------------------------------------------------------------------------------------------------------
 
-  //Para la imagen, primero de todo hacer que funcione el controlador uploadImage del usuario, ideal dejar una img predeterminada o al registrarse subir la misma foto, mejor la segunda opcion, luego una vez en el profile obtener la img que hemos subido en el register y hacer la peticion a endpoint de getImage/:imageName.
   return (
     <>
       <nav className="nav_container_profile">

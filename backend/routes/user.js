@@ -15,11 +15,11 @@ const storage = multer.diskStorage({
     cb(null, "./uploads/avatars");
   },
   filename: (req, file, cb) => {
-    cb(null, "avatar " + Date.now + "-" + file.originalname);
+    cb(null, Date.now() + file.originalname);
   },
 });
 
-const uploads = multer({ storage });
+const uploads = multer({ storage: storage });
 
 //ROUTES
 
@@ -47,8 +47,14 @@ router.get("/profile/:id", verifyToken, UserController.profile);
 router.get("/getImage/:imageName", verifyToken, UserController.getImage);
 router.post(
   "/uploadImage",
-  [verifyToken, uploads.single("file0")],
-  UserController.uploadImage
+  [verifyToken, uploads.single("image")],
+  UserController.uploadImage,
+  (req, res) => {
+    const file = req.file;
+    const data = req.body;
+    console.log({ data, file });
+    return res.status(200).send(`File upload success!`);
+  }
 );
 router.put("/change-email", verifyToken, UserController.changeEmail);
 router.put("/change-password", verifyToken, UserController.changePassword);
