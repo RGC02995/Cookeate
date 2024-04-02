@@ -21,6 +21,7 @@ function Profile() {
 
   const [recipes, setRecipes] = useState([]);
 
+  const [imgProfile, setImgProfile] = useState(null);
   useEffect(() => {
     const userId = jwtDecode(token).id;
     if (token) {
@@ -33,7 +34,10 @@ function Profile() {
         })
         .then((response) => {
           const nick = response.data.user.nick;
+          const imageProfile = response.data.user.image;
+          setImgProfile(imageProfile);
           setData(nick);
+          console.log(imageProfile);
         })
         .catch((error) => {
           console.error(error);
@@ -54,6 +58,7 @@ function Profile() {
           console.error("Error al obtener las recetas del usuario:", error);
         });
     }
+    //   });
   }, [token]);
   console.log(recipes);
 
@@ -126,7 +131,10 @@ function Profile() {
           <p onClick={() => setShowForm(!showForm)} className="p_profile">
             +
           </p>
-          <img src={"AQUI PONER LA URL A LA IMG"} alt="" />
+          <img
+            src={`http://localhost:5000/uploads/avatars/${imgProfile}`}
+            alt=""
+          />
           <a href="/profile">{data}</a>
           <a href="/" className="home_ref">
             INICIO

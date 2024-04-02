@@ -44,7 +44,6 @@ router.post("/verify-token", verifyToken, (req, res) => {
   });
 });
 router.get("/profile/:id", verifyToken, UserController.profile);
-router.get("/getImage/:imageName", verifyToken, UserController.getImage);
 router.post(
   "/uploadImage",
   [verifyToken, uploads.single("image")],
