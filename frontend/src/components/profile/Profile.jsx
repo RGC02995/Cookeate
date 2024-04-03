@@ -25,7 +25,7 @@ function Profile() {
   useEffect(() => {
     const userId = jwtDecode(token).id;
     if (token) {
-      //Obtener el nick del usuario
+      //Obtener el nick del usuario y la img
       axios
         .get(`http://localhost:5000/api/user/profile/${userId}`, {
           headers: {
@@ -37,7 +37,6 @@ function Profile() {
           const imageProfile = response.data.user.image;
           setImgProfile(imageProfile);
           setData(nick);
-          console.log(imageProfile);
         })
         .catch((error) => {
           console.error(error);
@@ -60,7 +59,6 @@ function Profile() {
     }
     //   });
   }, [token]);
-  console.log(recipes);
 
   //TOKEN REMOVE IF Expired token
   if (token) {

@@ -8,6 +8,10 @@ const Conf = () => {
   const imageRef = useRef(null);
   //States
   const [uploadImage, setUploadImage] = useState(false);
+  const [formPass, setFormPass] = useState(false);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   // Eliminar cuenta
   const handleDeleteUser = async () => {
@@ -51,6 +55,50 @@ const Conf = () => {
     }
   };
 
+  //Cambiar contraseña
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      console.log("Las contraseñas nuevas no coinciden");
+      return;
+    }
+
+    try {
+      // Use Axios
+      const response = await axios.put(
+        "http://localhost:5000/api/user/change-password",
+        {
+          oldPassword: oldPassword,
+          newPassword: newPassword,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.data.success) {
+        // Assuming the API response has a "success" property
+        console.log("Contraseña cambiada correctamente");
+        // Limpiar los campos del formulario
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+      } else {
+        console.error(
+          response.data.message || "Ha habido un error en el cambio"
+        ); // Handle specific error message or a generic one
+      }
+    } catch (error) {
+      console.error(
+        "Error al cambiar la contraseña: Prueba a usar una contraseña más segura. EJ: PrueBah@1",
+        error
+      );
+    }
+  };
+
   //Cambiar Email
   const handleChangeEmail = async () => {
     const userConfirmed = window.confirm("¿Desea cambiar el email?.");
@@ -67,8 +115,37 @@ const Conf = () => {
   return (
     <div className="container_conf">
       <button className="conf_option">
-        <a>Cambiar Contraseña</a>
+        <a
+          onClick={() => {
+            setFormPass(!formPass);
+          }}
+        >
+          Cambiar Contraseña
+        </a>
       </button>
+      {formPass ? (
+        <form onSubmit={handleChangePassword}>
+          <input
+            type="password"
+            placeholder="Contraseña actual"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Nueva contraseña"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Confirmar contraseña"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button type="submit">Cambiar Contraseña</button>
+        </form>
+      ) : null}
 
       <button className="conf_option">
         <a onClick={handleChangeEmail}>Cambiar Correo</a>

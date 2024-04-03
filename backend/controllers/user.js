@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 // const jwt = require("../services/jwt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
-const user = require("../models/user");
 
 //METHODS
 
@@ -250,7 +249,7 @@ const deleteAccount = async (req, res) => {
     });
   }
 };
-//Method PUT to change email
+//Method PUT to change password
 // Endpoint: /change-password
 const changePassword = async (req, res) => {
   try {
@@ -267,8 +266,8 @@ const changePassword = async (req, res) => {
     // Extraigo los parametros oldPassword y newpassword que vienen desde body
     const { oldPassword, newPassword } = req.body;
 
-    //  verifico con la funcion comparePassword de bcrypt la vieja contraseña
-    const isPasswordValid = await user.comparePassword(oldPassword);
+    // Verifico con la función comparePassword de bcrypt la vieja contraseña
+    const isPasswordValid = bcrypt.compareSync(oldPassword, user.password);
 
     if (!isPasswordValid) {
       return res.status(400).json({
@@ -276,9 +275,9 @@ const changePassword = async (req, res) => {
         message: "La contraseña actual no es válida",
       });
     }
-
-    // Sustituyo la contraseña que habia por la nueva contraseña que viene por el body
-    user.password = newPassword;
+    // Sustituyo la contraseña que había por la nueva contraseña que viene por el body y la encripto con hash
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
     await user.save();
 
     return res.status(200).json({
