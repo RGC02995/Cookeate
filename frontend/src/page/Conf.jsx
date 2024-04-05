@@ -80,8 +80,8 @@ const Conf = () => {
       );
 
       if (response.data.success) {
-        // Assuming the API response has a "success" property
         console.log("Contraseña cambiada correctamente");
+
         // Limpiar los campos del formulario
         setOldPassword("");
         setNewPassword("");
@@ -93,7 +93,7 @@ const Conf = () => {
       }
     } catch (error) {
       console.error(
-        "Error al cambiar la contraseña: Prueba a usar una contraseña más segura. EJ: PrueBah@1",
+        "Error al cambiar la contraseña: Prueba a usar una contraseña más segura. EJ: PrueBah@1.",
         error
       );
     }
@@ -152,7 +152,13 @@ const Conf = () => {
       </button>
 
       <button className="conf_option">
-        <a>Tema Light/Dark</a>
+        <a
+          onClick={() => {
+            window.location.href = "/profile";
+          }}
+        >
+          Volver al PERFIL DE USUARIO
+        </a>
       </button>
 
       <button
