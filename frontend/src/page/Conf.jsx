@@ -13,20 +13,17 @@ const Conf = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [sureDelete, setSureDelete] = useState(false);
+
+  const [showFormEmail, setShowFormEmail] = useState(false);
+  const [email, setEmail] = useState("");
   // Eliminar cuenta
   const handleDeleteUser = async () => {
-    // Confirmar la eliminación de la cuenta
-    const userConfirmed = window.confirm(
-      "¿Desea eliminar la cuenta? No habrá vuelta atrás."
-    );
-
-    if (userConfirmed) {
-      try {
-        await deleteUserApi();
-        return console.log(UploadStatusResponse.OK);
-      } catch (error) {
-        return console.error(UploadStatusResponse.ERROR_API);
-      }
+    try {
+      await deleteUserApi();
+      return console.log(UploadStatusResponse.OK);
+    } catch (error) {
+      return console.error(UploadStatusResponse.ERROR_API);
     }
   };
 
@@ -101,14 +98,12 @@ const Conf = () => {
 
   //Cambiar Email
   const handleChangeEmail = async () => {
-    const userConfirmed = window.confirm("¿Desea cambiar el email?.");
-    if (userConfirmed) {
-      try {
-        await changeEmailApi();
-        return console.log(UploadStatusResponse.OK);
-      } catch (error) {
-        return console.error(UploadStatusResponse.ERROR_API);
-      }
+    const newEmail = email;
+    try {
+      await changeEmailApi(newEmail);
+      return console.log(UploadStatusResponse.OK);
+    } catch (error) {
+      return console.error(UploadStatusResponse.ERROR_API);
     }
   };
 
@@ -148,8 +143,22 @@ const Conf = () => {
       ) : null}
 
       <button className="conf_option">
-        <a onClick={handleChangeEmail}>Cambiar Correo</a>
+        <a onClick={() => setShowFormEmail(!showFormEmail)}>Cambiar Correo</a>
       </button>
+      {showFormEmail ? (
+        <div>
+          <div>Esta seguro de querer cambiar el correo?</div>
+          <input
+            type="text"
+            placeholder="example@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button type="submit" onClick={handleChangeEmail}>
+            Estoy seguro/ Enviar mi correo
+          </button>
+        </div>
+      ) : null}
 
       <button className="conf_option">
         <a
@@ -186,8 +195,15 @@ const Conf = () => {
       ) : null}
 
       <button className="conf_option">
-        <a onClick={handleDeleteUser}>Eliminar cuenta</a>
+        <a onClick={() => setSureDelete(!sureDelete)}>Eliminar cuenta</a>
       </button>
+      {sureDelete ? (
+        <div>
+          Esta seguro de querer eliminar la cuenta? Una vez presionado el botón
+          no habrá vuelta atrás.
+          <button onClick={handleDeleteUser}>Eliminar</button>
+        </div>
+      ) : null}
 
       <button className="conf_option">
         <a

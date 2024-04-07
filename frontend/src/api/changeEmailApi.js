@@ -2,10 +2,8 @@ import axios from "axios";
 import validator from "validator";
 const token = localStorage.getItem("token");
 
-export const changeEmailApi = async () => {
+export const changeEmailApi = async (newEmail) => {
   try {
-    const newEmail = prompt("Cual sería el nuevo correo?");
-
     if (!validator.isEmail(newEmail)) {
       alert("El email no es válido");
       return;

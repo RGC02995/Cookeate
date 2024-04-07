@@ -69,9 +69,8 @@ const Home = () => {
       {searchPage && (
         <div>
           {" "}
-          {`Ha buscado... ${searchQuery.toUpperCase()}`}
-          <p className="row_card_flex">
-            Recipes:
+          {`Usted ha buscado: "${searchQuery.toUpperCase()}"`}
+          <div className="row_card_flex">
             {dataRecipe ? (
               dataRecipe.map((recipe) => (
                 <div className="flex_container" key={recipe._id}>
@@ -90,7 +89,7 @@ const Home = () => {
             ) : (
               <p>No recipes found.</p> // Display message for empty results
             )}
-          </p>
+          </div>
         </div>
       )}
       {!searchPage && (

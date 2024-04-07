@@ -13,7 +13,7 @@ function Recipes() {
   const [food, setFood] = useState(null);
   const [img, setImg] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  // URL de la ruta en tu servidor
+
   useEffect(() => {
     const fetchData = async () => {
       try {
