@@ -6,6 +6,7 @@ function Recipes() {
   const recipeId = urlParams.get("recipeId");
   console.log(recipeId);
   const token = localStorage.getItem("token");
+
   const [title, setTitle] = useState(null);
   const [subtitle, setSubTitle] = useState(null);
   const [guide, setGuide] = useState(null);
@@ -44,7 +45,7 @@ function Recipes() {
       }
     };
 
-    fetchData(); // Call the async function inside useEffect
+    fetchData();
   }, [recipeId, token]);
 
   if (isLoading) {

@@ -6,6 +6,7 @@ import { DiAptana } from "react-icons/di";
 function Profile() {
   //Obtener TOKEN ID
   const token = localStorage.getItem("token");
+
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const imageRef = useRef(null);

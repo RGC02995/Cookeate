@@ -168,7 +168,6 @@ a {
   height: 90px;
   background-color: rgb(255, 255, 255);
   padding: 0.5em;
-  position: fixed;
   overflow: hidden;
   z-index: 1000;
   width: 100%;

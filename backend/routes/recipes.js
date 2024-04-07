@@ -1,13 +1,14 @@
 const RecipesController = require("../controllers/recipes");
+const Recipe = require("../models/recipes");
 const express = require("express");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 const verifyToken = require("../middleware/auth");
 const path = require("path");
-
 //Import Multer for update images:
 const multer = require("multer");
+const { Verify } = require("crypto");
 
 //CONF UPDATE MULTER
 const storage = multer.diskStorage({
@@ -43,5 +44,26 @@ router.get(
   RecipesController.getRecipeById
 );
 router.get("/latestRecipes", RecipesController.getLastestRecipes);
+
+// Ruta para obtener recetas por nombre en el input del componente Navbar
+router.get("/recipes/:name", verifyToken, async (req, res) => {
+  const { name } = req.params; // Access search term from query parameter
+  console.log(name);
+  try {
+    // Buscar recetas que coincidan con el título (title)
+    const recipes = await Recipe.find({
+      title: { $regex: new RegExp(name, "i") },
+    })
+      .populate("user", "name email")
+      .select("-ingredients");
+
+    // Enviar las recetas como respuesta
+    res.status(200).json({ recipes });
+  } catch (error) {
+    // Manejar el error
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener las recetas" });
+  }
+});
 
 module.exports = router;
