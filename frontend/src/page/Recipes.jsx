@@ -4,7 +4,6 @@ import axios from "axios";
 function Recipes() {
   const urlParams = new URLSearchParams(window.location.search);
   const recipeId = urlParams.get("recipeId");
-  console.log(recipeId);
   const token = localStorage.getItem("token");
 
   const [title, setTitle] = useState(null);
@@ -57,7 +56,10 @@ function Recipes() {
       <nav className="nav_container_profile">
         <div className="profile_nav">
           <a className="p_profile" href="/profile">
-            Profile
+            Perfil
+          </a>
+          <a href="/" className="home_ref">
+            INICIO
           </a>
         </div>
       </nav>

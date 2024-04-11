@@ -101,7 +101,7 @@ const Conf = () => {
     const newEmail = email;
     try {
       await changeEmailApi(newEmail);
-      return console.log(UploadStatusResponse.OK);
+      return;
     } catch (error) {
       return console.error(UploadStatusResponse.ERROR_API);
     }
@@ -155,7 +155,7 @@ const Conf = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <button type="submit" onClick={handleChangeEmail}>
-            Estoy seguro/ Enviar mi correo
+            Estoy seguro/ Enviar mi nuevo correo
           </button>
         </div>
       ) : null}

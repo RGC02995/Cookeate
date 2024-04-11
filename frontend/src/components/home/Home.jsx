@@ -80,14 +80,17 @@ const Home = () => {
                       src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
                       alt={recipe.images}
                     />
-                    <p onClick={() => handleRecipeClick(recipe._id)}>
-                      {recipe.title}
+                    <p
+                      className="title_card"
+                      onClick={() => handleRecipeClick(recipe._id)}
+                    >
+                      {recipe.title.toUpperCase()}
                     </p>
                   </div>
                 </div>
               ))
             ) : (
-              <p>No recipes found.</p> // Display message for empty results
+              <p>No recipes found.</p>
             )}
           </div>
         </div>

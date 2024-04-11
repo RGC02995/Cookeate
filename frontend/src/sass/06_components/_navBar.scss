@@ -9,7 +9,6 @@
     height: 90px;
     background-color: rgb(255, 255, 255);
     padding: .5em;
-    overflow: hidden;
     z-index: 1000;
     width: 100%;
     
@@ -24,7 +23,7 @@
 
 .img_dimension {
     max-height: 90px;
-    filter: drop-shadow(1px 1px 1px black);
+    
 
     @media (max-width:400px) {
        height: 80px;

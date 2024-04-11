@@ -168,7 +168,6 @@ a {
   height: 90px;
   background-color: rgb(255, 255, 255);
   padding: 0.5em;
-  overflow: hidden;
   z-index: 1000;
   width: 100%;
 }
@@ -183,7 +182,6 @@ a {
 
 .img_dimension {
   max-height: 90px;
-  filter: drop-shadow(1px 1px 1px black);
 }
 @media (max-width: 400px) {
   .img_dimension {
@@ -328,11 +326,11 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #5e876b;
+  background-color: #91b68c;
 }
 
 .profile_nav {
-  background-color: #5e876b;
+  background-color: #91b68c;
   width: 100%;
   height: 60px;
   display: flex;
@@ -429,12 +427,12 @@ a {
   margin: 5px;
   max-width: 240px;
   border: 2px solid;
-  border-image-source: linear-gradient(to right, #383838, #5e876b);
+  border-image-source: linear-gradient(to right, #383838, #91b68c);
   border-image-slice: 1;
   background-color: rgb(153, 153, 153);
 }
 .flex_container:hover {
-  box-shadow: 2px 3px 3px #5e876b;
+  box-shadow: 2px 3px 3px #91b68c;
 }
 .flex_container .card_recipeContainer {
   padding: 5px;
@@ -466,7 +464,7 @@ a {
   border-radius: 0.2rem;
   text-align: center;
   margin: 10px auto;
-  background-color: #5e876b;
+  background-color: #91b68c;
   color: white;
 }
 .conf_option a {
@@ -476,7 +474,7 @@ a {
   cursor: pointer;
 }
 .conf_option:hover {
-  background-color: #46c795;
+  background-color: #75b474;
 }
 @media (max-width: 600px) {
   .conf_option a {

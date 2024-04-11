@@ -146,6 +146,7 @@ function Profile() {
           }}
         />
       </nav>
+      {/* Formulario publicar receta */}
       {showForm && (
         <>
           <div
@@ -209,7 +210,7 @@ function Profile() {
               />
             </div>
             <p className="title_card" onClick={() => handleRecipeClick(recipe)}>
-              {recipe.title}
+              {recipe.title.toUpperCase()}
             </p>
           </div>
         ))}

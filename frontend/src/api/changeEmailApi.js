@@ -27,6 +27,6 @@ export const changeEmailApi = async (newEmail) => {
 
     return console.log(message);
   } catch (error) {
-    return console.log(error);
+    return console.log("No se ha podido cambiar el email, porque ya existe.");
   }
 };
