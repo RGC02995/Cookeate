@@ -3,6 +3,8 @@ import { VscAccount } from "react-icons/vsc";
 import { DiAptana } from "react-icons/di";
 import { VscSearch } from "react-icons/vsc";
 import { useEffect, useRef, useState } from "react";
+import ReactSwitch from "react-switch";
+import { useThemeContext } from "../../../context/ThemeProvider";
 
 const Navbar = (props) => {
   const searchRef = useRef(null);
@@ -27,12 +29,22 @@ const Navbar = (props) => {
     handleFocusOnSearch();
   }, [searching]);
 
+  //Manejar el switch de theme
+  const { contextTheme, setContextTheme } = useThemeContext();
+  const [checkedSwitch, setCheckedSwitch] = useState(false);
+  const handleSwitch = (nextChecked) => {
+    setContextTheme((state) => (state === "Dark" ? "Light" : "Dark"));
+    setCheckedSwitch(nextChecked);
+    console.log(nextChecked);
+  };
+
   return (
-    <div className="nav_dimension">
+    <div className="flex_navbar" id={contextTheme}>
       {/* Estamos buscado en el INPUT */}
       {searching && (
         <form onSubmit={handleSearch}>
           <input
+            className="input_search"
             type="text"
             placeholder="Buscar..."
             ref={searchRef}
@@ -43,44 +55,55 @@ const Navbar = (props) => {
 
       {/* No estamos buscado en el INPUT */}
       {!searching && (
-        <nav className="style_container">
+        <nav className="navbar_nav">
           <img
-            className="img_dimension"
+            className="img_navbar"
             src={Logo}
             alt="cookeate-logo.png"
             onClick={() => {
               window.location.href = "/";
             }}
           />
-
-          <div className="flex">
-            <div className="icon_container">
+          {/* AQUI ESTAN LOS ICONOS */}
+          <div className="icons_flex">
+            <form onSubmit={handleSearch}>
+              <VscSearch
+                className="search_icon"
+                type="submit"
+                onClick={() => {
+                  setSearching(!searching);
+                }}
+              />
+            </form>
+            <div className="icons_flex_navbar">
               <VscAccount
-                className="icon_style"
                 onClick={() => {
                   location.href = "/profile";
                 }}
               />
               <DiAptana
-                className="icon_style"
                 onClick={() => {
                   location.href = "/conf";
                 }}
               />
+              <header id={contextTheme}>
+                <ReactSwitch
+                  onChange={handleSwitch}
+                  checked={checkedSwitch}
+                  onColor="#86d3ff"
+                  onHandleColor="#26d3e6"
+                  handleDiameter={30}
+                  uncheckedIcon={false}
+                  checkedIcon={false}
+                  boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                  activeBoxShadow="0px 0px 1px 10px rgba(0,0,0, 1)"
+                  height={20}
+                  width={48}
+                  className="react-switch"
+                  id="material-switch"
+                />
+              </header>
             </div>
-
-            <label className="input_container">
-              <form onSubmit={handleSearch}>
-                <button
-                  type="submit"
-                  onClick={() => {
-                    setSearching(!searching);
-                  }}
-                >
-                  <VscSearch className="icon_horizontal_search" />
-                </button>
-              </form>
-            </label>
           </div>
         </nav>
       )}

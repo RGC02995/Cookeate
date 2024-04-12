@@ -1,14 +1,7 @@
-import Logo from "../../../img/Wallpaper.jpg";
+import BackGroundImage from "../../../img/Wallpaper.jpg";
+
 function Slider() {
-  return (
-    <div className="">
-      <img
-        src={Logo}
-        alt={`Image`}
-        style={{ width: "100%", height: "100%", padding: 0, margin: 0 }}
-      />
-    </div>
-  );
+  return <div>{/* <img src="" alt={`Image`} /> */}</div>;
 }
 
 export default Slider;

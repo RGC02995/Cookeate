@@ -7,6 +7,32 @@
     background: rgba(0, 0, 0, 0.65);
 }
 
+.send_recipe {
+    // margin: 0 auto;
+    // background-color: rgb(103, 103, 103) ;
+    // color: rgb(255, 255, 255) !important;
+    // @include flex-center-column 
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    border: 1px solid white;
+    background: rgb(57, 58, 57);
+    color: white;
+    padding: 20px;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 10;
+    textarea{
+        font-size: 18px;
+        margin-top: 10px;
+        max-height: 200px;
+        max-width: 300px;
+        min-width: 300px;
+        min-height: 150px;
+        resize: none;
+        }
+}
+
+
 .nav_container_profile{
     display: flex;
     flex-direction: row;
@@ -58,30 +84,6 @@
     cursor: pointer;
 }
 
-.send_recipe {
-    // margin: 0 auto;
-    // background-color: rgb(103, 103, 103) ;
-    // color: rgb(255, 255, 255) !important;
-    // @include flex-center-column 
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 1px solid white;
-    background: rgb(57, 58, 57);
-    color: white;
-    padding: 20px;
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 10;
-    textarea{
-        font-size: 18px;
-        margin-top: 10px;
-        max-height: 200px;
-        max-width: 300px;
-        min-width: 300px;
-        min-height: 150px;
-        resize: none;
-        }
-}
 
 .form_button_profile{
     background-color: #318e6a;
@@ -115,36 +117,3 @@
     display: flex;
 }
 
-.flex_container{
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    max-width: 240px;
-    border: 2px solid;
-    border-image-source: linear-gradient(to right, $grey-color, $musgo-color);
-    border-image-slice: 1;
-    background-color: rgb(153, 153, 153);
-    
-    &:hover {
-        box-shadow: 2px 3px 3px $musgo-color;
-    }
-    
-    .card_recipeContainer {
-        padding: 5px;
-        max-width: 450px;
-        color: white;
-    }
-    
-    .title_card {
-        text-align: center;
-        color: white;
-        padding: 0;
-        font-weight: 200;
-        cursor: pointer;
-        &:hover {
-            filter: drop-shadow(1px 1px 1px black);
-        }
-        }
-        
-
-}

@@ -2,8 +2,10 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
 import { DiAptana } from "react-icons/di";
+import { useThemeContext } from "../../context/ThemeProvider";
 
 function Profile() {
+  const { contextTheme } = useThemeContext();
   //Obtener TOKEN ID
   const token = localStorage.getItem("token");
 
@@ -124,23 +126,18 @@ function Profile() {
   ///-----------------------------------------------------------------------------------------------------------------------
 
   return (
-    <>
-      <nav className="nav_container_profile">
-        <div className="profile_nav">
-          <p onClick={() => setShowForm(!showForm)} className="p_profile">
-            +
-          </p>
+    <div id={contextTheme}>
+      <nav>
+        <div>
+          <p onClick={() => setShowForm(!showForm)}>+</p>
           <img
             src={`http://localhost:5000/uploads/avatars/${imgProfile}`}
             alt=""
           />
           <a href="/profile">{data}</a>
-          <a href="/" className="home_ref">
-            INICIO
-          </a>
+          <a href="/">INICIO</a>
         </div>
         <DiAptana
-          className="icon_profile_config"
           onClick={() => {
             location.href = "/conf";
           }}
@@ -149,6 +146,7 @@ function Profile() {
       {/* Formulario publicar receta */}
       {showForm && (
         <>
+          {/* Este div lo que crea es el fondo oscuro */}
           <div
             className="container_form_recipe"
             onClick={() => setShowForm(!showForm)}
@@ -199,23 +197,23 @@ function Profile() {
         </>
       )}
 
-      <div className="row_card_flex">
+      <div>
         {recipes.map((recipe) => (
-          <div className="flex_container" key={recipe._id}>
-            <div className="card_recipeContainer">
+          <div key={recipe._id}>
+            <div>
               <img
-                style={{ width: "100%" }}
+                style={{ width: "5%" }}
                 src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
                 alt={recipe.images}
               />
             </div>
-            <p className="title_card" onClick={() => handleRecipeClick(recipe)}>
+            <p onClick={() => handleRecipeClick(recipe)}>
               {recipe.title.toUpperCase()}
             </p>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

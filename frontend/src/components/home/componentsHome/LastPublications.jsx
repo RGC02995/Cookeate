@@ -25,18 +25,17 @@ function LastPublications() {
   }
   return (
     <div>
-      <article className="article_wrapper">
-        <h1 className="h1_style_publication">Últimas Publicaciones</h1>
+      <article>
+        <h1>Últimas Publicaciones</h1>
       </article>
 
-      <div className="publication_wrapper">
+      <div>
         {imgRecipe.map((recipes) => (
           <div key={recipes._id}>
             <img
-              className="image_style"
               src={`http://localhost:5000/uploads/recipes/${recipes.images}`}
               alt={recipes.images}
-              height={250}
+              height={100}
             />
             <a href={`/recipe?recipeId=${recipes._id}`}>{recipes.title}</a>
           </div>

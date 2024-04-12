@@ -77,7 +77,7 @@ const Conf = () => {
       );
 
       if (response.data.success) {
-        console.log("Contraseña cambiada correctamente");
+        console.log(response.data.message);
 
         // Limpiar los campos del formulario
         setOldPassword("");

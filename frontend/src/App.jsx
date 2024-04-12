@@ -53,17 +53,6 @@ const router = createBrowserRouter([
 ]);
 
 function AuthProvider() {
-  // const { customStatus, message, token } = tokenApi();
-
-  // if (customStatus === UploadStatusResponse.ERROR_API) {
-  //   console.error("Error de autenticación: " + message);
-  //   location.href = "/login";
-  //   return;
-  // }
-
-  // console.log(message);
-  // localStorage.setItem("token", token);
-
   const localStorageToken = localStorage.getItem("token");
   return localStorageToken ? (
     <Outlet />
