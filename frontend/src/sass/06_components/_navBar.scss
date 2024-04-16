@@ -1,34 +1,48 @@
 //AQUI ESTAN LOS TEMAS PREDETERMINADOS DE LIGHT Y DARK PARA TODO EL PROYECTO
 #Dark {
-background-color: #282c34;
-color: white !important;
+    background-color: #282c34;
+    color: white !important;
     a {
         color: white;
     }
 }
 
 #Light{
-background-color: #f2f4f6;
-color: #0d3f67;
+    background-color: #f2f4f6;
+    color: #0d3f67;
+}
+
+.navbar_nav{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    width: 100vw;
 }
 
 .icons_flex_navbar{
     display: flex;
     align-items: center;
     max-width: 100%;
+    gap: 10px;
+    margin-top: 20px;
+    @media(max-width:400px){
+        gap: 3px;
+        margin-top: 20px;
+
+    }
 
 }
-.flex_navbar {
-    height: 100%;
-    max-width: 400px;
+.flex_navbar {    
     padding: 0;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
     form{
         max-width: 100%;
         width: 30px;
-        input{
-            width: 300px !important;
-        }
+        
     }
 }
 
@@ -43,22 +57,26 @@ background-color:#f2f4f6 ;
     &:focus {
         outline: none;
         color:#0d3f67;
+        width: 400px;
     }
 }
 
-.navbar_nav{
-    display: flex;
-    height: 80px;
-    width: 100vw;
-}
 
 .img_navbar{
 max-height: 90px;
+margin-left: 5px;
+// margin-right: 75%;
 @media (max-width:400px) {
     height: 80px;
-    margin-right:40px ;
+    width: 200px;
+    }
 }
 
-margin-left: 5px;
+.icon_style {
+    font-size: 30px;
+    cursor: pointer;
+    @media (max-width:400px) {
+        font-size: 20px;
+        }
 }
 

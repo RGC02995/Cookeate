@@ -1,54 +1,19 @@
-.container_form_recipe {
-    position: absolute;
-    top: 0;
-    left: 0;
+//Nav estilo
+.height_view{
     height: 100vh;
-    width: 100vw;
-    background: rgba(0, 0, 0, 0.65);
 }
-
-.send_recipe {
-    // margin: 0 auto;
-    // background-color: rgb(103, 103, 103) ;
-    // color: rgb(255, 255, 255) !important;
-    // @include flex-center-column 
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 1px solid white;
-    background: rgb(57, 58, 57);
-    color: white;
-    padding: 20px;
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 10;
-    textarea{
-        font-size: 18px;
-        margin-top: 10px;
-        max-height: 200px;
-        max-width: 300px;
-        min-width: 300px;
-        min-height: 150px;
-        resize: none;
-        }
-}
-
 
 .nav_container_profile{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: $musgo-color;
 }
 
 .profile_nav {
-    background-color: $musgo-color;
     width: 100%;
     height: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
     a {
         color: white;
         font-size: 20px;
@@ -56,6 +21,7 @@
     }
 
     img{
+        border: 1px solid white;
         width: 40px;
         height: 40px;
         border-radius: 20px;
@@ -76,22 +42,72 @@
     }
 }
 
-
 .icon_profile_config{
-    color: white;
+    margin-top: 15px;
     width: 50px;
     height: 25px;
     cursor: pointer;
 }
 
+//Formulario de publicar receta
+.container_form_recipe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.65);
+}
 
-.form_button_profile{
-    background-color: #318e6a;
-    border: 1px solid white;
-    padding: .45em;
-    width: 500px;
+.send_recipe {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background: $grey-color;
+    font-weight: 300;
+    color: white;
+    padding: 20px;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 10;
     max-width: 300px;
-    font-size: 25px;
+    input{
+        border-style: none;
+        &:focus {
+            outline: none;
+            padding-left: .5em;
+        }
+    }
+    textarea{
+        font-size: 18px;
+        margin-top: 10px;
+        max-height: 200px;
+        max-width: 300px;
+        min-width: 300px;
+        min-height: 150px;
+        border-style: none;
+        resize: none;
+        &:focus {
+            outline: none;
+            padding-left: .5em;
+        }
+    }
+}
+
+//Boton configuración
+.icon_profile_config{
+    margin-top: 15px;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+//Estilo boton del formulario
+.form_button_profile{
+    background-color: $green-form;
+    padding: .2em;
+    max-width: 300px;
+    font-size: 30px;
+    font-weight: 300;
     border-radius: .3rem;
     margin-top: 5%;
     margin-bottom: 5%;
@@ -115,5 +131,46 @@
 
 .row_card_flex {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:10px;
+    padding: 1em;
+    .cards_style{
+        border-radius: .15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 250px;
+        height: 300px;
+        overflow: hidden;
+        background-color: $green-form;
+        font-weight: 400;
+        a{
+            font-size: 15px;
+            font-style: normal;
+            text-decoration: none;
+            color: #454545;
+            &:hover {
+                color: #ffffff;
+                font-weight: 300;
+            }
+        }
+        img{
+            height: 100%;
+            width: 100%;
+        }
+        @media (max-width:400px) {
+            width: 150px;
+            height: 200px;
+            font-size: 10px;
+        }
+        &:hover{
+            background-color: #9a8d80;
+        }
+    }
 }
+
 

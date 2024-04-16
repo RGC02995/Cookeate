@@ -29,13 +29,23 @@ const Navbar = (props) => {
     handleFocusOnSearch();
   }, [searching]);
 
-  //Manejar el switch de theme
   const { contextTheme, setContextTheme } = useThemeContext();
   const [checkedSwitch, setCheckedSwitch] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setContextTheme(savedTheme);
+      setCheckedSwitch(savedTheme === "Dark");
+    }
+  }, []);
+
+  //Manejar el switch de theme
   const handleSwitch = (nextChecked) => {
-    setContextTheme((state) => (state === "Dark" ? "Light" : "Dark"));
+    const nextTheme = nextChecked ? "Dark" : "Light";
+    setContextTheme(nextTheme);
     setCheckedSwitch(nextChecked);
-    console.log(nextChecked);
+    localStorage.setItem("theme", nextTheme); // Guardar el estado del tema en localStorage
   };
 
   return (
@@ -66,26 +76,28 @@ const Navbar = (props) => {
           />
           {/* AQUI ESTAN LOS ICONOS */}
           <div className="icons_flex">
-            <form onSubmit={handleSearch}>
-              <VscSearch
-                className="search_icon"
-                type="submit"
-                onClick={() => {
-                  setSearching(!searching);
-                }}
-              />
-            </form>
             <div className="icons_flex_navbar">
               <VscAccount
+                className="icon_style"
                 onClick={() => {
                   location.href = "/profile";
                 }}
               />
               <DiAptana
+                className="icon_style"
                 onClick={() => {
                   location.href = "/conf";
                 }}
               />
+              <form onSubmit={handleSearch}>
+                <VscSearch
+                  className="icon_style"
+                  type="submit"
+                  onClick={() => {
+                    setSearching(!searching);
+                  }}
+                />
+              </form>
               <header id={contextTheme}>
                 <ReactSwitch
                   onChange={handleSwitch}

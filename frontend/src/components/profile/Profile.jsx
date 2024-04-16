@@ -2,10 +2,9 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useRef, useState } from "react";
 import { DiAptana } from "react-icons/di";
-import { useThemeContext } from "../../context/ThemeProvider";
 
 function Profile() {
-  const { contextTheme } = useThemeContext();
+  const theme = localStorage.getItem("theme");
   //Obtener TOKEN ID
   const token = localStorage.getItem("token");
 
@@ -126,9 +125,10 @@ function Profile() {
   ///-----------------------------------------------------------------------------------------------------------------------
 
   return (
-    <div id={contextTheme}>
-      <nav>
-        <div>
+    <div id={theme} className="height_view">
+      {/* //Navegador del perfil */}
+      <nav className="nav_container_profile">
+        <div className="profile_nav">
           <p onClick={() => setShowForm(!showForm)}>+</p>
           <img
             src={`http://localhost:5000/uploads/avatars/${imgProfile}`}
@@ -137,12 +137,15 @@ function Profile() {
           <a href="/profile">{data}</a>
           <a href="/">INICIO</a>
         </div>
+
         <DiAptana
+          className="icon_profile_config"
           onClick={() => {
             location.href = "/conf";
           }}
         />
       </nav>
+
       {/* Formulario publicar receta */}
       {showForm && (
         <>
@@ -155,6 +158,7 @@ function Profile() {
             className="send_recipe"
             encType="multipart/form-data"
             onSubmit={handleSubmitSendPublication}
+            id={theme}
           >
             <h2>Publicar Receta</h2>
             <label className="label_config">
@@ -174,7 +178,7 @@ function Profile() {
               />
             </label>
 
-            <h2 className="label_config">Subir imagen:</h2>
+            <label className="label_config">Subir imagen:</label>
             <input
               type="file"
               id="image"
@@ -196,17 +200,13 @@ function Profile() {
           </form>
         </>
       )}
-
-      <div>
+      <div className="row_card_flex">
         {recipes.map((recipe) => (
-          <div key={recipe._id}>
-            <div>
-              <img
-                style={{ width: "5%" }}
-                src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
-                alt={recipe.images}
-              />
-            </div>
+          <div key={recipe._id} className="cards_style">
+            <img
+              src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
+              alt={recipe.images}
+            />
             <p onClick={() => handleRecipeClick(recipe)}>
               {recipe.title.toUpperCase()}
             </p>

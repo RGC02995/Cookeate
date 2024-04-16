@@ -4,6 +4,29 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
+
+    h1 {
+        font-size: 50px;
+        margin-bottom: 10px;
+        position: relative;
+        @media (max-width:400px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    h1:after{
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $green;
+        transition: width 0.5s ease-in-out;
+    }
+    h1:hover::after {
+        width: 100%;
+      }
 }
 
 .paragraph_style {
@@ -26,7 +49,7 @@
     margin-left: 20px;
     font-size: 2.5rem;
     font-weight: 400;
-    color: $grey-color;
+    text-align: justify;
 
     @media (max-width:600px) {
         font-size: 1rem;
@@ -42,6 +65,7 @@
     font-size: 2em;
     font-weight: 300;
     text-align: center;
+    justify-content: center;
     @media (max-width:600px) {
         font-size:1em;
     }
