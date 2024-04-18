@@ -60,7 +60,7 @@ const Home = () => {
   const { contextTheme } = useThemeContext();
   return (
     // Este div envuelve todo
-    <div className="homePage" id={contextTheme}>
+    <div id={contextTheme}>
       <Navbar
         onChangeSearchPage={(searchStatus, searchQuery) => {
           setSearchPage(searchStatus);
@@ -72,20 +72,17 @@ const Home = () => {
         <div className="homePage">
           {" "}
           {`Usted ha buscado: "${searchQuery.toUpperCase()}"`}
-          <div>
+          <div className="card_flex_wrap">
             {dataRecipe ? (
               dataRecipe.map((recipe) => (
-                <div key={recipe._id}>
-                  <div className="card_recipeContainer">
-                    <img
-                      style={{ width: "100%", height: 200 }}
-                      src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
-                      alt={recipe.images}
-                    />
-                    <p onClick={() => handleRecipeClick(recipe._id)}>
-                      {recipe.title.toUpperCase()}
-                    </p>
-                  </div>
+                <div key={recipe._id} className="card_recipeContainer">
+                  <img
+                    src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
+                    alt={recipe.images}
+                  />
+                  <p onClick={() => handleRecipeClick(recipe._id)}>
+                    {recipe.title.toUpperCase()}
+                  </p>
                 </div>
               ))
             ) : (

@@ -5,6 +5,7 @@ function Recipes() {
   const urlParams = new URLSearchParams(window.location.search);
   const recipeId = urlParams.get("recipeId");
   const token = localStorage.getItem("token");
+  const theme = localStorage.getItem("theme");
 
   const [title, setTitle] = useState(null);
   const [subtitle, setSubTitle] = useState(null);
@@ -52,9 +53,9 @@ function Recipes() {
   }
 
   return (
-    <div>
-      <nav className="nav_container_profile">
-        <div className="profile_nav">
+    <div id={theme}>
+      <nav>
+        <div className="recipe_nav">
           <a className="p_profile" href="/profile">
             Perfil
           </a>
@@ -74,8 +75,8 @@ function Recipes() {
         </ul>
         <article>{guide}</article>
 
-        <p style={{ backgroundColor: "grey", width: "120px" }}>Imágenes</p>
-        <div>
+        <p>Acabado final:</p>
+        <div className="img_center">
           <img src={`http://localhost:5000/uploads/recipes/${img}`} alt={img} />
         </div>
       </article>

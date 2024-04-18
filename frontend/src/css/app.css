@@ -335,7 +335,7 @@ a {
   font-weight: 400;
 }
 .cards_wrapper .card_style a {
-  font-size: 15px;
+  font-size: 13px;
   font-style: normal;
   text-decoration: none;
   color: #454545;
@@ -350,8 +350,8 @@ a {
 }
 @media (max-width: 400px) {
   .cards_wrapper .card_style {
-    width: 150px;
-    height: 200px;
+    max-width: 150px;
+    max-height: 200px;
     font-size: 10px;
   }
 }
@@ -381,9 +381,8 @@ a {
   align-items: center;
 }
 .profile_nav a {
-  color: white;
   font-size: 20px;
-  font-weight: 200;
+  font-weight: 300;
 }
 .profile_nav img {
   border: 1px solid white;
@@ -420,13 +419,19 @@ a {
   background: rgba(0, 0, 0, 0.65);
 }
 
+.title_recipe {
+  text-align: center;
+  font-weight: 200;
+  font-size: 30px;
+}
+
 .send_recipe {
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  background: #383838;
+  background: #383838 !important;
   font-weight: 300;
-  color: white;
+  color: white !important;
   padding: 20px;
   position: absolute;
   top: 50%;
@@ -470,14 +475,19 @@ a {
   max-width: 300px;
   font-size: 30px;
   font-weight: 300;
-  border-radius: 0.3rem;
+  border-radius: 0.2rem;
   margin-top: 5%;
   margin-bottom: 5%;
   color: white;
+  border: 1px solid white;
 }
 .form_button_profile:hover {
   opacity: 80%;
   color: #383838;
+  cursor: pointer;
+}
+
+.title_recipe_profile {
   cursor: pointer;
 }
 
@@ -503,7 +513,7 @@ a {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 250px;
+  max-width: 250px;
   height: 300px;
   overflow: hidden;
   background-color: #46c795;
@@ -535,11 +545,30 @@ a {
 }
 
 .container_conf {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
   flex-direction: column;
+}
+
+.container_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
+.container_form button {
+  background-color: #46c795;
+  border: none;
+  padding: 0.1em;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 300;
 }
 
 .conf_option {
@@ -548,8 +577,7 @@ a {
   border-radius: 0.2rem;
   text-align: center;
   margin: 10px auto;
-  background-color: #91b68c;
-  color: white;
+  background-color: #8cc38a;
 }
 .conf_option a {
   font-size: 30px;
@@ -566,33 +594,85 @@ a {
   }
 }
 
+.recipe_nav {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 300;
+}
+
 .recipe_flex_center {
-  padding: 2%;
+  padding: 4%;
+  margin: 0 auto;
+  height: 100vh;
 }
 .recipe_flex_center h1, .recipe_flex_center h2 {
   text-align: center;
+  font-weight: 200;
 }
-.recipe_flex_center h1, .recipe_flex_center h2, .recipe_flex_center h4 {
-  color: #383838;
-  font-weight: 300;
+.recipe_flex_center ul {
+  margin: 1%;
+}
+@media (max-width: 440px) {
+  .recipe_flex_center ul {
+    margin-left: 5%;
+  }
+}
+.recipe_flex_center article {
+  margin-top: 2%;
+  font-weight: 300 !important;
 }
 .recipe_flex_center div {
-  background-color: grey;
   color: white;
-  padding: 3%;
+  max-width: 350px;
+  padding: 0.1rem;
 }
 .recipe_flex_center article, .recipe_flex_center li {
   font-weight: 200;
   font-size: 16px;
 }
 .recipe_flex_center img {
-  width: 100%;
+  border-radius: 0.3em;
+  overflow: hidden;
+  max-width: 350px;
 }
 .recipe_flex_center p {
-  color: white;
   font-size: 15px;
-  padding: 0.5rem;
+  padding: 0.3rem;
   text-align: center;
-  margin-bottom: 0;
-  border-radius: 5px 5px 0 0;
+  margin-top: 30px;
+}
+
+.img_center {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.card_flex_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_recipeContainer {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 300px;
+  background-color: #46c795;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.card_recipeContainer img {
+  height: 90%;
+}
+
+.homePage {
+  height: 100vh;
 }/*# sourceMappingURL=app.css.map */

@@ -1,5 +1,20 @@
 .container_conf {
+    height: 100vh;
     @include flex-center-column
+}
+
+.container_form {
+    button{
+        background-color: $green-form;
+        border: none;
+        padding: .1em;
+        padding-right: 1em;
+        padding-left: 1em;
+        border-radius: .5rem;
+        color: white;
+        font-weight: 300;
+    }
+@include flex-center-column
 }
 
 .conf_option {
@@ -8,8 +23,7 @@
     border-radius: .2rem;
     text-align: center;
     margin: 10px auto;
-    background-color: $musgo-color;
-    color: white;
+    background-color: $green-insect;
 
     a{
         font-size: 30px;

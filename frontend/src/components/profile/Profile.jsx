@@ -160,7 +160,7 @@ function Profile() {
             onSubmit={handleSubmitSendPublication}
             id={theme}
           >
-            <h2>Publicar Receta</h2>
+            <h2 className="title_recipe">Publicar Receta</h2>
             <label className="label_config">
               Título:
               <input type="text" ref={titleRef} />
@@ -190,7 +190,6 @@ function Profile() {
             <label className="label_config_guide">
               <textarea
                 placeholder="Explica como hacer la receta..."
-                rows={5}
                 ref={guideRef}
               />
             </label>
@@ -207,7 +206,10 @@ function Profile() {
               src={`http://localhost:5000/uploads/recipes/${recipe.images}`}
               alt={recipe.images}
             />
-            <p onClick={() => handleRecipeClick(recipe)}>
+            <p
+              className="title_recipe_profile"
+              onClick={() => handleRecipeClick(recipe)}
+            >
               {recipe.title.toUpperCase()}
             </p>
           </div>

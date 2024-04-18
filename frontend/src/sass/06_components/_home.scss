@@ -1,0 +1,28 @@
+.card_flex_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;    
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.card_recipeContainer {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 300px;
+    background-color: $green-form;
+    border-radius: 5px;
+    overflow: hidden;
+
+    img{
+        height: 90%;
+    }
+}
+
+.homePage{
+    height: 100vh;   
+}

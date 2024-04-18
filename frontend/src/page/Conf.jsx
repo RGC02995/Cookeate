@@ -5,7 +5,9 @@ import { useState, useRef } from "react";
 import axios from "axios";
 const Conf = () => {
   const token = localStorage.getItem("token");
+  const theme = localStorage.getItem("theme");
   const imageRef = useRef(null);
+
   //States
   const [uploadImage, setUploadImage] = useState(false);
   const [formPass, setFormPass] = useState(false);
@@ -108,7 +110,7 @@ const Conf = () => {
   };
 
   return (
-    <div className="container_conf">
+    <div id={theme} className="container_conf">
       <button className="conf_option">
         <a
           onClick={() => {
@@ -119,7 +121,7 @@ const Conf = () => {
         </a>
       </button>
       {formPass ? (
-        <form onSubmit={handleChangePassword}>
+        <form className="container_form" onSubmit={handleChangePassword}>
           <input
             type="password"
             placeholder="Contraseña actual"
@@ -146,8 +148,8 @@ const Conf = () => {
         <a onClick={() => setShowFormEmail(!showFormEmail)}>Cambiar Correo</a>
       </button>
       {showFormEmail ? (
-        <div>
-          <div>Esta seguro de querer cambiar el correo?</div>
+        <div className="container_form">
+          <>Esta seguro de querer cambiar el correo?</>
           <input
             type="text"
             placeholder="example@gmail.com"
