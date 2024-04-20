@@ -8,7 +8,6 @@ import { ThemeContext } from "../../context/ThemeProvider";
 // import { decode } from "jwt-decode";
 
 const Login = () => {
-  const { darkMode, setDarkMode } = useContext(ThemeContext);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 

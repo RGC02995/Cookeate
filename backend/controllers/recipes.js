@@ -1,6 +1,6 @@
 const fs = require("fs");
 const Recipes = require("../models/recipes");
-
+//Method save
 const saveRecipeWithImage = async (req, res) => {
   try {
     const params = req.body;
@@ -88,6 +88,8 @@ const saveRecipeWithImage = async (req, res) => {
     });
   }
 };
+
+//Method to show in profile the recipes created by user
 const userRecipes = async (req, res) => {
   try {
     const userId = req.user.id; // Obtener el ID del usuario de los parámetros de ruta
@@ -110,6 +112,7 @@ const userRecipes = async (req, res) => {
   }
 };
 
+//Method to get the recipe has been found in the input at the navbar
 const getRecipeById = async (req, res) => {
   try {
     const recipeId = req.params.recipeId;
@@ -142,6 +145,7 @@ const getRecipeById = async (req, res) => {
   }
 };
 
+//Method to show all 20 lastest recipes in homepage
 const getLastestRecipes = async (req, res) => {
   try {
     //Buscamos las última recetas que en orden cronologico donde se muestra desde el ultimo post hasta la receta n20 más nueva
@@ -166,9 +170,23 @@ const getLastestRecipes = async (req, res) => {
     });
   }
 };
+
+//Method to show all recipes that are exist in a database, when we has found in the input search at the navbar.
+
+const showAllRecipes = async (req, res) => {
+  try {
+    const recipes = await Recipes.find().sort({ date_recipe: -1 });
+    console.log(recipes);
+    res.json(recipes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error al obtener los datos");
+  }
+};
 module.exports = {
   saveRecipeWithImage,
   userRecipes,
   getRecipeById,
   getLastestRecipes,
+  showAllRecipes,
 };

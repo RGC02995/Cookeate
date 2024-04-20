@@ -13,11 +13,52 @@ const Home = () => {
   const [dataRecipe, setDataRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [showAllRecipes, setShowAllRecipes] = useState(false);
+
   const token = localStorage.getItem("token");
+
+  const { contextTheme } = useThemeContext();
 
   const handleRecipeClick = (recipe) => {
     window.location.href = `/recipe?recipeId=${recipe}`;
   };
+
+  const fetchAllRecipes = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/recipes/allRecipes",
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setDataRecipe(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const useEffectHook = async () => {
+    setIsLoading(true);
+
+    try {
+      if (showAllRecipes) {
+        await fetchAllRecipes();
+      }
+      if (!showAllRecipes) {
+        setDataRecipe(null);
+      }
+    } catch (error) {
+      console.error("Error fetching recipes:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    useEffectHook();
+  }, [token, searchQuery, showAllRecipes]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +98,8 @@ const Home = () => {
   if (isLoading) {
     return <div>Cargando...</div>;
   }
-  const { contextTheme } = useThemeContext();
+
+  console.log(showAllRecipes);
   return (
     // Este div envuelve todo
     <div id={contextTheme}>
@@ -72,6 +114,19 @@ const Home = () => {
         <div className="homePage">
           {" "}
           {`Usted ha buscado: "${searchQuery.toUpperCase()}"`}
+          <form action="#">
+            <label>Filtrar por: </label>
+            <select name="recetas">
+              <option value="showAll">Mostrar todas las recetas</option>
+            </select>
+            <input
+              type="submit"
+              value="Buscar"
+              onClick={() => {
+                setShowAllRecipes(!showAllRecipes);
+              }}
+            />
+          </form>
           <div className="card_flex_wrap">
             {dataRecipe ? (
               dataRecipe.map((recipe) => (
@@ -91,6 +146,7 @@ const Home = () => {
           </div>
         </div>
       )}
+
       {!searchPage && (
         <div>
           <Slider />

@@ -65,5 +65,7 @@ router.get("/recipes/:name", verifyToken, async (req, res) => {
     res.status(500).json({ error: "Error al obtener las recetas" });
   }
 });
+//Obtener todas las recetas
+router.get("/allRecipes", verifyToken, RecipesController.showAllRecipes);
 
 module.exports = router;

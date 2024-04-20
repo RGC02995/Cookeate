@@ -2,7 +2,12 @@
     max-width: 500px;
     margin: 0 auto;
     margin-top: 2% !important;
-    color: white;
+    color:white;
+    text-align: left;
+    h2 {
+        color: #282828;
+        text-align: center;
+    }
    
 
     @include flex-center-column 

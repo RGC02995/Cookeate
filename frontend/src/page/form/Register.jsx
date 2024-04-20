@@ -94,7 +94,7 @@ const Register = () => {
     </div>
   ) : (
     <div className="container">
-      <h1 className="container">Se ha registrado correctamente</h1>
+      <h2 className="container">Se ha registrado correctamente</h2>
       <Link to="/login">
         <button className="form_button">Login</button>
       </Link>

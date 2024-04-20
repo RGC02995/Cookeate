@@ -75,11 +75,16 @@ a {
   margin: 0 auto;
   margin-top: 2% !important;
   color: white;
+  text-align: left;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
   flex-direction: column;
+}
+.container h2 {
+  color: #282828;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -194,17 +199,18 @@ a {
   margin: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
 }
 .flex_navbar form {
   max-width: 100%;
-  width: 30px;
+  width: 40px;
+}
+.flex_navbar form:focus {
+  width: 400px !important;
 }
 
 .input_search {
   max-height: 100px;
   max-width: 100%;
-  width: 300px;
   font-size: 50px;
   padding: 0.1em;
   border-style: none;
@@ -213,7 +219,6 @@ a {
 .input_search:focus {
   outline: none;
   color: #0d3f67;
-  width: 400px;
 }
 
 .img_navbar {
