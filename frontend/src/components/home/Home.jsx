@@ -98,8 +98,6 @@ const Home = () => {
   if (isLoading) {
     return <div>Cargando...</div>;
   }
-
-  console.log(showAllRecipes);
   return (
     // Este div envuelve todo
     <div id={contextTheme}>
@@ -116,13 +114,11 @@ const Home = () => {
           {`Usted ha buscado: "${searchQuery.toUpperCase()}"`}
           <form action="#">
             <label>Filtrar por: </label>
-            <select name="recetas">
-              <option value="showAll">Mostrar todas las recetas</option>
-            </select>
             <input
               type="submit"
-              value="Buscar"
-              onClick={() => {
+              value="Mostrar todas las recetas"
+              onClick={(e) => {
+                e.preventDefault();
                 setShowAllRecipes(!showAllRecipes);
               }}
             />
