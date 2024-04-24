@@ -1,12 +1,13 @@
-.cards_wrapper{
+.cards_wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap:10px;
+    gap:20px;
     padding: 1em;
-    .card_style{
+
+    .card_style {
         border-radius: .15rem;
         display: flex;
         align-items: center;
@@ -15,9 +16,14 @@
         width: 250px;
         height: 300px;
         overflow: hidden;
-        background-color: $green-form;
+        background-color: $green;
         font-weight: 400;
-        a{
+        transition: 0.4s linear;
+        &:hover{
+            transform: scale(1.1);
+            box-shadow: rgba(113, 112, 112, 0.19) 0px 10px 10px, rgba(89, 89, 89, 0.23) 0px 4px 4px;
+        }
+        a {
             font-size: 13px;
             font-style: normal;
             text-decoration: none;
@@ -25,19 +31,22 @@
             &:hover {
                 color: #ffffff;
                 font-weight: 300;
+                
             }
         }
-        img{
+        img {
             height: 100%;
             width: 100%;
+        }
+
+        
+        &:hover{
+            background-color: $green-insect;
         }
         @media (max-width:400px) {
             max-width: 150px;
             max-height: 200px;
             font-size: 10px;
-        }
-        &:hover{
-            background-color: #9a8d80;
         }
     }
 }
@@ -47,8 +56,13 @@
 .h1_title{
     text-align: center;
     margin-top: 100px;
+    @media (max-width:400px) {
+        margin-top: 50px;
+    }
     
 
 }
 
-//Añadimos p_wrapper para subrayar el titulo de la seccion, el classname del stilo esta en _explainaboutus.scss
+.lastPublications_margin_bottom {
+    margin-bottom: 5%;
+}

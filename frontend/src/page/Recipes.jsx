@@ -53,7 +53,7 @@ function Recipes() {
   }
 
   return (
-    <div id={theme}>
+    <div id={theme} className="background_height">
       <nav>
         <div className="recipe_nav">
           <a className="p_profile" href="/profile">
@@ -74,8 +74,6 @@ function Recipes() {
           ))}
         </ul>
         <article>{guide}</article>
-
-        <p>Acabado final:</p>
         <div className="img_center">
           <img src={`http://localhost:5000/uploads/recipes/${img}`} alt={img} />
         </div>

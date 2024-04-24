@@ -1,5 +1,5 @@
 import Logo from "../../../img/Logo.png";
-import { VscAccount } from "react-icons/vsc";
+import { BsFillPersonFill } from "react-icons/bs";
 import { DiAptana } from "react-icons/di";
 import { VscSearch } from "react-icons/vsc";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +10,7 @@ const Navbar = (props) => {
   const searchRef = useRef(null);
   //Devuelve true o false dependediendo si estamos buscando algo o no
   const [searching, setSearching] = useState(false);
+
   //Función que nos devuelve el valor de la busqueda.
   const handleSearch = (e) => {
     e.preventDefault();
@@ -75,9 +76,18 @@ const Navbar = (props) => {
             }}
           />
           {/* AQUI ESTAN LOS ICONOS */}
+          <form onSubmit={handleSearch} className="icons_flex_navbar">
+            <VscSearch
+              className="icon_style "
+              type="submit"
+              onClick={() => {
+                setSearching(!searching);
+              }}
+            />
+          </form>
           <div className="icons_flex">
             <div className="icons_flex_navbar">
-              <VscAccount
+              <BsFillPersonFill
                 className="icon_style"
                 onClick={() => {
                   location.href = "/profile";
@@ -89,15 +99,7 @@ const Navbar = (props) => {
                   location.href = "/conf";
                 }}
               />
-              <form onSubmit={handleSearch}>
-                <VscSearch
-                  className="icon_style"
-                  type="submit"
-                  onClick={() => {
-                    setSearching(!searching);
-                  }}
-                />
-              </form>
+
               <header id={contextTheme}>
                 <ReactSwitch
                   onChange={handleSwitch}

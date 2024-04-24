@@ -144,7 +144,7 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap:10px;
+    gap:20px;
     padding: 1em;
     .cards_style{
         border-radius: .15rem;
@@ -155,8 +155,13 @@
         max-width: 250px;
         height: 300px;
         overflow: hidden;
-        background-color: $green-form;
+        background-color: $green-card;
         font-weight: 400;
+        transition: 0.4s linear;
+        &:hover{
+            transform: scale(1.1);
+            box-shadow: rgba(113, 112, 112, 0.19) 0px 10px 10px, rgba(89, 89, 89, 0.23) 0px 4px 4px;
+        }
         a{
             font-size: 15px;
             font-style: normal;
@@ -177,7 +182,7 @@
             font-size: 10px;
         }
         &:hover{
-            background-color: #9a8d80;
+            background-color: $green-insect;
         }
     }
 }

@@ -1,9 +1,8 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { loginApi } from "../../api/loginApi";
 import { UploadStatusResponse } from "../../api/statusResponse.model";
 import { togglePasswordVisibility } from "../../utils/utils";
-import { ThemeContext } from "../../context/ThemeProvider";
 
 // import { decode } from "jwt-decode";
 
@@ -12,11 +11,10 @@ const Login = () => {
   const passwordRef = useRef(null);
 
   const isToken = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
-  const ID = localStorage.getItem("userId");
-  console.log(ID);
+  const refreshToken = localStorage.getItem("refreshToken");
+  console.log(refreshToken);
 
-  if (isToken) {
+  if (isToken && refreshToken) {
     location.href = "/";
   }
 
@@ -25,7 +23,7 @@ const Login = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    const { customStatus, message, token } = await loginApi({
+    const { customStatus, message, token, refreshToken } = await loginApi({
       email,
       password,
     });
@@ -43,6 +41,7 @@ const Login = () => {
       return;
     }
     localStorage.setItem("token", token);
+    localStorage.setItem("refreshtoken", refreshToken);
     location.href = "/";
   };
 

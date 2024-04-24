@@ -14,12 +14,13 @@ export const loginApi = async ({ email, password }) => {
     });
 
     const { data } = response;
-    const { message, token } = data;
+    const { message, token, refreshToken } = data;
 
     return {
       customStatus: UploadStatusResponse.OK,
       message,
       token,
+      refreshToken,
     };
   } catch (error) {
     return errorHandler(error);

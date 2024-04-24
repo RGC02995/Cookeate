@@ -24,7 +24,7 @@ function LastPublications() {
     return <div>Cargando...</div>;
   }
   return (
-    <div>
+    <div className="lastPublications_margin_bottom">
       <article className="p_wrapper">
         <h1 className="h1_title">Últimas Publicaciones</h1>
       </article>

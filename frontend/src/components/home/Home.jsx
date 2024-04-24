@@ -1,5 +1,6 @@
 import { useThemeContext } from "../../context/ThemeProvider";
 import ExplainAboutUs from "./componentsHome/ExplainAboutUs";
+import Footer from "./componentsHome/Footer";
 import LastPublications from "./componentsHome/LastPublications";
 import Navbar from "./componentsHome/Navbar";
 import Slider from "./componentsHome/Slider";
@@ -46,9 +47,9 @@ const Home = () => {
       if (showAllRecipes) {
         await fetchAllRecipes();
       }
-      if (!showAllRecipes) {
-        setDataRecipe(null);
-      }
+      // if (!showAllRecipes) {
+      //   setDataRecipe(null);
+      // }
     } catch (error) {
       console.error("Error fetching recipes:", error);
     } finally {
@@ -132,7 +133,7 @@ const Home = () => {
                     alt={recipe.images}
                   />
                   <p onClick={() => handleRecipeClick(recipe._id)}>
-                    {recipe.title.toUpperCase()}
+                    {recipe.title}
                   </p>
                 </div>
               ))
@@ -148,6 +149,7 @@ const Home = () => {
           <Slider />
           <ExplainAboutUs />
           <LastPublications />
+          <Footer />
         </div>
       )}
     </div>

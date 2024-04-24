@@ -64,6 +64,54 @@ const register = async (req, res) => {
 
 //Method POST for login
 //Rute /login
+// const login = async (req, res) => {
+//   //Get all params of the body
+//   let params = req.body;
+//   //Check the params from the body
+//   if (!params.email || !params.password) {
+//     return res
+//       .status(500)
+//       .send({ status: "error", message: "No se ha recibido ningún parámetro" });
+//   }
+
+//   try {
+//     //We going to find in a database ONE user with the same params that the body
+//     const user = await User.findOne({ email: params.email });
+//     if (!user) {
+//       return res.status(400).send({
+//         status: "error",
+//         message: "Have not a same user",
+//       });
+//     }
+
+//     //Compare passwords with bcrypt
+//     const pwd = await bcrypt.compareSync(params.password, user.password);
+
+//     if (!pwd) {
+//       return res
+//         .status(404)
+//         .json({ status: "error", message: "Not found the same password" });
+//     }
+
+//     //Create a token when user has login
+//     // const token = jwt.createToken(user);
+//     const token = jwt.sign(
+//       { id: user.id, email: user.email, role: user.role },
+//       process.env.JWT_SECRET,
+//       { expiresIn: "60m" }
+//     );
+
+//     //Create a refresh token
+//     return res.status(200).json({
+//       status: "success",
+//       message: "User is logged",
+//       token,
+//     });
+//     const userId = localStorage.getItem("id");
+//   } catch (error) {
+//     return res.status(500).json({ status: "error", message: "Failed Login" });
+//   }
+// };
 const login = async (req, res) => {
   //Get all params of the body
   let params = req.body;
@@ -80,7 +128,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(400).send({
         status: "error",
-        message: "Have not a same user",
+        message: "Usuario no encontrado",
       });
     }
 
@@ -90,7 +138,7 @@ const login = async (req, res) => {
     if (!pwd) {
       return res
         .status(404)
-        .json({ status: "error", message: "Not found the same password" });
+        .json({ status: "error", message: "contraseña incorrecta" });
     }
 
     //Create a token when user has login
@@ -100,17 +148,21 @@ const login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "60m" }
     );
+
+    //Create a refresh token
+    const refreshToken = jwt.sign({ id: user.id }, "1y");
     return res.status(200).json({
       status: "success",
       message: "User is logged",
       token,
+      refreshToken,
     });
+
     const userId = localStorage.getItem("id");
   } catch (error) {
     return res.status(500).json({ status: "error", message: "Failed Login" });
   }
 };
-
 //Method POST for uploadImage
 //Rute /uploadImage
 const uploadImage = async (req, res) => {
