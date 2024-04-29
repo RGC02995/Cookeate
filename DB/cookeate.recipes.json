@@ -1,0 +1,175 @@
+[{
+  "_id": {
+    "$oid": "66240cd9d90cf868b004fe3a"
+  },
+  "title": "Arroz con leche",
+  "subtitle": "es una prueba",
+  "food": [
+    "arroz",
+    "leche",
+    "sal"
+  ],
+  "guide": "Se juntan y listo",
+  "images": "1713638617002arroz con leche.jpeg",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-20T18:43:37.006Z"
+  },
+  "user": {
+    "$oid": "66240c76d90cf868b004fe30"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66242427d150896c5ef78cf8"
+  },
+  "title": "Licor de manza",
+  "subtitle": "as",
+  "food": [
+    "as"
+  ],
+  "guide": "asss",
+  "images": "1713644583470descarga.jpeg",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-20T20:23:03.473Z"
+  },
+  "user": {
+    "$oid": "66240c76d90cf868b004fe30"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6624d81e3ce04639c7f71a0c"
+  },
+  "title": "Hola agua",
+  "subtitle": "subhola",
+  "food": [
+    "ingredientehola"
+  ],
+  "guide": "asssdefef",
+  "images": "1713690654170Arroz-negro_Repagas_e-compact.jpg",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-21T09:10:54.173Z"
+  },
+  "user": {
+    "$oid": "66240c76d90cf868b004fe30"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6627e067b58763bb1266be31"
+  },
+  "title": "Salmón confitado con curry y langostinos",
+  "subtitle": "¿Has comprado salmón y quieres preparar con él un plato de auténtico lujo? No te pierdas esta fabulosa idea. Lleva langostinos y una rica salsa de curry.",
+  "food": [
+    "600 gramos de lomos de salmón",
+    "8 langostinos",
+    "1 cebolla",
+    "3 dientes de ajo",
+    "½ pimiento verde",
+    "½ pimiento rojo",
+    "2 tomates maduros",
+    "4 cucharadas de curry",
+    "2 hojas de laurel",
+    "400 mililitros de caldo de verduras",
+    "50 mililitros de nata para cocinar",
+    "50 mililitros de salsa de ostras",
+    "50 mililitros de salsa de soja",
+    "tallos de cebollino",
+    "aceite de oliva",
+    "sal"
+  ],
+  "guide": "\r\n1. Prepara las verduras\r\n\r\nAntes de nada, prepara las verduras. Pela la cebolla y un par de ajos y pícalos. Limpia los pimientos y lávalos, junto con los tomates; trocea ambos.\r\n2. Elabora la salsa\r\n\r\nPara la salsa, sofríe la cebolla y el pimiento, 5 minutos, en una cazuela con un hilo de aceite. Añade el ajo y el curry, y dóralos 1 minuto. Incorpora el tomate y cocina hasta que se evapore el agua. Agrega 1 hoja de laurel lavada y el caldo, sazona y cocina 20 minutos. Fuera del fuego, retira el laurel y tritura la preparación con la nata; deja que dé un hervor y reserva.\r\n3. Confita el salmón\r\n\r\nRetira la piel y las espinas del lomo de salmón, y córtalo en 4 porciones. Pon al fuego una sartén con abundante aceite, el ajo restante y 1 hoja de laurel, ambos lavados. Cuando el aceite llegue a 85°, añade el salmón y confítalo 15 minutos. Pasado ese tiempo, retíralo y escúrrelo. Luego, mezcla la salsa de ostras y la de soja, y con este aliño condimenta el pescado.",
+  "images": "1713889383644tronco-de-salmon-confitado-con-curry-y-langostinos_00000000_240122165145_900x900.jpg",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-23T16:23:03.647Z"
+  },
+  "user": {
+    "$oid": "66240c76d90cf868b004fe30"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66293358f2c32c4fcc60173b"
+  },
+  "title": "salmón2.0 al horno",
+  "subtitle": "hehe",
+  "food": [
+    "salmon",
+    "sacarina"
+  ],
+  "guide": "nmvbhgfcjhcfhcyrf",
+  "images": "1713976152452rodaja-salmon-opercebeiro-800x800.png",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-24T16:29:12.455Z"
+  },
+  "user": {
+    "$oid": "6629327ff2c32c4fcc60172b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662ebed30cf701b1130c6cab"
+  },
+  "title": "Bao bao",
+  "subtitle": "pulled pork",
+  "food": [
+    "pan bao",
+    "pulled pork",
+    "barbacoa",
+    "guacamole",
+    "cebollita",
+    "tomate",
+    "cilantro"
+  ],
+  "guide": "preguntar al baovan, ellos os daran la verdadera receta sabrosa",
+  "images": "1714339539571receta-de-pan-bao-blanco.jpg",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-28T21:25:39.574Z"
+  },
+  "user": {
+    "$oid": "662ebd850cf701b1130c6c97"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662f5db743e8fa5b4fe7590f"
+  },
+  "title": "asdasd",
+  "subtitle": "asdasd",
+  "food": [
+    "asd",
+    "eded",
+    "sefde",
+    "fefef",
+    "effef"
+  ],
+  "guide": "fsgregbthnrtyecjtyrextydcjytjr",
+  "images": "1714380215347descarga.jpeg",
+  "like": 0,
+  "dislike": 0,
+  "date_recipe": {
+    "$date": "2024-04-29T08:43:35.349Z"
+  },
+  "user": {
+    "$oid": "662f5d4943e8fa5b4fe758f9"
+  },
+  "__v": 0
+}]

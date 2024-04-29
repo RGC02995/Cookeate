@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "66240c76d90cf868b004fe30"
+  },
+  "name": "Raúl",
+  "surname": "Guillot Colomer",
+  "nick": "RGC95",
+  "email": "raulgc2995@gmail.com",
+  "password": "$2b$10$uZxD.oijtfQMJOftsEqkaOxXnahAeIMda01mjkcCz8T6rZRa9wVAa",
+  "role": "user_role",
+  "img": "1713638555199perfil.png",
+  "created_at": {
+    "$date": "2024-04-20T18:41:58.384Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6627c9c2ec743bf88f205c60"
+  },
+  "name": "rgc",
+  "surname": "rgc",
+  "nick": "rgc",
+  "email": "rgc@rgc.com",
+  "password": "$2b$10$Ivx/S0oSGTB6uZKr/FJ66.FcVXUz72L5/1yjti0e.HUWSUOeR2Lce",
+  "role": "user_role",
+  "img": "image.png",
+  "created_at": {
+    "$date": "2024-04-23T14:46:26.250Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6629327ff2c32c4fcc60172b"
+  },
+  "name": "ivan",
+  "surname": "garcia",
+  "nick": "garcik96",
+  "email": "igarba@gmail.es",
+  "password": "$2b$10$2uZcl04nz0dIrAofnTTnCuZ1ClwTkpmQWSWIJspa7IC8wYuyMUEh6",
+  "role": "user_role",
+  "img": "1713976090466descarga.jpg",
+  "created_at": {
+    "$date": "2024-04-24T16:25:35.020Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662ebd850cf701b1130c6c97"
+  },
+  "name": "mireia",
+  "surname": "campos",
+  "nick": "mcc19",
+  "email": "mireiacc19@hotmail.com",
+  "password": "$2b$10$Ym9jv25CAQ1DGGWdU.jjcOQz5oVzgCXiopDtxz/8gRCE.rOjiTy8m",
+  "role": "user_role",
+  "img": "1714339419472descarga.jpeg",
+  "created_at": {
+    "$date": "2024-04-28T21:20:05.857Z"
+  },
+  "__v": 0
+}]
