@@ -1,8 +1,30 @@
-# React + Vite
+# Clona este repositorio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+git clone https://github.com/RGC02995/Cookeate.git
 
-Currently, two official plugins are available:
+# Ve al directorio del proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+cd Cookeate
+
+# Instala las dependencias en el frontend
+
+cd frontend
+npm install
+
+# Instala las dependencias en el backend
+
+cd cd..
+cd backend
+npm install
+
+# Inicia el servidor del frontend y backend en un solo comando y una sola terminal
+
+# Tienes que ejecuar el comando en la carpeta raiz del proyecto.
+
+Usa cd.. hasta volver a la raiz y luego:
+npm start
+
+#Para poder ejecutar el proyecto debes tener Mongod corriendo de fondo.
+
+Licencia
+MIT

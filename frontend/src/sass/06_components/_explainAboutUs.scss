@@ -37,7 +37,7 @@
     font-weight: 300;
     text-align: justify;
 
-    @media (max-width:600px) {
+    @media (max-width:768px) {
         font-size: .8rem;
         padding-left: 2em;
         padding-right: 2em;
@@ -52,7 +52,7 @@
     font-weight: 400;
     text-align: justify;
 
-    @media (max-width:600px) {
+    @media (max-width:768px) {
         font-size: 1rem;
         margin-left: 0px;
     }
@@ -71,7 +71,7 @@
     &:hover{
         background-color: $green-form;
     }
-    @media (max-width:600px) {
+    @media (max-width:768px) {
         font-size:1em;
     }
         

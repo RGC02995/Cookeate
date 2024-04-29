@@ -37,6 +37,9 @@
         img {
             height: 100%;
             width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center;
         }
 
         
@@ -44,7 +47,7 @@
             background-color: $green-insect;
         }
         
-        @media (max-width:400px) {
+        @media (max-width:768px) {
             max-width: 150px;
             max-height: 200px;
             font-size: 10px;
@@ -57,7 +60,7 @@
 .h1_title{
     text-align: center;
     margin-top: 100px;
-    @media (max-width:400px) {
+    @media (max-width:768px) {
         margin-top: 50px;
     }
     

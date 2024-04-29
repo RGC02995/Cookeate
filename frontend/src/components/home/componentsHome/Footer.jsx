@@ -29,42 +29,6 @@ function Footer() {
             </a>
           </li>
         </ul>
-        <select
-          id="country selector"
-          name="country selector"
-          title="country selector"
-        >
-          <option disabled="disabled" selected="selected">
-            País
-          </option>{" "}
-          <option value=" http://www.garnier.com.au/  ">Australia</option>
-          <option value=" http://www.garnier.com.br/ ">Brazil</option>
-          <option value=" https://www.garnier.ca/en-ca ">Canada</option>
-          <option value=" http://www.garnier.hr/ ">Croatia</option>
-          <option value=" / ">DMI</option>
-          <option value=" https://www.garnier.fr/ ">France</option>
-          <option value=" https://www.garnier.fr/ ">GarnierLand</option>
-          <option value=" http://www.garnier.de/ ">Germany</option>
-          <option value=" https://www.garnier.gr/ ">Greece</option>
-          <option value=" http://www.garnier.hu/ ">Hungary</option>
-          <option value=" https://www.garnier.in ">India</option>
-          <option value=" http://www.garnier.it/ ">Italy</option>
-          <option value=" http://www.garnier.com.mx/ ">Mexico</option>
-          <option value=" https://www.garnierzorgvoorjezelf.nl/  ">
-            Netherlands
-          </option>
-          <option value=" http://garnierdbajosiebie.pl/ ">Poland</option>
-          <option value=" https://www.garnier.pt/  ">Portugal</option>
-          <option value=" https://www.garnier.ro/ ">Romania</option>
-          <option value=" http://www.garnier.com.ru/ ">Russia</option>
-          <option value=" http://www.garnier.es/ ">Spain</option>
-          <option value=" https://www.garnier.com.tr/ ">Turkey</option>
-          <option value=" http://www.garnier.co.uk/ ">United Kingdom</option>
-          <option value=" http://www.garnierusa.com/ ">
-            United States - English
-          </option>
-          <option value=" https://www.google.com/ ">USA</option>
-        </select>
       </div>
 
       <div>
